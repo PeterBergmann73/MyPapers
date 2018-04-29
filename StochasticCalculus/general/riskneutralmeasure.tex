@@ -1,0 +1,37 @@
+\subsection{Fundamental theorems of asset pricing}
+A discrete market is the market with finite state.
+\begin{enumerate}
+	\item A discrete market, on a discrete {\color{blue} probability space} $(\Omega, \mathscr{F}, \mathbb{P})$, is arbitrage-free if, and only if, there exists at least one risk neutral probability measure that is equivalent to the original probability measure $\mathbb{P}$.
+	\item An arbitrage-free market $(S, B)$ consisting of a collection of stocks $S$ and a risk-free bond $B$ is complete if and only if there exists a unique risk-neutral measure that is equivalent to $\mathbb{P}$ and has numeraire $B$.
+\end{enumerate}
+
+\subsection{Drift of a risky asset under the risk-free probability measure}
+\paragraph{Steps}
+\begin{itemize}
+	\item Put SDE-s for a stock and a bond
+	\item Write SDE for $f = \frac{S_{t}}{B_{t}}$
+	\item Require it to be a martingale
+\end{itemize}
+
+We have:
+\begin{eqnarray}
+dS_{t} &=& \mu S_{t}dt + \sigma S_{t}dW_{t}\\
+dB_{t} &=& rB_{t}dt
+\end{eqnarray}
+and therefore
+\begin{eqnarray}
+d\bigg(\frac{S_{t}}{B_{t}}\bigg) &=& \frac{dS_{t}}{B_{t}} + S_{t}d\bigg(\frac{1}{B_{t}}\bigg)
+\end{eqnarray}
+With no additional Ito cross terms since $B_{t}$ is deterministic.\\
+Since:
+\begin{eqnarray}
+B_{t} &=& B_{0}e^{rt}
+\end{eqnarray}
+we get:
+\begin{eqnarray}
+d(B_{t}^{-1}) &=& -rB_{t}^{-2}B_{t}dt = -rB_{t}^{-1}dt
+\end{eqnarray}
+Thus
+\begin{eqnarray}
+d\bigg(\frac{S_{t}}{B_{t}}\bigg) &=& (\mu - r)\frac{S_{t}}{B_{t}}dt + \sigma\frac{S_{t}}{B_{t}}dW_{t}
+\end{eqnarray}

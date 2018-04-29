@@ -1,0 +1,124 @@
+\subsection{BS PDE}
+\subsubsection{Derivation}
+\paragraph{Steps to derive the equation:}
+\begin{enumerate}
+	\item Take a derivative $C(S, t)$
+	\item Construct a portfolio consisting of the derivative $C$ ans $\alpha$ stocks $S$
+	\item Wright SDE for the portfolio, noting that the $\alpha$ is defined at the beginning of the time interval and therefore is constant during that period
+	\item Choose $\alpha$ in such a way, that removes the stochastic term
+	\item Equate the drift of riskless portfolio to the risk-free rate
+	\item Rearrange the equation
+\end{enumerate}
+
+\paragraph{Derivation:}
+\begin{enumerate}
+	\item Take a derivative $C(S, t)$:
+	\begin{eqnarray}
+	C(S, t)
+	\end{eqnarray}
+	\item Construct a portfolio consisting of the derivative $C$ ans $\alpha$ stocks $S$:
+	\begin{eqnarray}
+	P(C, S) = C + \alpha S
+	\end{eqnarray}
+	\item Wright SDE for the portfolio, noting that the $\alpha$ is defined at the beginning of the time interval and is constant during that period
+	\begin{eqnarray}
+	\nonumber
+	dP = d(C + \alpha S) = \Big[\frac{\partial C(S, t)}{dt} + \mu S \frac{\partial C(S, t)}{dS} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial ^{2}C(S, t)}{\partial S^{2}} + \alpha\mu S\Big]dt \\+ \sigma S \Big[\frac{\partial C(S, t)}{\partial S} + \alpha\Big]dW_{t}
+	\end{eqnarray}
+	\item Choose $\alpha$ in such a way, that removes the stochastic term:
+	\begin{eqnarray}
+	\alpha = -\frac{\partial C(S, t)}{\partial S}
+	\end{eqnarray}
+	This will also cancel some drift terms:
+	\begin{eqnarray}
+	d(C + \alpha S) = \Big[\frac{\partial C(S, t)}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial ^{2}C(S, t)}{\partial S^{2}}\Big]dt
+	\end{eqnarray}
+	\item Equate the drift of riskless portfolio to the risk-free rate:
+	\begin{eqnarray}
+	\frac{\partial C(S, t)}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial ^{2}C(S, t)}{\partial S^{2}} = r\Big[C - S\frac{\partial C(S, t)}{\partial S}\Big]
+	\end{eqnarray}
+	\item Rearrange the equation:
+	\begin{eqnarray}
+	\frac{\partial C(S, t)}{\partial t} + rS\frac{\partial{C(S, t)}}{\partial S} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial ^{2}C(S, t)}{\partial S^{2}} = rC
+	\end{eqnarray}
+\end{enumerate}
+
+\subsubsection{Solution}
+\paragraph{Steps:}
+\begin{itemize}
+	\item Change the variables to use $x = \log(S)$ and revert the time to move to the backward time rescaled by the factor $\frac{\sigma^{2}}{2}$
+	\item Introduce $k = \frac{2r}{\sigma ^{2}}$ and transform the boundary condition
+	\item Change variable $v(x, t) = e^{\alpha x + \beta t}u(x, t)$ and get rid off the terms that are not in the heat equation
+	\item Solve the heat equation
+	\item Transform back
+\end{itemize}
+
+\paragraph{Solution:}
+The details of the solution could be found at:\\
+"http://www.math.tamu.edu/~stecher/blackScholesHeatEquation.pdf425/Sp12/"
+\begin{itemize}
+	\item \textbf{\textit{Change variables to use $\log(S)$ and rescaled reverted time $\tau $:}}
+	\begin{eqnarray}
+		S &=& e^{x} \Rightarrow x = \log(S)\\
+		\tau &=& \frac{\sigma^{2}}{2}(T - t)\\
+		C(S, t) &=& v(x, \tau)
+	\end{eqnarray}
+	Then:
+	\begin{eqnarray}
+	\frac{\partial\tau}{\partial t} &=& -\frac{\sigma^{2}}{2}\\	
+	\frac{\partial x}{\partial S} &=& \frac{1}{S}
+	\end{eqnarray}
+	The partial derivatives are:
+	\begin{eqnarray}
+		\frac{\partial C}{\partial t} &=& -\frac{\sigma^{2}}{2}\frac{\partial v}{\partial\tau}\\
+		\frac{\partial C}{\partial S} &=& \frac{\partial v}{\partial x}\frac{\partial x}{\partial S} = \frac{1}{S}\frac{\partial v}{\partial x}\\
+		\frac{\partial}{\partial S} &=& \frac{1}{S}\frac{\partial}{\partial x}\\
+		\nonumber
+		\frac{\partial ^{2}C}{\partial S^{2}} &=& \frac{\partial}{\partial S}\bigg(\frac{\partial C}{\partial S}\bigg) = \frac{\partial}{\partial S}\bigg(\frac{1}{S}\frac{\partial v}{\partial x}\bigg)\\
+		\nonumber
+		&=& -\frac{1}{S^{2}}\bigg(\frac{\partial v}{\partial x}\bigg) + \frac{1}{S}\frac{\partial }{\partial S}\bigg(\frac{\partial v}{\partial x}\bigg)\\
+		&=& -\frac{1}{S^{2}}\bigg(\frac{\partial v}{\partial x}\bigg) + \frac{1}{S^{2}}\bigg(\frac{\partial^{2} v}{\partial x^{2}}\bigg)
+	\end{eqnarray}
+	Putting everything together, we get:
+	\begin{eqnarray}
+		-\frac{\sigma^{2}}{2}\frac{\partial v}{\partial \tau} + rS\frac{1}{S}\frac{\partial v}{\partial x}  + \frac{1}{2}\sigma^{2}S^{2}\bigg(-\frac{1}{S^{2}}\bigg(\frac{\partial v}{\partial x}\bigg) + \frac{1}{S^{2}}\bigg(\frac{\partial^{2} v}{\partial x^{2}}\bigg)\bigg) = rv
+	\end{eqnarray}
+	or
+	\begin{eqnarray}
+	\frac{\partial v}{\partial \tau} &=& \frac{\partial ^{2}v}{\partial x^{2}} + \bigg(\frac{2r}{\sigma^{2}} - 1\bigg)\frac{\partial v}{\partial x} - \frac{2r}{\sigma^{2}}v
+	\end{eqnarray}
+	\item \textbf{\textit{Introduce $k = \frac{2r}{\sigma ^{2}}$ and transform the boundary condition:}}\\
+	Setting:
+	\begin{eqnarray}
+	k &=& \frac{2r}{\sigma^{2}}\\
+	t &=& \tau
+	\end{eqnarray}
+	we get:
+	\begin{eqnarray}
+	\frac{\partial v}{\partial t} &=& \frac{\partial ^{2}v}{\partial x^{2}} + (k - 1)\frac{\partial v}{\partial x} - kv, -\infty < x < \infty, 0\leq t \leq \frac{\sigma ^{2}}{2}T\\
+	v(x, 0) &=& C(e^{x}, T) = f(e^{x}), -\infty < x < \infty
+	\end{eqnarray}
+	\item \textbf{\textit{Change variable $v(x, t) = e^{\alpha x + \beta t}u(x, t)$ and get rid off the terms that are not in the heat equation:}}\\
+	Setting:
+	\begin{eqnarray}
+	v(x, t) &=& e^{\alpha x + \beta t}u(x, t) = \phi u	
+	\end{eqnarray}
+	we get:
+	\begin{eqnarray}
+		\frac{\partial v}{\partial t} &=& \beta\phi u + \phi \frac{\partial u}{\partial t}\\
+		\frac{\partial v}{\partial x} &=& \alpha\phi u + \phi\frac{\partial u}{\partial x}\\
+		\frac{\partial ^{2}v}{\partial x^{2}} &=& \alpha^{2}\phi u + 2\alpha\phi\frac{\partial u}{\partial x} + \phi\frac{\partial ^{2}u}{\partial x^{2}}
+	\end{eqnarray}
+	Placing these expressions into the pde and setting:
+	\begin{eqnarray}
+	\alpha &=& -\frac{1}{2}(k - 1) = \frac{\sigma ^{2} - 2r}{2\sigma^{2}}\\
+	\beta &=& -\frac{1}{4}(k + 1)^{2} = -\bigg(\frac{\sigma^{2} + 2r}{2\sigma^{2}}\bigg)^{2}
+	\end{eqnarray}
+	we have:
+	\begin{eqnarray}
+		\frac{\partial u}{\partial t} &=& \frac{\partial ^{2}u}{\partial x^{2}}, -\infty < x < \infty, 0 \leq t \leq \frac{\sigma ^{2}}{2}T\\
+		u(x, 0) &=& e^{-\alpha x}v(x, 0) = e^{-\alpha x}f(e^{x}), -\infty < x < \infty 
+	\end{eqnarray}
+\end{itemize}
+
+

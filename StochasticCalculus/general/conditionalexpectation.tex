@@ -1,0 +1,24 @@
+\subsection{Conditional expectations}
+
+TODO - Joshi1.page155 - creation of martingales.
+
+\subsubsection{Properties}
+\begin{itemize}
+	\item Conditional expectation based on no information is the ordinary expectation:
+	\begin{eqnarray}
+	\mathbb{E}(X\vert \mathscr{F}_{0}) &=& \mathbb{E}(X)
+	\end{eqnarray}
+	\item The Tower Law - if $s < t$ and we first take the conditional expectation at time $t$ followed by the conditional expectation at time $s$, then this is the same as taking the conditional expectation at time $s$:
+	\begin{eqnarray}
+		\mathbb{E}(\mathbb{E}(X\vert \mathscr{F}_{t})\vert \mathscr{F}_{s}) &=& \mathbb{E}(X \vert \mathscr{F}_{s})
+	\end{eqnarray}
+	\item If we condition on information that is independent of the value of the random variable then we get the same value as conditioning on no information. Random variable is independent of the information, if changing the path up to time $s$ does not affect the value of the random variable, then the random variable is independent of $\mathscr{F}_{s}$.So if $X$ is independent, we have:
+	\begin{eqnarray}
+		\mathbb{E}(X\vert \mathscr{F}_{s}) &=& \mathbb{E}(X)
+	\end{eqnarray}
+	\item If the random variable is determined by the information in $\mathscr{F}_{s}$, then conditioning on that information will have no effect, and therefore:
+	\begin{eqnarray}
+	\mathbb{E}(X\vert\mathscr{F}_{s}) &=& X
+	\end{eqnarray}
+\end{itemize}
+

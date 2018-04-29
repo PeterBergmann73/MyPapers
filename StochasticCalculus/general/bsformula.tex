@@ -1,0 +1,70 @@
+\subsection{Black-Scholes formula derivation}
+
+\subsubsection{Steps}
+\begin{itemize}
+	\item Write a value of an option as a discounted payoff expectation at maturity
+	\item Write the distribution of the stock price at maturity
+	\item Put it into the discounted payoff at maturity
+	\item Rewrite the discounted payoff at maturiy using LOTUS (\textbf{\color{red} note $x$ appearing in the integral instead of the normal distribution $N(0, 1)$})
+	\item Change the integration bounds to get rid off the max function under the integral
+	\item Solve the integral bounds for $x$
+	\item Denote the right-hand side of the inequality as $l$
+	\item Split the integral into two parts - one with $x$ and with strike $K$
+	\item Note that the second part is just a normal CDF from $l$ to $\infty$. Find its value as $N(-l)$ using evenness of CDF and replacing the integral $\int_{l}^{\infty}$ with $\int_{-\infty}^{-l}$
+	\item Solve the first integral part by making the part in the exponent a full square
+\end{itemize}
+
+
+\subsection{Derivation}
+\begin{itemize}
+	\item \textbf{\textit{Write a value of an option as a discounted payoff expectation at maturity:}}\\
+A price of a call option at time $0$ is defined as:
+\begin{eqnarray}
+C &=& e^{-rT}\mathbb{E}((S_{T} - K)_{+})
+\end{eqnarray}
+	\item \textbf{\textit{Write the distribution of the stock price at maturity}}:\\
+In the risk-neutral world we have that:
+\begin{eqnarray}
+S_{t} &=& S_{0}exp\bigg(rT - \frac{1}{2}\frac{\sigma ^{2}}{2}T + \sigma\sqrt{T}N(0, 1)\bigg)
+\end{eqnarray}
+	\item \textbf{\textit{Put it into the discounted payoff at maturity}}:\\
+	The value of our option is:
+	\begin{eqnarray}
+	\frac{B_{0}}{B_{T}}\mathbb{E}\bigg[\bigg(S_{0}exp\bigg(rT - \frac{1}{2}\frac{\sigma ^{2}}{2}T + \sigma\sqrt{T}N(0, 1)\bigg) - K\bigg)_{+}\bigg]
+	\end{eqnarray}
+	\item \textbf{\textit{Rewrite the discounted payoff at maturiy using LOTUS}}:\\
+	Recalling that the density of $N(0, 1)$ is $\frac{1}{\sqrt{2\pi}}e^{-x^{2}/2}$, we can write this as:
+	\begin{eqnarray}
+		\frac{e^{-rT}}{\sqrt{2\pi}}\int{e^{-\frac{x^{2}}{2}}\bigg(S_{0}exp\bigg(rT - \frac{1}{2}\frac{\sigma ^{2}}{2}T + \sigma\sqrt{T}x\bigg) - K\bigg)_{+}}dx
+	\end{eqnarray}
+	\item \textbf{\textit{Change the integration bounds to get rid off the max function under the integral}}:\\
+	The integral is non-zero if and only if:
+	\begin{eqnarray}
+		S_{0}exp\bigg(rT - \frac{1}{2}\frac{\sigma ^{2}}{2}T + \sigma\sqrt{T}x\bigg) \geq K
+	\end{eqnarray}
+	\item \textbf{\textit{Solve the integral bounds for $x$:}}\\
+	Thus the integral must be taken over:
+	\begin{eqnarray}
+	x \geq \frac{\log{K/S_{0}} + \frac{1}{2}\sigma^{2}T - rT}{\sigma\sqrt{T}}
+	\end{eqnarray}
+	\item \textbf{\textit{Denote the right-hand side of the inequality as $l$}}
+	\item \textbf{\textit{Split the integral into two parts - one with $x$ and with strike $K$}}:\\
+	Our integral now has two terms. The second simple term is just:
+	\begin{eqnarray}
+		\frac{e^{-rT}}{\sqrt{2\pi}}\int_{l}^{\infty}{e^{-\frac{x^{2}}{2}}Kdx}
+	\end{eqnarray}
+	\item \textbf{\textit{Note that the second part is just a normal CDF from $l$ to $\infty$. Find its value as $N(-l)$ using evenness of CDF and replacing the integral $\int_{l}^{\infty}$ with $\int_{-\infty}^{-l}$}}:\\
+	The second term is therefore equal to:
+	\begin{eqnarray}
+		e^{-rT}KN\Bigg(\frac{\log{S_{0}/K}+rT-\frac{1}{2}\sigma^{2}T}{\sigma\sqrt{T}}\Bigg)
+	\end{eqnarray}
+	\item \textbf{\textit{Solve the first integral part by making the part in the exponent a full square}}:\\
+	Changing the variables:
+	\begin{eqnarray}
+	x &=& \bar x + \sigma\sqrt{T}
+	\end{eqnarray}
+	we get:
+	\begin{eqnarray}
+	\frac{e^{-rT}}{\sqrt{T}}\int_{l - \sigma\sqrt{T}}^{\infty}{e^{-\frac{\bar x^{2}}{2}}S_{0}e^{rT}d\bar{x}}
+	\end{eqnarray}
+\end{itemize}

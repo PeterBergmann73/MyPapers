@@ -1,0 +1,80 @@
+\subsection{Brownian Motion}
+\textit{The process $W = (W_{t}: t > 0)$ is a $\mathbb{P}$-Brownian motion if and only if:
+\begin{itemize}
+	\item $W_{t}$ is continuous and $W_{0} = 0$
+	\item the value of $W_{t}$  is distributed, under $\mathbb{P}$, as a normal random variable $N(0, t)$:
+	\begin{eqnarray}
+	W_{t} \sim N(0, t)
+	\end{eqnarray}
+	\item the increments $W_{s + t} - W_{s}$ are normally distributed with variance $t - s$ as a $N(0, t)$ under $\mathbb{P}$:
+	\begin{eqnarray}
+	W_{t} - W_{s} \sim N(0, t - s)
+	\end{eqnarray}
+	\item the increments $W_{s + t} - W_{s}$ are independent of the behaviour of $W_{r}$ for $r \leq s$:
+	\begin{eqnarray}
+	W_{s + t} - W_{s} \neq f(W_{r}), \forall r \leq s
+	\end{eqnarray}
+\end{itemize}
+}
+
+
+\subsubsection{BM Martingales}
+
+\paragraph{Martingale}
+A stochastic process ${X(t), t \geq 0}$ is a martingale if for any $t$ it is integrable, $\mathbf{E}(X(t)) < \infty$, and for any $s > 0$
+\begin{eqnarray}
+\mathbb{E}(X(t + s)\vert \mathscr{F}_{t}) &=& X(t)
+\end{eqnarray}
+
+\paragraph{List}
+The list is taken from\\
+\textit{"Fima Klebaner. Introduction to Stochastic Calculus with Applications. p.64"}
+\begin{itemize}
+	\item $W_{t}$ - is a martingale
+	\item $W_{t}^{2} - t$ - is a martingale
+	\item for any $u$, $e^{uW_{t} - \frac{u^{2}}{2}t}$ - is a martingale
+\end{itemize}
+\textbf{Proof:} The key idea in establishing the martingale property is that for any function $g$, the conditional expectation of $g(W_{t + s} - W_{t})$ given $\mathscr{F}_{s}$ equals to the unconditional one.
+
+\begin{itemize}
+	\item \textbf{\textit{$W_{t}$ is a martingale.}}\\
+	We have to show that
+	\begin{eqnarray}
+	\mathbb{E}(W_{s}\vert\mathscr{F}_{s}) &=& W_{s}, \forall s < t
+	\end{eqnarray}
+	We can write:
+	\begin{eqnarray}
+	W_{t} = W_{s} + (W_{t} - W_{s})
+	\end{eqnarray}
+	Using the linearity of expectation, we have:
+	\begin{eqnarray}
+	\mathbb{E}(W_{t}\vert \mathscr{F}_{s}) &=& \mathbb{E}(W_{s}\vert \mathscr{F}_{s}) + \mathbb{E}(W_{t} - W_{s}\vert\mathscr{F}_{s})
+	\end{eqnarray}
+	The first term on the right-hand side is $W_{s}$ since $W_{s}$ contains no information not contained in $\mathscr{F}_{s}$.\\
+	Now we show that:\\
+	\begin{eqnarray}
+	\mathbb{E}(W_{t} - W_{s}) &=& 0
+	\end{eqnarray}
+	Recall that
+	\begin{eqnarray}
+	(W_{t} - W_{s}) \sim N(0, t - s)
+	\end{eqnarray}
+	As $W_{t} - W_{s}$ is independent of the value of $W_{s}$ and the path up to time $s$, so when we condition on information available at time $s$, we are effectively conditioning on no information. This means that:
+	\begin{eqnarray}
+	\mathbb{E}[(W_{t} - W_{s})\vert \mathscr{F}_{s}]&=& \mathbb{E}(W_{t} - W_{s}) = 0
+	\end{eqnarray}
+	Thus BM is a martingale.
+	\item Process in the form:
+	\begin{eqnarray}
+	dX_{t} &=& \sigma(X, t)dW_{t}
+	\end{eqnarray}
+	is a martingale.
+\end{itemize}
+
+
+TODO - check how to construct BM.\\
+Problems to solve:
+\begin{itemize}
+	\item is $Z = \sqrt{t}N(0,1)$ a BM?
+	\item is $X_{t} = \rho W_{1} + \sqrt{1 - \rho^{2}}\tilde{W_{t}}$ a BM?
+\end{itemize}

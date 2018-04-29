@@ -1,0 +1,73 @@
+\subsection{Risk neutral measures}
+
+\subsubsection{Domestic risk neutral measure}
+The domestic investor sees the foreign bond $B_{t}^{f}$ as a risky asset, which, denominated in the domestic currency, is valued at $B_{t}^{f}S_{t}$. Where $S_{t}$ is the FX exchange rate.\\
+Construct the ratio of this against the domestic bond:
+\begin{eqnarray}
+	\nonumber
+	Z_{t} &=& S_{t}B_{t}^{f} / B_{t}^{d}\\
+	\nonumber
+	  &=& S_{0}exp\bigg(\sigma W_{t} + \bigg(\mu -\frac{1}{2}\sigma^{2}t\bigg)\bigg)exp\bigg(\bigg(r^{f} - r^{d}\bigg)t\bigg)\\
+	  &=& S_{0}exp\bigg(\sigma W_{t} - \frac{1}{2}\sigma^{2}t\bigg)exp((\mu + r^{f} - r^{d})t)
+\end{eqnarray}
+To attain the martingale property we require that
+\begin{eqnarray}
+\mu = \mu^{d} \equiv r^{d} - r^{f}
+\end{eqnarray}
+($\mu^{d}$ is used to avoid the confusion below), so under the domestic risk-neutral measure $\mathbb{P}^{d}$ we write
+\begin{eqnarray}
+	S_{t} &=& S_{0}exp\bigg(\sigma W_{t}^{d} + \bigg(r^{d} - r^{f} - \frac{1}{2}\sigma^{2}\bigg)\bigg)\\
+	dS_{t} &=& \bigg(r^{d} - r^{f}\bigg)S_{t}dt + \sigma S_{t}dW_{t}^{d}
+\end{eqnarray}
+The drift change required is:
+\begin{eqnarray}
+	W_{t}^{d} &=& W_{t} + \frac{\mu - \mu^{d}}{\sigma}t
+\end{eqnarray}
+which gives a Radon-Nikodym derivative at time $T$ of
+\begin{eqnarray}
+\frac{d\mathbb{P}^{d}}{d\mathbb{P}} &=& exp\bigg(-\gamma^{d}W_{T} - \frac{1}{2}[\gamma^{d}]^{2}T\bigg)
+\end{eqnarray}
+where:
+\begin{eqnarray}
+\gamma^{d} &=& \frac{\mu - \mu^{d}}{\sigma}
+\end{eqnarray}
+
+\subsubsection{Foreign risk-neutral measure}
+The foreign investor sees the domestic bond $B_{t}^{d}$ as the risky asset, which denominated in foreign currency is valued at $B_{t}^{d} / S_{t}$ or, equivalently, $B_{t}^{d}\hat{S_{t}}$,
+where $\hat{S_{t}} )= 1/ S_{t}$ denotes the flipped spot rate. By taking the reciprocal we have
+\begin{eqnarray}
+	B_{t}^{d}\hat{S}_{t} &=& \hat{S_{0}}exp\bigg(-\sigma W_{t} + \bigg(\frac{1}{2}\sigma^{2} - \mu + r^{d}\bigg)t\bigg)
+\end{eqnarray}
+Construct the ratio of this quantity divided by the foreign bond $B_{t}^{f}$:
+\begin{eqnarray}
+	\nonumber
+	\hat{Z} &=& \hat{S}_{t}B_{t}^{d} / B_{t}^{f}\\
+	\nonumber
+	&=& \hat{S_{0}}exp\bigg(-\sigma W_{t} + \bigg(\frac{1}{2}\sigma^{2} - \mu + r^{d} - r^{f}\bigg)t\bigg)\\
+	&=& \hat{S_{0}}exp\bigg(-\sigma W_{t} - \frac{1}{2}\sigma^{2}t\bigg)exp\bigg(\bigg(-\mu + r^{d} - r^{f} + \sigma^{2}\bigg)t\bigg)
+\end{eqnarray}
+This indicates that $\hat{Z}$ is a martingale if
+\begin{eqnarray}
+	\mu = \mu^{f} \equiv r^{d} - r^{f} + \sigma^{2}
+\end{eqnarray}
+So, under the foreign risk-neutral measure $\mathbb{P}^{f}$ we write:
+\begin{eqnarray}
+	\hat{S_{t}} &=& S_{0}exp\bigg(-\sigma W_{t}^{f} + \bigg(\frac{1}{2}\sigma^{2} - \mu^{f}\bigg)t\bigg)
+\end{eqnarray}
+or, alternatively, we can express the non-flipped sport rate
+\begin{eqnarray}
+	S_{t} &=& exp\bigg(\sigma W_{t}^{f} + \bigg(\mu^{f} - \frac{1}{2}\sigma^{2}\bigg)t\bigg)\\
+	dS_{t} &=& (r^{d} - r^{f} + \sigma^{2})S_{t}dt + \sigma S_{t}dW_{t}^{f}
+\end{eqnarray}
+The drift change required is
+\begin{eqnarray}
+	W_{t}^{f} &=& W_{t} + \frac{\mu -\mu^{f}}{\sigma}t
+\end{eqnarray}
+which gives a Radon-Nikodym derivative at time T of
+\begin{eqnarray}
+\frac{d\mathbb{P}^{f}}{d\mathbb{P}} &=& exp\bigg(-\gamma^{f}W_{T} - \frac{1}{2}[\gamma^{f}]^{2}T\bigg)
+\end{eqnarray}
+where
+\begin{eqnarray}
+\gamma^{f} &=& \frac{\mu - \mu^{f}}{\sigma}
+\end{eqnarray}
