@@ -1,0 +1,69 @@
+\chapter{Options}
+
+\section{Contract Size}
+Contract size is usually a lot of 100 shares.
+
+\section{Expiry Times}
+Usually up to one year.
+
+\section{LEAPS}
+Long-term equity anticipation securities are a type of options that has an expiration date of up to 39 months.
+
+\section{Expiry Date}
+Usually the third Friday of the month in which the specific contract expires.
+
+\section{Flex Options}
+These are options where traders agree to non-standard terms.
+
+\section{Option Adjustments}
+Options are only adjusted for stock splits or stock dividends, as in both the cases the number of shares/stocks will increase.\\
+On the other hand, options are not adjusted for cash dividends. The consequences of cash dividends are incorporated in option valuation models.
+
+\section{Fiduciary Call}
+A fiduciary call is a cost effective strategy designed to limit the costs associated with exercising a call option.\\
+A fiduciary call is a combination or a portfolio consisting of a zero-coupon bond which pay $X$ amount at maturity and a call option with the strike price of $X$.
+The payoff of the fiduciary call is $X$ if the call option expires out of the money, and it is $S$ (current price) if the call option expires in the money.\\
+The put-call parity is the combination of a fiduciary call and a protective put.
+
+\section{Put-Call Parity}
+The put-call parity is constructed from a fiduciary call and a protective put, where the discount bond face value should be equal to the strike price for call and put.
+
+\section{Packages}
+A package is a portfolio consisting of standard European calls and puts, forward contracts, cash and the underlying asset itself.\\
+Often a package is constructed so that it has zero cost initially. 
+
+\section{Range Forward Contract}
+It consists of a long call and short put or a short call ans a long put. The call strike price is greater than the put strike price and the strikes are chosen so that the value of the call equals the value of the put.
+
+\section{Gap Options}
+A gap call option is a European call option that pays off $S_{T} - K_{1}$ when $S_{T} > K_{2}$.\\
+The difference between a gap call option and a regular call option with a strike price of $K_{2}$ is that the payoff when $S_{T} - K_{2}$ is increased by $K_{2} - K_{1}$. This increase is positive or negative depending on the sign $K_{2} - K_{1}$.
+
+\section{Clique Options}
+A cliquet option (which is also called a ratchet or strike reset option) is a series of call or put options with rules for determining the strike price.
+
+\section{Compound Options}
+Compound options are options on options. Compound options have 2 strikes and 2 exercise dates.
+
+\section{Chooser Option}
+After specified period of time the holder can choose whether the option is a call or a put.\\
+The chooser option is a package consisting of:
+\begin{enumerate}
+	\item a call option with strike $K$ and maturity $T_{2}$
+	\item $e^{-q\cdot\big(T_{2} - T_{1}\big)}$ put options with the strike $Ke^{-(r - q)\cdot\big(T_{2} - T_{1}\big)}$ and maturity $T_{1}$
+\end{enumerate}
+
+\section{Parisian Option}
+Is a barrier option where the asset price has to be above or below the barrier for a period of time for the option to be knocked in or out.
+
+\section{Lookback Options}
+The payoffs from lookback options depend on the maximum or minimum asset price reached during the life of the option.\\
+The payoff from the floating lookback call is the amount that the final price exceeds the minimum asset price achieved during the life of the option. The payoff from a floating lookback put is the amount by which the maximum asset price achieved during the life of the option exceeds the final asset price.\\
+For a fixed lookback option, a strike is specified and is used instead of the final underlying price.
+
+\section{Employee Options}
+Employee options are considered synonymous to forward start options. The employer commits to grant an at-the-money option at a future date.
+
+\section{Static Option Replication}
+This involves searching for a portfolio of actively traded options that approximately replicates the exotic option. Shorting this position provides the hedge.\\
+The basic principle underlying static option replication is as follows: if two portfolios are worth the same on a certain boundary, they are also worth the same at all interior points of the boundary.

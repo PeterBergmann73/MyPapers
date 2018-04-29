@@ -1,0 +1,141 @@
+\chapter{Performance Measurement}
+
+\section{Treynor ratio}
+The \textit{\textbf{\color{blue}Treynor ratio}} (sometimes called the \textbf{reward-to-volatility ratio}), is a measurement of the returns earned in excess of that which could have been earned on an  \textit{\textbf{\color{blue}investment that has no diversifiable risk}} (e.g. Treasury bills or completely diversified portfolio), per each unit of market risk assumed.\\
+The Treynor ratio relates \textit{\textbf{\color{blue}excess return}} over the risk-free rate to the additional risk taken. However, the \textit{\textbf{\color{blue}systematic risk is used instead of total risk}}. The higher the Treynor ratio, the better the performance of the portfolio under analysis.
+\begin{eqnarray}
+	T &=& \frac{r_{i} - r_{f}}{\beta_{i}}
+\end{eqnarray}
+where:
+\begin{itemize}
+	\item $T$ - Treynor ratio
+	\item $r_{i}$ - portfolio $i$-s return
+	\item $r_{f}$ - risk-free rate
+	\item $\beta$ - portfolio beta
+\end{itemize}
+Like the Sharpe ratio, the Treynor ratio does not quantify the value added, if any, of active portfolio management. A ranking of portfolios based on the Treynor Ratio is only useful if the portfolios under consideration are sub-portfolios of a broader, fully diversified portfolio. If this is not the case, portfolios with identical systematic risk, but different total risk, will be rated the same. But the portfolio with a higher total risk is less diversified and therefore has a higher unsystematic risk which is not priced in the market.\\
+The Treynor ratio is particularly appropriate for appreciating the performance of a well diversified portfolio, since it only takes the systematic risk of the portfolio into account, i.e., the share of the risk that is not eliminated by diversification.\\
+It is also for that reason, that the Treynor ratio is the most appropriate indicator for evaluating the performance of a portfolio that only constitutes a part of the investor's assets.Since the investor has diversified his investments, the systematic risk of his portfolio is all that matters.
+
+\section{Sharpe ratio}
+The ratio is the risk premium per unit of volatility or total risk.
+\begin{eqnarray}
+	S_{r} &=& \frac{\mathbb{E}(R_{p}) - R_{f}}{\sigma(R_{p})}
+\end{eqnarray}
+where:
+\begin{itemize}
+	\item $\mathbb{E}(R_{p})$ - the expected return of the portfolio,
+	\item $R_{f}$ - the risk-free return,
+	\item $\sigma(R_{p})$ - the volatility (standard deviation of) the portfolio returns
+\end{itemize}
+The Sharpe ratio corresponds to the slope of the market line.\\
+From the CAPM we get:
+\begin{eqnarray}
+	\frac{\mathbb{E}(R_{p} - R_{f})}{\sigma(R_{p})} &=& \frac{\mathbb{E}(R_{m} - R_{f})}{\sigma(R_{m})}
+\end{eqnarray}
+This relationship indicates that at equilibrium the Sharpe ratio of the portfolio to be evaluated and the Sharpe ratio of the market portfolio are equal.\\
+If the portfolio is well diversified, then its Sharpe ratio will be closed to that of the market.\\
+The measure is suitable for the performance of portfolios that are not very diversified, because the unsystematic risks is included in this measure.\\
+This measure is also suitable for evaluating the performance of a portfolio that represents an individual's total investment.\\
+The ratio is drawn from portfolio theory and not CAPM, like Treynor and Jensen ratios. It does not refer to the market index and is not therefore subject to Roll's criticism.
+
+
+\section{Jensen's differential return measure}
+Jensen's alpha is defined as the differential between the return on the portfolio in excess fo the risk-free rate and the return explained by the market model, or:
+\begin{eqnarray}
+	\mathbb{E}(R_{p}) - R_{f} &=& \alpha_{p} + \beta_{p}(\mathbb{E}(R_{M} - R_{f}))
+\end{eqnarray}
+It is calculated by currying out the following regression:
+\begin{eqnarray}
+	R_{pt} - R_{Ft} &=& \alpha_{p} + \beta_{p}(R_{Mt} - R_{Ft}) + \epsilon_{Pt}
+\end{eqnarray}
+The Jensen's measure is based on the CAPM. The term $\beta(\mathbb{E}(R_{M}) - R_{F})$ measures the return on the portfolio forecast by the model, $\alpha_{P}$ measures the share of additional return that is due to the manager's choices.\\
+Unlike the Sharpe and Teynor measures, the Jensen measure contains the benchmark.\\
+The Jensen's measure, unlike Treynor and Sharpe measures, does not allow portfolios with different levels of risk to be compared.\\
+The Jensen alpha can be used to rank portfolios within peer groups. They group together portfolios that are managed in a similar manner, and that therefore have comparable levels of risk.\\
+The Jensen measure is subject to the same criticism at the Treynor measure - the result depends on the choice of the reference index.\\
+In addition, when managers practise a market timing strategy, which involves varying the beta according to anticipated movements in the market, the Jensen alpha often becomes negative, and does not then reflect the real performance of the manager.
+
+
+\section{Using the different measures}
+The Sharpe ratio can be used for all portfolios.\\
+The use of the Treynor ratio should be limited to well-diversified portfolios.\\
+the Jensen measure is limited to the relative study of portfolios with the same beta.\\
+
+
+\begin{tabular}{|c|c|c|c|c|}
+	\hline 
+	$\textbf{Name}$ & $\textbf{Risk Used}$ & $\textbf{Source}$ & $\textbf{Criticised by Roll}$ & $\textbf{Usage}$ \\ 
+	\hline 
+	Sharpe & Total ($\sigma$) & Portfolio theory & No & Ranking portfolios with different levels of risk. Not very well diversified portfolios. Portfolios that constitute an individual's total personal wealth. \\ 
+	\hline 
+	Treynor & Systematic ($\beta$) & CAPM & Yes & Ranking portfolios with different levels of risk. Well-diversified portfolios. Portfolios that constitute part of an individual's personal wealth. \\ 
+	\hline 
+	Jensen & Systematic ($\beta$) & CAPM & Yes & Ranking portfolios with the same $\beta$ \\ 
+	\hline 
+\end{tabular} 
+
+
+\section{Tracking error}
+
+The tracking-error is defined as the standard deviation of the difference in return between the portfolio and the benchmark it is replicating, or
+\begin{eqnarray}
+TE &=& \sigma(R_{P} - R_{B})
+\end{eqnarray}
+The lower the value, the closer the risk of the portfolio to the risk of the benchmark.\\
+Benchmarked management requires the tracking-error to remain below a certain threshold, which is fixed in advance.\\
+To respect this constraint, the portfolio must be reallocated regularly as the market evolves.\\
+It is necessary however to find the right balance between the frequency of the reallocations and the transaction costs that they incur, which have a negative impact on portfolio performance.\\
+The additional return obtained, measured by alpha, must also be sufficient to make up for the additional risk taken on by the portfolio.\\
+To check this we use another indicator - the information ratio.
+
+
+\section{Information ratio}
+
+The information ratio, which is sometimes called the appraisal ratio, is defined by the residual return of the portfolio compared with its residual risk.\\
+The residual return of the portfolio corresponds to the share of the return that is not explained by the benchmark.\\
+The residual, or diversifiable, risk measures the residual return variations.\\
+\textbf{The information ratio is defined through the following relationship:}
+\begin{eqnarray}
+	IR &=& \frac{\mathbb{E}(R_{P}) - \mathbb{E}(R_{B})}{\sigma(R_{P} - R_{B})}
+\end{eqnarray}
+\textbf{\color{blue}We recognise the tracking error in the denominator.}\\
+\textbf{The ratio can also be written as follows:}
+\begin{eqnarray}
+	IR &=& \frac{\alpha_{P}}{\sigma(e_{P})}
+\end{eqnarray}
+where
+\begin{itemize}
+	\item $\alpha_{P}$ - denotes \textbf{the residual portfolio return}, as defined by Jensen,
+	\item and $\sigma(e_{P})$ - denotes \textbf{the standard deviation of this residual return}.
+\end{itemize}
+The ratio constitutes a criterion for evaluation the manager. It allows us to check that the risk taken by managers, in deviating from the benchmark, is sufficiently rewarded.\\
+It is important to look at the value of the information ratio and the value of the tracking-error together.\\
+For the same information ratio value, the lower the tracking error the higher the chance that the manager's performance will persist over time.\\
+Since this ratio does not take the systematic portfolio risk into account, it is not appropriate for comparing the performance of a well-diversified portfolio with that of a portfolio with a low degree of diversification.\\
+The information ratio also allows us to estimate a suitable number of years for observing the performance, in order to obtain a certain confidence level for the result. To do so, we note that there is a link between the $t$-statistic of the regression, which provides the alpha value, and the information ratio.\\
+The $t$-statistics is equal to the quotient of alpha and its standard deviation, and the information ratio is equal to the same quotient, but this time using annualised values. We therefore have:
+\begin{eqnarray}
+	IR \approx \frac{t_{STAT}}{\sqrt{T}}
+\end{eqnarray}
+where $T$ denotes the length of the period, expressed in years, during which we observed the returns. The number of years required for the results obtained to be significant, with a given level of probability, is therefore calculated by the following relationship:
+\begin{eqnarray}
+	T &=& \left[\frac{t_{STAT}}{IR}\right]^{2}
+\end{eqnarray}
+We should note, that the higher the manager's information ratio, the more the number of years decreases. The number of years also decreases if we consider a lower level of probability.\\
+The calculation of the information ratio has been presented that the residual return came from the Jensen model. More generally, this return can come from a multi-index or multi-factor model.
+
+\section{Sortino ratio}
+
+\textbf{Semivariance} - is an average of the squared deviations of values that are less than the mean:
+\begin{eqnarray}
+Semivariance &=& \frac{1}{n}\sum_{r_{t} < Average}^{n}\left(Average - r_{t}\right)^{2}
+\end{eqnarray}\\
+An indicator such as the Sharpe ratio, based on the standard deviation, does not allow us to know whether the differentials compared with the mean were produced above or below the mean.\\
+The Sortino ratio is based on the same principle as the Sharpe ratio. However, the risk-free rate is replaced with the minimum acceptable return (MAR), i.e., the return below which the investor does not wish to drop, and the standard deviation of the returns is replaced with the standard deviation of the returns that are below the MAR, that is:
+\begin{eqnarray}
+Sortino Ratio &=& \frac{\mathbb{E}(R_{P}) - MAR}{\sqrt{\frac{1}{T}\sum_{R_{Pt} < MAR}^{T}\left(R_{Pt} - MAR\right)^{2}}}
+\end{eqnarray}
+The \textit{\textbf{\color{blue}Sortino ratio}} measures the risk-adjusted return of an investment asset, portfolio or strategy. It is a modification of the Sharpe ratio but penalises only those returns falling below a user-specific target or required rate of return, while the Sharpe ratio penalises both upside and downside volatility equally.\\
+Though both ration measure an investment's risk adjusted return, they do so in significantly different ways that will frequently lead to differing conclusions as to the true nature of the investment's return-generating efficiency.\\
+The Sortino ratio is used as a way to compare the risk-adjusted performance of programs with different risk and return profiles. In general, risk-adjusted returns seek to normalise the risk across programs and then see which has the higher return unit per risk.\\

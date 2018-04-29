@@ -1,0 +1,115 @@
+\chapter{OLS}
+
+\section{Equation}
+\begin{eqnarray}
+	Y_{i} &=& \beta_{0} + \beta_{1} X_{i} + u_{i}
+\end{eqnarray}
+The equation is the \textbf{\color{blue}linear regression model with a single regressor}, in which $Y$ is the \textbf{\color{blue}dependent variable} and $X$ is the \textbf{\color{blue}independent variable} or the \textbf{\color{blue}regressor}.\\
+The \textbf{\color{blue}intercept} $\beta_{0}$ and the \textbf{\color{blue}slope} $\beta_{1}$ are the \textbf{\color{blue}coefficients} of the population regression line.\\
+The slope $\beta_{1}$ is the change in $Y$ associated with a unit change in $X$. The intercept is the value of the population regression line when $X = 0$; it is the point at which the population regression line intercepts the $Y$ axis.\\
+The term $u_{i}$ is the \textbf{\color{blue}error term}. The error term incorporates all of the factors responsible for the difference between the $Y_{i}$ and the value $\hat{Y}_{i}$ predicted by the population line. This error term contains all the other factors besides $X$ that determine the value of the dependent variable $Y$ for a specific observation $i$.
+
+\section{OLS Estimator, Predicted Values, and Residuals}
+The OLS estimators are:
+\begin{eqnarray}
+	\hat{\beta}_{1} &=& \frac{\sum_{i = 1}^{n}\big(X_{i} - \bar{X}\big)\big(Y_{i} - \bar{Y}\big)}{\big(X_{i} - \bar{X}\big)^{2}} = \frac{S_{XY}}{S_{XX}}\\
+	\hat{\beta}_{0} &=& \bar{Y} - \hat{\beta}_{1}\bar{X}
+\end{eqnarray}
+The OLS predicted values $\hat{Y}_{i}$ and residuals $\hat{u}_{i}$ are:
+\begin{eqnarray}
+	\hat{Y}_{i} &=& \hat{\beta}_{0} + \hat{\beta}_{i}X_{i}\text{, $i = 1, ..., n$}\\
+	\hat{u}_{i} &=& Y_{i} - \hat{Y}_{i}\text{, $i = 1, ..., n$}
+\end{eqnarray}
+
+\section{OLS assumptions}
+\begin{enumerate}
+	\item The conditional distribution of residuals $u_{i}$ given regressor $X_{i}$ has mean of zero
+	\item The pairs $(X_{i}, Y_{i})$ $i = 1, ..., n$ are independently and identically distributed across observations
+	\item Large outliers are unlikely
+\end{enumerate}
+
+\section{Properties of OLS estimators}
+OLS estimator is:
+\begin{enumerate}
+	\item unbiased\footnote{Bias of an estimator is the difference between this estimator's expected value and the true values of the parameter being estimated.}
+	\item consistent - the estimates will converge upon the true values as the sample size, $n$, increases
+	\item has a variance that is inversely proportional to the sample size $n$
+	\item has a normal sampling distribution when the sample size is large
+	\item in addition, under certain conditions the OLS estimator is more efficient than some other candidate estimators. Specifically, if the least squares assumptions hold and if the errors are homoskedastic, then the OLS estimator has the smallest variance of all conditionally unbiased estimators that are linear functions of $Y_{1}, ..., Y_{n}$  
+\end{enumerate}
+
+\section{Measures of Fit}
+
+\subsection{Explained Sum of Squares (ESS)}
+ESS is the sum of squared deviations of the predicted values of $Y_{i}$, $\hat{Y_{i}}$ from their average:
+\begin{eqnarray}
+	ESS &=& \sum_{i = 1}^{n}\big(\hat{Y}_{i} \bar{Y}_{i}\big)^{2}
+\end{eqnarray}
+
+
+\subsection{Total Sum of Squares (TSS)}
+TSS is the sum of squared deviations of $Y_{i}$ from its average:
+\begin{eqnarray}
+ TSS &=& \sum_{i = 1}^{n}\big(Y_{i} - \bar{Y}\big)^{2}
+\end{eqnarray}
+
+\subsection{Sum of Squares Residuals (SSR)}
+The sum of squared residuals, or SSR, is the sum of the squared OLS residuals:
+\begin{eqnarray}
+	SSR &=& \sum_{i = 1}^{n}\hat{u}_{i}^{2}
+\end{eqnarray}
+It can be shown that
+\begin{eqnarray}
+	TSS &=& ESS + SSR
+\end{eqnarray}
+
+
+\subsection{The \texorpdfstring{$R^{2}$}{R2}}
+The $R^{2}$ (also called "the coefficient of determination") ranges between 0 and 1 and measures the fraction of the variance of $Y_{i}$ that is explained by $X_{i}$. Write the dependent variable $Y_{i}$ as the sum of the predicted value $\hat{Y}_{i}$ plus the residual $\hat{u}_{i}$:
+\begin{eqnarray}
+	Y_{i} &=& \hat{Y}_{i} + \hat{u}_{i}
+\end{eqnarray}
+In this notation, the $R^{2}$ is the ratio of the sample variance of $\hat{Y_{i}}$ to the sample variance of $Y_{i}$.\\
+Mathematically, the $R^{2}$ can be written as the ratio of the explained sum of squares to the total sum of squares.\\
+The $R^{2}$ is the ratio of the explained sum of squares to the total sum of squares:
+\begin{eqnarray}
+	R^{2} &=& \frac{ESS}{TSS}
+\end{eqnarray}
+Thus the $R^{2}$ also can be expressed as 1 minus the ratio of the sum of squared residuals to the total sum of squares:
+\begin{eqnarray}
+	R^{2} &=& 1 - \frac{SSR}{TSS}
+\end{eqnarray}
+The $R^{2}$ of the regression of $Y$ on the single regression $X$ is the square of the correlation coefficient between $Y$ and $X$.
+
+
+\subsection{Standard Error of the Regression (SER)}
+The standard error of the regression measures how far $Y_{i}$ typically if from its predicted value.\\
+The standard error of the regression (SER) is an estimation of the standard deviation of the regression error $u_{i}$.\\
+The units of $u_{i}$ and $Y_{i}$ are the same, so the SER is a measure of the spread of the observations around the regression lines, measured in the units of the dependent variable.\\
+For example, if the units of the dependent variable are dollars, then the SER measures the magnitude of a typical deviation from the regression line - that is, the magnitude of a typical regression error - in dollars.\\
+Because the regression errors $u_{1}, ..., u_{2}$ are unobserved, the SER is computed using their sample counterparts, the OLS residuals $\hat{u}_{1}, ..., \hat{u}_{n}$. The formula for the SER is:
+\begin{eqnarray}
+	SER  &=& s_{\hat{u}}\text{, where $s_{\hat{u}}^{2} = \frac{1}{n - 2}\sum_{i = 1}^{n}\hat{u}_{i}^{2} = \frac{SSR}{n - 2}$}
+\end{eqnarray}
+where the formula for $s_{\hat{u}}$ uses the fact that the sample average of the OLS residuals is zero.\\
+The formula for the SER is similar to the formula for the sample standard deviation of $Y$ given earlier, except that $Y_{i} - Y_{Y}$ is replaced by $\hat{u}_{i}$, and the divisor is $n - 1$, whereas here is is $n - 2$. The reason for using the divisor $n - 2$ here (instead of $n$) is the same as the reason for using the divisor $n - 1$. It corrects for a slight downward bias introduced because two regression coefficients were estimated.\\
+This is called a \textbf{\color{blue}"degrees of freedom correction"}. Because two coefficients were estimated ($\beta_{0}$ and $\beta_{1}$), two "degrees of freedom" of the data were lost, so the divisor in this factor is $n - 2$.
+
+\section{Gauss-Markov theorem}
+If
+\begin{itemize}
+	\item the three least squares assumptions hold
+	\item and if the error is homoskedastic, 
+\end{itemize}
+then\\
+\textbf{\color{blue}the OLS estimator has the smallest variance, conditional on $X_{1}, ..., X_{n}$ among all estimators in the class of \color{red}linear \color{ForestGreen}conditionally unbiased \color{blue}estimators}.\\
+In other words, the OLS estimator is the \textbf{\color{blue}B}est \textbf{\color{blue}L}inear conditionally \textbf{\color{blue}U}nbiased \textbf{\color{blue}E}stimator - that is, it is \textbf{\color{blue}BLUE}.\\
+This result extends to regression the result that the sample average $\bar{Y}$ is the most efficient estimator of the population mean among the class of all estimators that are unbiased and are linear functions (weighed averages) of $Y_{1}, ..., Y_{n}$.
+
+\section{Homoskedastic Normal Regression Assumptions}
+If the three least squares assumptions hold, and in addition:
+\begin{itemize}
+	\item the errors are homoskedastic
+	\item and the errors are normally distributed
+\end{itemize}
+These five assumptions are collectively called \textbf{\color{blue}homoskedastic normal regression assumptions}

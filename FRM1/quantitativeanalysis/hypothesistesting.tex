@@ -1,0 +1,118 @@
+\chapter{Confidence Intervals and Hypothesis Testing}
+
+\section{Sample Mean}
+The sample mean is a random variable.\\
+If we increase the sample size, our sample mean estimation will be closer to the real mean. The reason is simple: a single outlier will have much less impact.\\
+If our sample size is $n$ and the true variance of our Data Generating Process (DGP) is $\sigma^{2}$, them the variance of the sample mean is:
+\begin{eqnarray}
+	\sigma_{\mu}^{2} &=& \frac{\sigma^{2}}{n}
+\end{eqnarray}
+It follows that the standard deviation of the sample mean decreases with the square root of $n$.\\
+This is yet another example of the famous square root rule for independent and identically distributed (i.i.d.) variables.\\
+From the central limit theorem, the distribution of the mean converges to the a normal distribution.
+
+
+\section{Sample Variance}
+For a given DGP id we repeatedly calculate the sample variance, the expected value of the sample variance will equal the true variance, and the variance of the sample variance will equal:
+\begin{eqnarray}
+	\mathbb{E}\Big[\big(\hat{\sigma}^{2} - \sigma^{2}\big)^{2}\Big] &=& \sigma^{4}\bigg(\frac{2}{n - 1} + \frac{k_{ex}}{n}\bigg)
+\end{eqnarray}
+where:
+\begin{itemize}
+	\item $n$ - is the sample size,
+	\item and $k_{ex}$ -  is the excess kurtosis
+\end{itemize}
+If the GDP has a normal distribution, then we can also say something about the shape of distribution of the sample variance. If we have $n$ sample points and $\hat{\sigma^{2}}$ is the sample variance, then our estimator will follow a chi-squared distribution with $(n - 1)$ degrees of freedom:
+\begin{eqnarray}
+	(n - 1)\frac{\hat{\sigma^{2}}}{\sigma^{2}} \sim \chi_{n - 1}^{2}
+\end{eqnarray}
+where $\sigma^{2}$ - is the population variance. Note, that this is true only when the DGP has a normal distribution. Unfortunately, unlike the case of the sample mean we cannot apply the central limit theorem here. Even when the sample size is large, if the underlying distribution is non-normal, the statistic in the equation above can vary significantly from a chi-squared distribution.
+
+
+\section{Confidence Intervals}
+In our discussion of a sample mean, we assumed that the standard deviation of the underlying distribution was known. In practise, the true standard deviation is likely not to be known. At the same time we are measuring the sample mean, we will typically be measuring the sample variance as well.\\
+It turns out, that if we first standardise our estimate of the sample mean using the sample standard deviation, the new random variable follows a Student's t distribution with $(n - 1)$ degreed of freedom:
+\begin{eqnarray}
+	t = \frac{\hat{\mu} - \mu}{\hat{\sigma}\sqrt{n}}
+\end{eqnarray}
+Here the numerator is simply the difference between the sample mean and the population mean, while the denominator is the sample standard deviation divided by the square root of the sample size.\\
+In practise the population mean $\mu$ is often unknown.\\
+We often write:
+\begin{eqnarray}
+	P\bigg[\hat{\mu} - \frac{x_{L}\hat{\sigma}}{\sqrt{n}} \leq\mu\leq\hat{\mu} + \frac{x_{U}\hat{\sigma}}{\sqrt{n}}\bigg] &=& \gamma
+\end{eqnarray}
+When it is formulated this way, we call this range the confidence interval for the population mean.
+
+
+\section{Hypothesis Testing}
+In addition to the null hypothesis, we can offer an alternative hypothesis.\\
+In principle, we could test any number of hypothesis. In practice, as long as the alternative is trivial, we tend to limit ourselves to stating the null hypothesis.\\
+It is common to construct null hypothesis so that the desired result is false. We often find that the desired outcome fo a null hypothesis is rejection.
+
+
+\subsection{One Tail or Two?}
+The difference between a one-sided test and a two-side test is that while the alternative hypothesis in former explores the possibility of a change in only one direction (increase or decrease), the latter explores the possibility of a change in either direction.
+
+
+\subsection{Type Error}
+A type 1 error is the incorrect rejection of a true null hypothesis (also known as a "false positive" finding), while a type 2 error is incorrectly retaining a false null hypothesis (also known as a "false negative" finding).\\
+Simpler stated, a type 1 error is to falsely infer the existence fo something that is not there, while a type 2 error is to falsely infer the absence of something that is.
+
+\section{P-Values}
+P-value shows the lowest (significance) level at which $H_{0}$ can be rejected.
+The $p$-value of a result, $p$, is the probability of obtaining a result at least as extreme, given that the null hypothesis were true.
+
+\section{Significance Level/The Size of a Test}
+\textbf{\color{blue}Significance level} (sometimes it is called \textbf{\color{blue}"the size of a test"}) $\alpha$ is the probability of the study rejecting the null hypothesis, given that it were true.\\
+Decreasing the test significance level, when conducting a hypothesis test, will decrease the likelihood of rejecting the null hypothesis when it is in fact true.
+
+\section{F-statistic}
+An $F$-test is any statistical test in which the test statistic has an $F$-distribution under the null hypothesis.\\
+Common examples of the use of $F$-tests include the study of the following cases:
+\begin{itemize}
+	\item the hypothesis that the means of a given set of normally distributed populations, all having the same standard deviation, are equal. This is perhaps the best known $F$-test, and plays an important role in the analysis of variance (ANOVA)
+	\item $F$-test of the equality of two variances (the $F$-test is sensitive to normality)
+	\item the hypothesis that a proposed regression model fits the data well
+	\item the hypothesis that a data set in a regression analysis follows the simpler of two proposed linear models that are nested with each other
+\end{itemize}
+Most $F$-tests arise by considering a decomposition of he variability in a collectionof data in terms of sums of squares. The test statistic in an $F$-test is the ratio of two scaled sums of squares reflecting two sources of variability. These sums of squares are constructed so that the statistic tends to be greater when the null hypothesis is not true. In order for statistics to follow the $F$-distribution under the null hypothesis, the sums of squares should be statistically independent, and each should follow a scaled $\chi^{2}$-distribution. The later condition is guaranteed if the data values are independent and normally distributed with a common variance.\\
+$F$-statistic are based on the ration of mean squares. The term "mean squares" means an estimate of population variance that accounts for the degrees of freedom used to calculate that estimate.\\
+
+\subsection{ANOVA}
+When comparing the variances of two different populations,we use $F$-statistic, computed as:
+\begin{eqnarray}
+	F &=& \frac{S_{2}^{2}}{S_{2}^{2}}
+\end{eqnarray}
+where $S_{1}^{2}$ and $S_{2}^{2}$ are the sample variances.\\
+The $F$-statistic has $(n_{1} - 1, n_{2} - 1)$ degrees of freedom.
+
+
+\section{Important Values to Remember for Normal Distribution}
+
+\subsection{One-Tailed Test}
+\begin{eqnarray}
+\nonumber
+N(-1.282\text{ or }-1.28) &=& 10\%\\
+\nonumber
+N(-1.645\text{ or }-1.65) &=& 5\%\\
+\nonumber
+N(-1.96) &=& 2.5\%\\
+\nonumber
+N(-2.326\text{ or }-2.33) &=& 1\%\\
+\nonumber
+N(-1) &=& 15.9\%\text{ because $\pm$1 standard deviation is 68\% area under the curve}\\
+\nonumber
+N(-2) &=& 2.3\%\text{ because $\pm$2 standard deviations is 95\% area under the curve}\\
+\nonumber
+N(-3) &=& 0.3\%\text{ because $\pm$3 standard deviations is 99.7\% area under the curve} 	
+\end{eqnarray}
+
+\subsection{Two-Tailed Test}
+\begin{eqnarray}
+\nonumber
+N(-1.645)&=& 10\%\\
+\nonumber
+N(-1.96) &=& 5\%\\
+\nonumber
+N(-2.58) &=& 1\%
+\end{eqnarray}

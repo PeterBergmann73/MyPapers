@@ -1,0 +1,151 @@
+\chapter{Information Criteria}
+Most model selection criteria attempt to find the model with the smallest out-of-sample 1-step-ahead mean squared prediction error (MSE).\\
+The difference among criteria amount to different penalties for the number of degrees of freedom used in estimating the model (that is, the number of parameters estimated). Because all of the criteria are effectively estimates of out-of-sample means square prediction error, they have a negative orientation - the smaller, the better.
+
+\section{Sum of Squared Residuals (SSR)}
+SSR is defined as:
+\begin{eqnarray}
+SSR &=& \sum_{i = 1}^{n}\left(Y_{i} - \hat{Y}_{i}\right)^{2}
+\end{eqnarray}
+
+\section{Total Sum of Squares (TSS)}
+TSS is defined as:
+\begin{eqnarray}
+TSS &=& \sum_{i = 1}^{n}\left(Y_{i} - \bar{Y}_{i}\right)^{2}
+\end{eqnarray}
+
+\section{Explained Sum of Squares (ESS)}
+ESS is defined as:
+\begin{eqnarray}
+ESS &=& \sum_{i = 1}^{n}\left(\hat{Y_{i}} - \bar{Y}\right)^{2}
+\end{eqnarray}
+
+\section{\texorpdfstring{$R^{2}$}{R2}}
+$R^{2}$ is defined as:
+\begin{eqnarray}
+R^{2} &=& 1 - \frac{\sum_{i = 1}^{n}\left(Y_{i} - \hat{Y}_{i}\right)^{2}}{\sum_{i = 1}^{n}\left(Y_{i} - \bar{Y}_{i}\right)^{2}} = 1 - \frac{SSR}{TSS} = \frac{ESS}{TSS}
+\end{eqnarray}
+
+\subsection{\texorpdfstring{$R^{2}$}{R2} is a Biased Estimator}
+$R^{2}$ is a \textbf{\color{blue}biased estimator} based on your sample -  it tends to be too high. The magnitude of the bias depends on how many observations are available to fit the model and how many covariates are relative to this sample size. The bias can be particularly large with small sample size and a moderate number of covariates.
+
+\subsection{Why \texorpdfstring{$R^{2}$}{R2} Estimator Cannot Be Unbiased}
+Why is the standard estimate (estimator) of R squared biased? One way of seeing why it can't be unbiased is that by its definition the estimates always lie between 0 and 1. From one perspective this a very appealing property - since the true R squared lies between 0 and 1, having estimates which fall outside this range wouldn't be nice (this can happen for adjusted R squared). However, suppose the true R squared is 0 - i.e. the covariates are completely independent of the outcome Y. In repeated samples, the R squared estimates will be above 0, and their average will therefore be above 0. Since the bias is the difference between the average of the estimates in repeated samples and the true value (0 here), the simple R squared estimator must be positively biased.\\
+Incidentally, lots of estimators we used are not unbiased (more on this in a later post), so lack of unbiasedness doesn't on its own concern is. The problem is that the bias can be large for certain designs where the number of covariates is large relative to the number of observations used to fit the model.
+
+
+\section{Mean Squared Error (MSE)}
+MSE is defined as:
+\begin{eqnarray}
+MSE &=& \frac{1}{n}\sum_{i = 1}^{n}\left(Y_{i} - \hat{Y}_{i}\right)^{2} = \frac{SSR}{n}
+\end{eqnarray}
+In-sample MSE can't rise when more variable are added to a model, and typically it will fall continuously as more variables are added.\\
+The regression line predicts the average value of $y$ associated with a certain value of $x$. The MSE (and also RMSE - the root mean squared error) measures the spread of the $y$ values around that average, hence helps to establish the accuracy of the forecasting model.\\
+MSE is ultimately related to two other diagnostic statistics - the sum of squared residuals (SSR) and $R^{2}$.
+
+\subsection{Data Mining Bias or In-Sample Over-fitting}
+Analysts avoid the use of in-sample MSE to estimate out-of-sample MSE because in-sample MSE cannot increase even when more variables are incorporated into the forecasting model. Hence, MSE has a downward bias when predicting out-of-sample error variance. This bias is known as \textbf{\color{blue}data mining bias} or \textbf{\color{blue}in-sample over-fitting}.
+
+\subsection{Link to SSR}
+
+Looking at the MSE formula reveals that the model with the smallest MSE is also the model with smallest sum of squared residuals, because scaling of squared residuals by $1/n$ does not change the ranking. So selecting the model with the smallest MSE is equivalent to selecting the model with the smallest SSR.
+
+\subsection{Link to \texorpdfstring{$R^{2}$}{R2}}
+
+Similarly, recall the formula for $R^{2}$:
+\begin{eqnarray}
+	R^{2} &=& 1 - \frac{SSR}{TSS}
+\end{eqnarray}
+The denominator of the ratio that appears in the formula is just the sum of squared deviations of $y$ from its sample mean (the so called total sum of squared - TSS), which depends only on the data, not on the particular model fit. Thus, selecting the model that minimizes the sum of squared residuals  - which is equivalent to selecting the model that minimizes MSE - is also equivalent to selecting the model that maximizes $R^{2}$.\\
+\textbf{\color{blue}The regression model with the highest $R^{2}$ is also the one with the lowest MSE}.\\
+MSE and $R^{2}$ rank regression models the same since neither criterion adjusts for the number of parameters. Both use equal measures of the sum of squared residuals.
+
+\section{Standard Error of the Regression}
+To reduce the bias associated with MSE and its relatives, we have to penalize for degrees of freedom used. Thus, let is consider the mean squared error corrected for degrees of freedom:
+\begin{eqnarray}
+s^{2} &=& \frac{SSR}{n - k - 1}
+\end{eqnarray}
+where:
+\begin{itemize}
+	\item $k$ - is the number of degrees of freedom used in model fitting
+	\item and $s^{2}$ - is just the usual unbiased estimate of the regression disturbance variance. That is, it is the square of the usual standard error of the regression.
+\end{itemize}
+Thus, we define standard error of the regression as:
+\begin{eqnarray}
+SER &=& \sqrt{\frac{SSR}{n - k - 1}}
+\end{eqnarray}
+So, selecting the model that minimizes $s^{2}$ is also equivalent to selecting the model that minimizes the standard error of the regression.\\
+The unbiased MSE or $s^{2}$ should be preferred to $R^{2}$ whenever a model is being selected for forecasting purposes.
+
+\section{\texorpdfstring{$R^{2}$}{R2Adjusted} Adjusted for Degrees of Freedom (\texorpdfstring{$\bar{R}^{2}$}{R2})}
+$\bar{R}^{2}$ is defined as:
+\begin{eqnarray}
+\bar{R}^{2} &=& 1 - \frac{n - 1}{n - k -1}\frac{SSR}{TSS} = 1 - \frac{s_{u}^{2}}{s_{Y}^{2}}
+\end{eqnarray}
+The denominator of the $\bar{R}^{2}$ expression depends only on the data, not the particular model fit. So the model that minimizes $s^{2}$ is also the model that maximizes $\bar{R}^{2}$.
+
+\subsection{\texorpdfstring{$\bar{R}^{2}$}{R2} properties}
+\begin{itemize}
+	\item the adjusted estimator is always less than the standard one
+	\item the larger $k$ (the number of explanatory variables) relative to $n$ (the number of observations), the larger the adjustment
+	\item it is quite possible for $\bar{R}^{2}$ to be quite negative
+	\item although the $\bar{R}^{2}$ uses unbiased estimators of the residual variance and the variance of $Y$, it is \textbf{\color{blue} not unbiased}
+\end{itemize}
+
+\section{Penalty Factor}
+To highlight the degree-of-freedom penalty, let's rewrite $s^{2}$ as a penalty factor times the $MSE$:
+\begin{eqnarray}
+s^{2} &=& \frac{n - 1}{n - k - 1}\frac{SSR}{n - 1}
+\end{eqnarray}
+As with $s^{s}$, many of the most important forecast model selection criteria are of the form "penalty factor times MSE".
+
+\section{Information Criterion}
+An information criterion can be defined as a measure of model fit that balances a closer fit to a set of data and an increasing number of parameters.
+
+\section{Akaike Information Criteria (AIC)}
+AIC is defined as:
+\begin{eqnarray}
+AIC &=& e^{\left(\frac{2k}{n}\right)}\cdot SER^{2}
+\end{eqnarray}
+
+\section{Schwarz (or Bayesian) Information Criteria (SIC or BIC)}
+SIC is defined as:
+\begin{eqnarray}
+SIC &=& n^{\left(\frac{k}{n}\right)}\cdot SER^{2}
+\end{eqnarray}
+
+\section{Penalty Comparison}
+How do the penalty factors associated with MSE, $s^{2}$, AIC and SIC compare in terms of severity?\\
+All of the penalty factors are functions of $k/n$, the number of parameters estimated per sample observation. The $s^{2}$ penalty is small and rises slowly with $k/n$. The AIC penalty is a bit larger and still rises slowly with $k/n$. The SIC penalty is substantially larger and rises at a slightly increasing rate with $k/n$.
+
+\section{Model Selection Criteria Consistency}
+A model selection criteria is consistent, if the following conditions are met
+\begin{enumerate}
+	\item when the true model - that is, the \textbf{data generating process (DGP)} - is among the model considered, the probability of selecting the true DGP approaches 1 as the sample size gets large
+	\item when the true model is not among those considered, so that is impossible to select the true DGP, the probability of selecting the best approximation to the true DGP approaches 1 as the sample size gets large.
+\end{enumerate}
+MSE is inconsistent, because it does not penalize for degrees of freedom, that is why it is unattractive.\\
+$s^{2}$ does penalize for degrees of freedom but, as it turns out, not enough to render it a consistent model selection procedure.\\
+The AIC penalizes degrees of freedom more heavily than $s^{2}$, but it, too, remains inconsistent; even as the sample size gets large, the AIC selects models that are too large ("overparameterized").\\
+The SIC, which penalizes degrees of freedom most heavily, is consistent.
+
+\section{Asymptotic Efficiency}
+Until now we have implicitly assumed, that either the true DGP or the best approximation to the true DGP is in the fixed set of model considered. In that case, SIC is a superior model selection criteria.\\
+However, a potentially more compelling view for forecasters is that both the true DGP and the best approximation to it are much more complicated than any model we fit, in which case we may want to expand the set of models we try as the sample size grows.\\
+\textbf{\color{blue}An asymptotically efficient model selection criterion} chooses a sequence of models, as the sample size get large, whose 1-step-ahead forecast error variances approach the one that would be obtained using the true model with known parameters at a rate at least as fast as that of any other model selection criterion.\\
+The AIC, although inconsistent, is asymptotically efficient, whereas the SIC is not.
+
+\section{Information Criterion Properties}
+\begin{itemize}
+	\item AIC always gives model orders that are at least as large as those obtained under the SIC
+	\item if the SSR falls after the addition of an extra term, this does not mean that the value of the information criterion will also fall. If the SSR falls only by a small amount, the information criteria will rise.
+	\item the penalty factors are:
+	\begin{eqnarray}
+		n(n - k)&&\text{for $s^{2}$}\\
+		e^{2k / n}&&\text{for AIC}\\
+		n^{k / n}&&\text{for SIC}
+	\end{eqnarray}
+\end{itemize}
+
+
+

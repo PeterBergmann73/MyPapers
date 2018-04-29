@@ -1,0 +1,26 @@
+\chapter{Seasonality}
+
+\section{The Nature and Source of Seasonality}
+A seasonal pattern is one that repeats itself every year.\\
+Seasonality arises from links of technologies, preferences, and institutions to the calendar.
+
+\section{Dealing with Seasonality}
+One way to deal with seasonality in a series is simply to remove it and then to model and forecast the \textbf{\color{red}seasonally adjusted} or \textbf{\color{red}deseasonalised} \textbf{\color{blue}time series}.\\
+This strategy is perhaps appropriate in certain situations, such as when interest centers explicitly on forecasting \textbf{\color{ForestGreen}non-seasonal fluctuations}.
+
+
+\section{Seasonal Model}
+A key technique for modelling seasonality is \textbf{\color{blue}regression on dummy variables}.\\
+The pure seasonal model is:
+\begin{eqnarray}
+	y_{t} &=& \sum_{i = 1}^{s}\gamma_{i}D_{it} + \epsilon_{t}
+\end{eqnarray}
+Effectively, we are just regressing on an intercept, but we allow for a different intercept in each season. Those different intercepts, the $\gamma$'s are called "seasonal factors"; they summarise the seasonal patterns over the year.\\
+\textbf{\color{blue}Instead of including a full set of $s$ seasonal dummies, we can include and $s - 1$ seasonal dummies and intercept}.\\
+\textbf{\color{ForestGreen}In no case, however, should we include $s$ seasonal dummies and an intercept}.
+
+\section{Calendar Effects}
+\begin{itemize}
+	\item \textbf{\color{blue}holiday variation} - refers to the fact that some holiday's dates change over time
+	\item \textbf{\color{blue}trading day variation} - refers to the fact that different months contain different numbers of trading or business days.
+\end{itemize}

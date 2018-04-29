@@ -1,0 +1,137 @@
+\chapter{MA Models}
+The moving average model specifies that the output variable depends linearly on the current and lagged unobservable shocks.\\
+The first-order moving average process, or MA(1) process, is:
+\begin{eqnarray}
+	y_{t} &=& \epsilon_{t} + \theta\epsilon_{t - 1} = \big(1 + \theta L\big)\epsilon_{t}\\
+	\epsilon_{t} &\sim& WN\Big(0, \sigma^{2}\Big)
+\end{eqnarray}
+The structure of the MA(1) process, in which only the first lag of the shock appears on the right, forces it to have a very short memory and hence weak dynamics, regardless of the parameter value.\\
+
+\section{Unconditional Mean And Variance}
+The unconditional mean and variance are:
+\begin{eqnarray}
+	\mathbb{E}\big(y_{t}\big) &=& \mathbb{E}\big(\epsilon\big) + \theta\mathbb{E}\big(\epsilon_{t - 1}\big) = 0
+\end{eqnarray}
+and
+\begin{eqnarray}
+	var\big(y_{t}\big) &=& var\big(\epsilon_{t}\big) + \theta^{2}var\big(\epsilon_{t - 1}\big)\\
+	&=& \sigma^{2} +\theta^{2}\sigma^{2} = \sigma^{2}\big(1 + \theta^{2}\big)
+\end{eqnarray}
+Note, that for a fixed value of $\sigma$, as $\theta$ increases in absolute values, so, too, does the unconditional variance.
+
+\section{Conditional Mean and Variance}
+The conditional mean and variance of an MA(1), where the conditioning information set is
+\begin{eqnarray}
+\Omega_{t - 1} = \{\epsilon_{t - 1}, \epsilon_{t - 2}, ...\}
+\end{eqnarray}
+are
+\begin{eqnarray}
+	\nonumber
+	\mathbb{E}\Big(y\vert\Omega_{t - 1}\Big) &=& \mathbb{E}\Big(\epsilon_{t} + \theta\epsilon_{t - 1}\vert\Omega_{t - 1}\Big)\\
+	&=& \mathbb{E}\Big(\epsilon_{t}\vert\Omega_{t - 1}\Big) + \theta\mathbb{E}\Big(\epsilon_{t - 1}\vert\Omega_{t - 1}\Big) = \theta\epsilon_{t - 1}
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\nonumber
+	var\Big(y_{t}\vert\Omega_{t - 1}\Big) &=& \mathbb{E}\Bigg(\bigg(y_{t} - \mathbb{E}\Big(y_{t}\vert\Omega_{t - 1}\Big)\bigg)^{2}\vert\Omega_{t - 1}\Bigg)\\
+	\nonumber
+	&=& \mathbb{E}\Big(y_{t}^{2}\vert\Omega_{t - 1}\Big) - \mathbb{E}\bigg(\mathbb{E}\Big(y_{t}\vert\Omega_{t - 1}\Big)\bigg)^{2}\\
+	&=&  \mathbb{E}\Big(y_{t}^{2}\vert\Omega_{t - 1}\Big) = \mathbb{E}\Big(\epsilon_{t}^{2}\vert\Omega_{t - 1}\Big) = \mathbb{E}\Big(\epsilon_{t}^{2}\Big) = \sigma^{2}  
+\end{eqnarray}
+The conditional mean explicitly adapts to the information set, in contrast to the unconditional mean, which is constant.\\
+Note, however, that only the first lag of the shock enters the conditional mean - more distant shocks have no effect on the current conditional expectation. This is indicative of the one-period memory of MA(1) processes.
+
+\section{Autocorrelation Function}
+To compute the autocorrelation function for the MA(1) process, we must first compute the autocovariance function. We have:
+\begin{eqnarray}
+	\nonumber
+	\gamma\big(\tau\big) &=& \mathbb{E}\big(y_{t}, y_{t - 1}\big) = \mathbb{E}\bigg(\Big(\epsilon_{t} + \theta\epsilon_{t - 1}\Big)\Big(\epsilon_{t - \tau} + \theta\epsilon_{t - \tau - 1}\Big)\bigg)\\
+	&=& \begin{cases}
+		\theta\sigma^{2}, & \text{if}\ \tau = 1\\
+		0, & \text{}otherwise	
+	\end{cases}
+\end{eqnarray}
+The autocorrelation function is just the autocovariance function scaled by the variance
+\begin{eqnarray}
+	\rho\big(\tau\big) &=& \frac{\gamma\big(\tau\big)}{\gamma\big(0\big)} = \begin{cases}
+		\frac{\theta}{1 + \theta^{2}}, & \text{if}\ \tau = 1\\
+		0, & \text{otherwise}
+	\end{cases}
+\end{eqnarray}
+The key feature here is the sharp \textit{cutoff in the autocorrelation function}. All autocorrelations are 0 beyond displacement 1, the order of the MA process.\\
+Note that the requirements of covariance stationarity (constant unconditional mean, constant and finite unconditional variance, autocorrelation dependent only on displacement) are met for any MA(1) process, regardless of the values of its parameters.
+
+\section{Autoregressive Representation}
+If $\vert{\theta}\vert < 1$, then we say that the MA(1) process is \textbf{\color{blue}invertible}.\\
+In that case, we can "invert" the MA(1) process and express the current value of the series not in terms of a current shock and a lagged shock, but rather in terms of a current shock and lagged values of the series.\\
+That is called an \textbf{\color{blue}autoregressive representation}.\\
+An autoregressive representation has a current shock and lagged observable values of the series on the right, whereas a moving average representation has a current shock and lagged unobservable shocks on the right.\\
+Let us compute the autoregressive representation. The process is:
+\begin{eqnarray}
+y_{t} &=& \epsilon_{t} + \theta\epsilon_{t - 1}\\
+\epsilon_{t} &\sim& WN\Big(0, \sigma^{2}\Big)
+\end{eqnarray}
+Thus we can solve for the innovation as
+\begin{eqnarray}
+\epsilon_{t} &=& y_{t} - \theta\epsilon_{t - 1}
+\end{eqnarray}
+Lagging by successfully more periods gives expressions for the innovations at various dates:
+\begin{eqnarray}
+\epsilon_{t - 1} &=& y_{t - 1} - \theta\epsilon_{t - 2}\\
+\epsilon_{t - 2} &=& y_{t - 2} - \theta\epsilon_{t - 3}\\
+... 
+\end{eqnarray}
+Making use of these expressions for lagged innovations, we can substitute backward in the MA(1) process, yielding:
+\begin{eqnarray}
+y_{t} &=& \epsilon_{t} + \theta y_{t - 1} - \theta^{2}y_{t - 2} + \theta^{3}y_{t - 3} - ...
+\end{eqnarray}
+In lag operator notation, we write the infinite autoregressive representation as
+\begin{eqnarray}
+\frac{1}{1 + \theta L}y_{t} &=& \epsilon_{t}
+\end{eqnarray}
+Note that the back substitution used to obtain the autoregressive representation only makes sense, and in fact a convergent autoregressive representation only exists, if $\vert\theta\vert < 1$ because in the back substitution we raise $\theta$ to progressively higher powers.\\
+We can restate the invertibility condition in another way:\\
+\textit{The inverse of the root of the moving average lag operator polynomial $1 + \theta L$ must be less that 1 in absolute value.}\\
+Recall that a polynomial of degree $m$ has $m$ roots. Thus, the MA(1) lag operator polynomial has one root, which is the solution to
+\begin{eqnarray}
+	1 +\theta L  &=& 0
+\end{eqnarray}
+The root is $L = -1/\theta$, so its inverse will be less than 1 in absolute value if $\vert\theta\vert < 1$, and the two invertibility conditions are equivalent.\\
+Autoregressive representations are appealing to forecasters, because one way or another, if a model is to be used for real-world forecasting, it must link the present observables to the past history of observables, so that we can extrapolate to form a forecast of future observables based on present and past observables. Superficially, moving average models don't seem to meet that requirement, because the current value of series is expressed in terms of current and lagged unobservable shocks, not observable variables.\\
+Finally let us consider the partial autocorrelation function for the MA(1) process. From the infinite autoregressive representation of the MA(1) process, we that the partial autocorrelation function will decay gradually to 0. As we discussed earlier, the partial autocorrelations are just the coefficients on the last included lad in a sequence of progressively higher-order autoregressive approximations. If $\theta > 0$, then the pattern of decay will be one of damped oscillation; otherwise, the decay will be one sided.\\
+\textit{\textbf{\color{blue}Note, however, that the partial autocorrelations are not the successive coefficients in the infinite autoregressive representation. Rather, they are the coefficients of the last included lag in sequence of progressively longer autoregressions. The two are related but distinct.
+}}
+
+\section{The MA(q) Process}
+Let us consider the general MA(q) process:
+\begin{eqnarray}
+	y_{t} &=& \epsilon_{t} + \theta_{1}\epsilon_{t - 1} + \theta_{2}\epsilon_{t - 2} + ... + \theta_{q}\epsilon_{t - q} = \Theta\big(L\big)\epsilon_{t}\\
+	\epsilon_{t} &\sim& WN\Big(0, \sigma^{2}\Big)
+\end{eqnarray}
+where
+\begin{eqnarray}
+\Theta\big(L\big) &=& 1 + \theta_{1}L + ... \theta_{q}L^{q}
+\end{eqnarray}
+is a $q$-th order lag operator polynomial.
+
+\subsection{Properties of MA(q) Process}
+
+The properties of the MA(q) processes parallel to those of the MA(1) process in all respects.
+\begin{enumerate}
+	\item covariance stationarity
+	\item it is invertible only if the root condition is satisfied
+	\item the conditional mean of the MA(q) process evolves with the information set, in contrast to the unconditional moments, that are fixed
+\end{enumerate}
+Just as the MA(1) process is covariance stationary for any value of its parameters, so, too, is the finite-order MA(q) process.\\
+As with the MA(1) process, the MA(q) process is invertible only if a root condition is satisfied. The MA(q) lag operator polynomial has "q" roots. When $q > 1$, the possibility of complex roots arises. The \textbf{\color{blue}condition for invertibility for invertibility of the MA(q) process} is that the inverse of all of the roots must be inside the unit circle, in which case we have the convergent autoregressive representation:
+\begin{eqnarray}
+\frac{1}{\Theta\big(L\big)}y_{t} &=& \epsilon_{t}
+\end{eqnarray}
+The conditional mean of the MA(q) process evolves with the information set, in contrast to the unconditional moments, that are fixed. In contrast to the MA(1) process, in which the conditional mean depends on only the first lag of the innovation, in the MA(q) case the conditional mean depends on $q$ lags of the innovation. Thus, the MA(q) process has longer memory.\\
+The potentially longer memory of the MA(q) process emerges clearly in its autocorrelation function. In the MA(1) case, all autocorrelations beyond displacement 1 are 0; in the MA(q) case, all autocorrelations beyond displacement $q$ are 0. \textit{\textbf{\color{blue}This autocorrelation cutoff is a distinctive property of MA processes.}}\\
+The partial autocorrelation function of the MA(q) process, in contrast, decays gradually, in accord with the infinite autoregressive representation, in either oscillating or a one-sided fashion, depending on the parameters of the process.
+
+
+
+
+

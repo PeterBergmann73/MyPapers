@@ -1,0 +1,51 @@
+\chapter{Copulas}
+
+\section{Marginal Distributions}
+If $V_{1}$ and $V_{2}$ are two correlated random variables. The \textbf{\color{blue}marginal distribution} of $V_{1}$ (sometimes also referred as the unconditional distribution) is its distribution assuming we know nothing about $V_{2}$.\\
+If the marginal distributions of $V_{1}$ and $V_{2}$ are normal, a convenient and easy-to-work-with assumption is that the joint distribution of the variables is bivariate normal.\\
+But often there is no natural way to define of defining a correlation structure between two marginal distributions.
+
+\section{Gaussian Copula}
+To apply a Gaussian copula for variables $V_{1}$ and $V_{2}$, the following is done:
+\begin{itemize}
+	\item map $V_{1}$ and $V_{2}$ into new variables $U_{1}$ and $U_{2}$ that have standard normal distribution. The mapping is accomplished on a percentile-to-percentile basis. The one-percentile point of the $V_{1}$ distribution is mapped to the one-percentile point of the $U_{1}$ distribution; the 10-percentile point of the $V_{1}$ distribution is mapped to the 10-percentile point of the $U_{1}$ distribution; and so on. $V_{2}$ is mapped into $U_{2}$ in similar way.
+	\item the variables $U_{1}$ and $U_{2}$ have normal distribution. We assume that they are jointly bivariate normal.
+	\item this is in tern implies a joint distribution and a correlation structure between $V_{1}$ and $V_{2}$
+\end{itemize}
+The essence of copula is therefore that, instead of defining a correlation structure between $V_{1}$ and $V_{2}$ directly, we do so indirectly. We map $V_{1}$ and $V_{2}$ into other variables which have well-behaved distributions and for which it is easy to define a correlation structure.\\
+The correlation between $U_{1}$ and $U_{2}$ is referred as copula correlation. This is not, in general, the same as the correlation coefficient between $V_{1}$ and $V_{2}$. Because $U_{1}$ and $U_{2}$ are bivariate normal, the conditional mean of $U_{2}$ is linearly dependent on $U_{1}$ and the conditional standard deviation of $U_{2}$ is constant. However, a similar result does not in general apply to $V_{1}$ and $V_{2}$.
+
+\subsection{Expressing the approach algebraically}
+Suppose, that $G_{1}$ and $G_{2}$ are the cumulative marginal (i.e. unconditional) probability distributions of $V_{1}$ and $V_{2}$.\\
+We map so that:
+\begin{eqnarray}
+	G_{1}\big(v_{1}\big) &=& N(u_{1})\\
+	G_{2}\big(v_{2}\big) &=& N(u_{2})
+\end{eqnarray}
+where $N$ is the cumulative standard normal distribution.\\
+This means that:
+\begin{eqnarray}
+	u_{1} &=& N^{-1}\big[G_{1}\big(v_{1}\big)\big]\\
+	u_{2} &=& N^{-1}\big[G_{2}\big(v_{2}\big)\big]\\
+	v_{1} &=& G_{1}^{-1}\big[N\big(u_{1}\big)\big]\\
+	v_{2} &=& G_{2}^{-1}\big[N\big(u_{2}\big)\big]
+\end{eqnarray}
+The variables $U_{1}$ and $U_{2}$ are then assumed to be bivariate normal.\\
+The key property of a copula model is that id preserves the marginal distributions of $V_{1}$ and $V_{2}$ (however unusual these may be), while defining a correlation structure between then.
+
+\section{Student $t$-copula}
+To sample from a bivariate Student's $t$-distribution with $f$ degrees of freedom and correlation $\rho$, the steps are as follows:
+\begin{itemize}
+	\item sample from the inverse chi-squared distribution to get a value $\chi$
+	\item sample from a bivariate normal distribution with correlation $\rho$ as described earlier
+	\item multiply the normally distributed samples by $\sqrt{f/X}$
+\end{itemize}
+It is more common for the two variables to have tail values at the same time in the bivariate Student's $t$-distribution than in the bivariate normal distribution. To put this another way, the tail dependence is higher in a bivariate Student's $t$-distribution than in a bivariate normal distribution.\\
+This is called \textbf{\color{blue}tail dependence}.
+
+
+\section{Definition}
+A copula is a statistical tool, that creates a joint probability distribution, which assesses the dependence between the variables by retaining their marginal distributions.\\
+A copula is a multivariate probability distribution for which the marginal probability distribution of each variable is uniform.\\
+Copulas are used to describe the dependence between random variables.\\
+Slar's theorem states that any multivariate joint distribution can be written in terms of univariate marginal distribution functions and a copula which describes the dependence structure between the variables.

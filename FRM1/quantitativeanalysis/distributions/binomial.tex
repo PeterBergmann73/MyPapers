@@ -1,0 +1,59 @@
+\chapter{Binomial Distribution}
+The binomial distribution with parameters $n$ and $p$ is the \textbf{\color{blue}discrete probability distribution} $P_{p}\big(n\bigr\rvert N\big)$ of obtaining exactly $n$ successes out of $N$ \textbf{\color{blue}Bernoulli trials} (where the result of each \textbf{\color{blue}Bernoulli trials} is true with probability $p$ and false with probability $q = 1 - p$).\\
+The binomial distribution is therefore given by
+\begin{eqnarray}
+	P_{p}\big(n\bigr\rvert N\big) &=& {\binom{N}{n}}p^{n}\cdot q^{N - n} = \frac{N!}{n! \big(N - n\big)!}p^{n}\cdot q^{N - n}
+\end{eqnarray}
+where ${\binom{N}{n}}$ is a \textbf{\color{blue}binomial coefficient}.
+
+\section{Properties}
+\begin{itemize}
+	\item the distribution is symmetrical when $p = 0.5$ or when $n$ is large
+	\item the distribution could be thought as a collection of Bernoulli random variables
+\end{itemize}
+
+\section{Mean}
+Let $X$ be a discrete random variable with the binomial distribution with parameters $n$ and $p$.\\
+Then the expectation of $X$ is given by:
+\begin{eqnarray}
+	\mathbb{E}\big(X\big) &=& np
+\end{eqnarray}
+
+\paragraph{Proof}
+From the definition of expectation
+\begin{eqnarray}
+\mathbb{E}\big(X\big) &=& \sum_{x \in\Omega_{X}}x Pr\big(X = x\big)
+\end{eqnarray}
+From \textbf{\color{blue}Bernoulli Process as Binomial Distribution}, we see that $X$ is a sum of \textbf{\color{blue}discrete random variables $Y_{i}$} that model the \textbf{\color{blue}Bernoulli Distribution}:
+\begin{eqnarray}
+	X &=& \sum_{i = 1}^{n}Y_{i}
+\end{eqnarray}
+Each of the \textbf{\color{blue}Bernoulli trials} is independent of each other, by definition of a \textbf{\color{blue}Bernoulli process}. It follows that:
+\begin{eqnarray}
+	\nonumber
+	\mathbb{E}\big(X\big) &=& \mathbb{E}\bigg(\sum_{i = 1}^{n}Y_{i}\bigg)\\
+	\nonumber
+	&=& \sum_{i = 1}^{n}\mathbb{E}\Big(Y_{i}\Big)\qquad\qquad\text{sum of expecations of independent trials}\\
+	\nonumber
+	&=& \sum_{i = 1}^{n}p\qquad\qquad\qquad\text{expectation of Bernoulli distribution}\\
+	&=& np\qquad\qquad\qquad\quad\text{sum of identical terms}
+\end{eqnarray}
+
+\section{Variance}
+Let $X$ be a discrete random variable with the binomial distribution with parameters $n$ and $p$.\\
+Then the variance of $X$ is given by:
+\begin{eqnarray}
+	\sigma^{2}\big(X\big) &=& np(1 - p)
+\end{eqnarray}
+
+\paragraph{Proof}
+From Binomial distribution as a sum of independent Bernoulli variables.
+\begin{eqnarray}
+	\nonumber
+	var\big(X\big) &=& var (\sum_{i = 1}^{n}Y_{i})\\
+	\nonumber
+	&=& \sum_{i = 1}^{n}var(Y_{i})\qquad\qquad\text{from sum of variances of independent trials}\\
+	\nonumber
+	&=& \sum_{i = 1}^{n}p(1 - p)\qquad\qquad\text{variance of Bernoulli distribution is $p(1 - p)$}\\
+	&=& np(1 - p)
+\end{eqnarray}

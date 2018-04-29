@@ -1,0 +1,74 @@
+\chapter{Bernoulli Distribution}
+The Bernoulli distribution is a discrete distribution having two possible outcomes labelled by $n = 0$ and $n = 1$. In which
+\begin{itemize}
+	\item $n = 1$ ("success") occurs with probability $p$
+	\item and $n = 0$ ("failure") occurs with probability $q = 1 - p$
+\end{itemize}
+where $0 < p < 1$.
+
+\section{Probability Density Function}
+It therefore has probability density function
+\begin{eqnarray}
+	P(n) &=& \begin{cases}
+		1 - p, & \text{for $n = 0$}\\
+		p, & \text{for $n = 1$}
+	\end{cases}
+\end{eqnarray}
+
+\section{Cumulative Distribution Function}
+\begin{eqnarray}
+ F(n) &=& \begin{cases}
+ 	1 - p, &\text{for $n = 0$}\\
+ 	1, & \text{for $n = 1$}
+ \end{cases}
+\end{eqnarray}
+
+\section{Mean}
+Let $X$ be a discrete random variable with the Bernoulli distribution with parameter $p$.\\
+Then the expectation of $X$ is given by:
+\begin{eqnarray}
+	\mathbb{E}\big(X\big) &=& p
+\end{eqnarray}
+
+\paragraph{Proof}
+From the definition of expectation:
+\begin{eqnarray}
+	\mathbb{E}\big(X\big) &=& \sum_{x\in\Omega_{X}}x Pr\big(X = x\big)
+\end{eqnarray}
+By definition of Bernoulli  distribution:
+\begin{eqnarray}
+	\mathbb{E}\big(X\big) &=& 1 x p + 0 x (1 - p) = p
+\end{eqnarray}
+
+\section{Variance}
+The variance of $X$ is given by:
+\begin{eqnarray}
+	\sigma^{2}\big(X\big) &=& p\big(1 - p\big)
+\end{eqnarray}
+
+\paragraph{Proof}
+From the definition of variance:
+\begin{eqnarray}
+	\nonumber
+	\sigma^{2}\big(X\big) &=& \mathbb{E}\bigg(\Big(X - \mathbb{E}\big(X\big)\Big)^{2}\bigg)
+\end{eqnarray}
+From the expectation of Bernoulli distribution, we have $\mathbb{E}\big(X\big) = p$
+\begin{eqnarray}
+	\nonumber
+	\sigma^{2}\big(X\big) &=& \mathbb{E}\bigg(\Big(X - \mathbb{E}\big(X\big)\Big)^{2}\bigg)\\
+	\nonumber
+	&=& \big(1 - p\big)^{2} p + \big(0 - p\big)^{2}\big(1 - p\big)\\
+	\nonumber
+	&=& p - 2p^{2} + p^{3} + p^{2} - p^{3}\\
+	&=& p(1 - p)
+\end{eqnarray}
+The derivation from "Variance equals expectation of square minus square of expectation" is a bit simpler.
+
+
+\section{Moments - Summary}
+\begin{eqnarray}
+	\mu &=& p\\
+	\sigma^{2} &=& p(1 - p)\\
+	\gamma_{1} &=& \frac{1 - 2p}{\sqrt{p(1 - p)}}\\
+	\gamma_{2} &=& \frac{6p^{2} - 6p + 1}{p(1 - p)}
+\end{eqnarray}

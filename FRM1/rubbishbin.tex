@@ -1,0 +1,10 @@
+\subsection{Example - 2 Restrictions}
+The \textbf{F-statistic} is used to test joint hypothesis about regression coefficients.\\
+When the joint null hypothesis has the two restrictions that $\beta_{1} = 0$ and $\beta_{2} = 0$, the $F$-statistic combines the two $t$-statistics $t_{1}$ and $t_{2}$ using the formula:
+\begin{eqnarray}
+\label{Eq:FStatistics2Variable}
+F = \frac{1}{2}\left(\frac{t_{1}^{2} - 2\hat{\rho}_{t_{1},t_{2}} + t_{2}^{2}}{1  - \hat{\rho}_{t_{1},t_{2}}^{2}}\right)
+\end{eqnarray}
+where $\hat{\rho}_{t_{1},t_{2}}$ is an estimator of the correlation between the two $t$-statistics.\\
+To understand the $F$-statistics, first suppose that we know that the $t$-statistics are uncorrelated so we can drop the terms involving $\hat{\rho}_{t_{1},t_{2}}$. If so, the equation (\ref{Eq:FStatistics2Variable}) simplifies to $F = \frac{1}{2}\left(t_{1}^{2} + t_{2}^{2}\right)$. That is, the $F$-statistics is the average of the squared $t$-statistics. Under the null hypothesis, $t_{1}$ and $t_{2}$ are independent standard normal random variables (because the $t_{1}$-statistics are uncorrelated by assumption), so under the null hypothesis $F$ has ans $F_{2,\infty}$ distribution. Under the alternative hypothesis that either $\beta_{1}$ is non-zero of $\beta_{2}$ is non-zero (or both), then either $t_{1}^{2}$ or $t_{1}^{2}$ (or both) will be large, leading the test to reject the null hypothesis.\\
+In general the $t$-statistics are correlated, and the formula for the $F$-statistics in Equation (\ref{Eq:FStatistics2Variable}) for this correlation. This adjustment is made so that, under the null hypothesis, the $F$-statistic has an $F_{2,\infty}$ distribution in large samples whether or not the $t$-statistics are correlated.

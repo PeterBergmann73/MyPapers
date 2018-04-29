@@ -1,0 +1,140 @@
+\chapter{AR Models}
+The autoregressive process is also a natural approximation to the Wold representation. We have seen that under certain conditions a MA process has an autoregressive representation, so an autoregressive process is in a sense the same as a moving average process.\\
+Like the MA process, the AR process has direct motivation; it is simply a stochastic difference equation, a simple mathematical model in which the current value of a series is linearly related to its past values, plus an additive stochastic shock.
+
+\section{The AR(1) Process}
+The AR(1) process is:
+\begin{eqnarray}
+y_{t} &=& \phi y_{t - 1} + \epsilon_{t}\\
+\epsilon_{t} &=& WN\big(0, \sigma^{2}\big)
+\end{eqnarray}
+In lag operator form we write:
+\begin{eqnarray}
+	\big(1 - \phi L\big)y_{t} &=& \epsilon_{t}
+\end{eqnarray}
+The AR(1) process shows more sensitivity to the autoregression coefficient than MA(1), which has a very short memory regardless of parameter value. Thus, the AR(1) model is capable of capturing much more persistent value thank is the MA(1).\\
+Recall that a finite-order MA process is always covariance-stationary but that certain conditions must be satisfied for invertibility, in which case an autoregressive representation exists.\\
+For AR processes the situation is precisely reverse. Autoregressive processes are always invertible - in fact, invertibility is not even an issue, as finite-order autoregressive processes are already are in autoregressive form - but certain conditions must be satisfied for an autoregressive process to be a covariance stationary.\\
+If we begin with the AR(1) process
+\begin{eqnarray}
+	y_{t} &=& \phi y_{t - 1} + \epsilon_{t}
+\end{eqnarray}
+and substitute backward for lagged $y$-s on the right side, we obtain:
+\begin{eqnarray}
+	y_{t} &=& \epsilon_{t} + \phi \epsilon_{t - 1} + \phi^{2}\epsilon_{t - 2} + ...
+\end{eqnarray}
+In lag operator form we write
+\begin{eqnarray}
+	y_{t} &=& \frac{1}{1 - \phi L}\epsilon_{t}
+\end{eqnarray}
+The MA representation for $y$-s convergent if and only if $\vert\phi\vert < 1$. Thus, $\vert\phi\vert < 1$ is the condition for covariance stationarity in the AR(1) case. Equivalently, the condition for covariance stationarity is that the inverse of the root of the autoregressive lag operator polynomial be less than 1 in absolute value.
+
+\subsection{Unconditional Mean and Variance}
+From the MA representation of the covariance stationary AR(1) process, we can compute the unconditional mean and variance:
+\begin{eqnarray}
+\nonumber
+\mathbb{E}\big(y_{t}\big) &=& \mathbb{E}\big(\epsilon_{t} + \phi\epsilon_{t - 1} + \phi^{2}\epsilon_{t - 2} + ...\big)\\
+&=& \mathbb{E}\big(\epsilon_{t}\big) + \phi\mathbb{E}\big(\epsilon_{t - 1}\big) + \phi^{2}\mathbb{E}\big(\epsilon_{t - 2}\big) + ... = 0
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\nonumber
+	var\big(y_{t}\big) &=& var\big(\epsilon + \phi\epsilon_{t - 1} + \phi^{2}\epsilon_{t - 2} + ...\big)\\
+	\nonumber
+	&=& \sigma^{2} + \phi^{2}\sigma^{2} + \phi^{4}\sigma^{2} + ... = \sigma^{2}\sum_{i = 0}^{\infty}\phi^{2i}\\
+	&=& \frac{\sigma^{2}}{1 - \phi^{2}}
+\end{eqnarray}
+
+\subsection{Conditional Moments}
+The conditional moments, in contrast, are:
+\begin{eqnarray}
+	\nonumber
+	\mathbb{E}\Big(y_{t}\vert y_{t - 1}\Big) &=& \mathbb{E}\Big(\phi y_{t - 1} + \epsilon_{t}\vert y_{t - 1}\Big)\\
+	\nonumber
+	&=& \phi\mathbb{E}\Big(y_{t - 1}\vert y_{t - 1}\Big) + \mathbb{E}\Big(\epsilon_{t}\vert y_{t - 1}\Big)\\
+	&=& \phi y_{t - 1} + 0 = \phi y_{t - 1}
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\nonumber
+	var\Big(y_{t}\vert y_{t - 1}\Big) &=& var\Big(\phi y_{t - 1} + \epsilon_{t}\vert y_{t - 1}\Big)\\
+	\nonumber
+	&=& \phi^{2}var\Big(y_{t - 1}\vert y_{t - 1}\Big) + var\Big(\epsilon_{t}\vert y_{t - 1}\Big)\\
+	&=& 0 + \sigma^{2} = \sigma^{2}
+\end{eqnarray}
+Note in particular the simple way in which the conditional mean adapts to the changing information set as the process evolves.
+
+\subsection{Autocorrelation Function}
+The process is
+\begin{eqnarray}
+y_{t} &=& \phi y_{t - 1} + \epsilon_{t}
+\end{eqnarray}
+so that, multiplying both sides of the equation by $y_{t - 1\tau}$ we obtain
+\begin{eqnarray}
+	y_{t}y_{t - \tau} &=& \phi y_{t - 1}y_{t - \tau} + \epsilon_{t} y_{t - \tau}
+\end{eqnarray}
+For $\tau \geq 1$, taking expectations of both sides gives
+\begin{eqnarray}
+	\gamma\big(\tau\big) &=& \phi\gamma\big(\tau - 1\big)
+\end{eqnarray}
+This is called \textbf{\color{blue}Yule-Walker equation}.\\
+It is a recursive equation; that is, given $\gamma\big(\tau\big)$ for any $\tau$, the Yule-Walker equation immediately tells us how to get $\gamma\big(\tau + 1\big)$. Thus, if we know $\gamma\big(0\big)$, we could use the Yule-Walker equation to determine the entire autocovariance sequence. We do know $\gamma\big(0\big)$ - it is just the variance of the process, which we already showed to be $\gamma\big(0\big) = \frac{\sigma^{2}}{1 - \phi^{2}}$. Thus, we have:
+\begin{eqnarray}
+\nonumber
+\gamma\big(0\big) &=& \frac{\sigma^{2}}{1 - \phi^{2}}\\
+\nonumber
+\gamma\big(1\big) &=& \phi\frac{\sigma^{2}}{1 - \phi^{2}}\\
+\nonumber
+\gamma\big(2\big) &=& \phi^{2}\frac{\sigma^{2}}{1 - \phi^{2}}\\
+\nonumber
+...
+\end{eqnarray}
+and so on.\\
+In general, then
+\begin{eqnarray}
+\gamma\big(\tau\big) &=& \phi^{\tau}\frac{\sigma^{2}}{1 - \phi^{2}}, \tau = 0, 1, 2, ...
+\end{eqnarray}
+Dividing through by $\gamma\big(0\big)$ gives us the autocorrelations:
+\begin{eqnarray}
+	\rho\big(\tau\big) &=& \phi^{\tau}, \tau = 0, 1, 2, ...
+\end{eqnarray}
+Note the gradual autocorrelation decay, which is typical of AR processes. The autocorrelations approach 0, but only in the limit as the displacement approaches infinity. In particular, they don't cut off to 0, as is the case for MA processes.\\
+If $\phi$ is positive, the autocorrelation decay is one-sided. If $\phi$ is negative, the decay involves back-and-forth oscillations.
+
+\subsection{Partial autocorrelation function}
+
+Finally, the partial autocorrelation function for the AR(1) process cuts off abruptly, specifically:
+\begin{eqnarray}
+\rho\big(\tau\big) &=& \begin{cases}
+	\phi, & \tau = 1\\
+	0, & \tau > 1
+\end{cases}
+\end{eqnarray}
+It is easy to see why. The partial autocorrelations are just the last coefficients in a sequence of successively longer population autoregressions.
+
+\section{AR(p) Process}
+AR(p) is:
+\begin{eqnarray}
+	y_{t} &=& \phi_{1}y_{t - 1} + \phi_{2}y_{t - 2} + ... + \phi_{q}y_{t - p} + \epsilon_{t}
+\end{eqnarray}
+In lag operator form, we write:
+\begin{eqnarray}
+	\Phi\big(L\big) &=& \Big(1 - \phi_{1}L - \phi_{2}L^{2} - ... - \phi_{p}L^{q}\Big) y_{t} = \epsilon_{t}
+\end{eqnarray}
+
+\subsection{Properties}
+\begin{itemize}
+	\item an AR(p) process is covariance stationary, if and only if the inverses of all roots of the autoregressive lag operator polynomial $\Phi\big(L\big)$ are inside the unit circle.
+	\item \textbf{\color{blue}necessary condition for covariance stationarity}, which is often useful as a quick check, is:
+	\begin{eqnarray}
+		\sum_{i = 1}^{p}\phi_{i} < 1
+	\end{eqnarray}
+	If the condition is satisfied, the process may or may not be stationary; but if the condition is violated, the process can't be stationary.
+	\item in the covariance stationary case we can write the process in the convergent infinite MA form:
+	\begin{eqnarray}
+		y_{t} &=& \frac{1}{\Phi\big(L\big)}\epsilon_{t}
+	\end{eqnarray}
+	\item the autocorrelation function for the general AR(p) process, as with that of AR(1) process, decays gradually with displacement.
+	\item the AR(p) partial autocorrelation function has a sharp cutoff at displacement $p$, for the same reason that the AR(1) partial autocorrelation function has a sharp cutoff at the displacement 1.
+	\item in spite of the fact, that the qualitative behaviour (gradual damping) of the autocorrelation function matches that of the AR(1), it can nevertheless display a richer variety of patterns, depending on the order and parameters of the process. It can, for example, have damped monotonic decay, as in the AR(1) case with a positive coefficient, but it can also have damped oscillation in ways that AR(1) can't have. In the AR(1) case, the only possible oscillation occurs when the coefficient is negative, in which case the autocorrelations switch signs at each successively longer displacement. In higher-order autoregressive models, however, the autocorrelations can oscillate with much richer patterns reminiscent of cycles in the more traditional sense. This occurs when some roots of the autoregressive lag operator polynomial are complex.
+\end{itemize}

@@ -1,0 +1,85 @@
+\chapter{ARMA Models}
+The \textbf{\color{blue}AR} part of ARMA indicates that \textbf{\color{blue}the evolving variable of interest is regressed on its own lagged values}.\\
+The \textbf{\color{blue}MA} part indicates that \textbf{\color{blue}the regression error is actually a linear combination of error terms} whose values occurred contemporaneously and at various times in the past. 
+ARMA(p, q) process also have direct motivation.\\
+First, if the random shock that drives an autoregressive process is itself a MA process, then it can be shown that we obtain an ARMA process.\\
+Second, ARMA processes can arise from aggregation. For example, sums of AR processes, or sums or AR and MA processes, can be shown to be ARMA processes.\\
+Finally, AR processes observed subject to measurement error also turn out to be ARMA processes.\\
+Both stationarity and invertibility need to be checked in the ARMA case, because both AR and MA components are present.
+
+\section{ARMA(1, 1) Process}
+The simplest ARMA process that is not a pure AR or MA process is the ARMA(1,1) given by:
+\begin{eqnarray}
+	y_{t} &=& \phi y_{t - 1} + \epsilon_{t} + \theta \epsilon_{t - 1}\\
+	\epsilon_{t} &=& WN\Big(0, \sigma^{2}\Big)
+\end{eqnarray}
+or in lag operator form:
+\begin{eqnarray}
+	(1 - \phi L)y_{t} &=& (1 + \theta L)\epsilon_{t}
+\end{eqnarray}
+where:
+\begin{itemize}
+	\item for stationarity
+	\begin{eqnarray}
+		\vert\phi\vert < 1
+	\end{eqnarray}
+	is required
+	\item for invertibility
+	\begin{eqnarray}
+		\vert\theta\vert < 1
+	\end{eqnarray}
+	is required
+\end{itemize}
+If the covariance stationarity condition is satisfied, then we have the MA representation:
+\begin{eqnarray}
+	y_{t} &=& \frac{1 + \theta L}{1 - \phi L}\epsilon_{t}
+\end{eqnarray}
+which is an infinite distributed lag of current and past innovations.\\
+Similarly, if the invertibility condition is satisfied, we have the infinite AR representation:
+\begin{eqnarray}
+\frac{1 - \phi L}{1 + \theta L}y_{t} &=& \epsilon_{t}	
+\end{eqnarray}
+
+\section{ARMA(p, q) Process}
+The ARMA(p, q) process is a natural generalisation of the ARMA(1, 1) that allows for multiple MA and AR lags. We write:
+\begin{eqnarray}
+	y_{t} &=& \phi_{1}y_{t - 1} + ... + \phi_{p}y_{t - p} + \epsilon_{t} +  \theta_{1}\epsilon_{t - 1} + ... + \theta_{q}\epsilon_{t - q}\\
+	\epsilon_{t} &\sim& WN\Big(0, \sigma^{2}\Big)
+\end{eqnarray}
+or
+\begin{eqnarray}
+	\Phi\big(L\big) &=& \Theta\big(L\big)\epsilon_{t}
+\end{eqnarray}
+where
+\begin{eqnarray}
+	\Phi\big(L\big) &=& 1 - \phi_{1}L - \phi_{2}L^{2}- ... - \phi_{p}L^{p}
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\Theta\big(L\big) &=& 1 + \theta_{1}L + \theta_{2}L^{2} + ... + \Theta_{q}L^{q}
+\end{eqnarray}
+If the inverses of all roots of $\Phi\big(L\big)$ are inside the unit circle, then the process is covariance stationary and the convergent infinite MA representation:
+\begin{eqnarray}
+	y_{t} &=& \frac{\Theta\big(L\big)}{\Phi\big(L\big)}\epsilon_{t}
+\end{eqnarray}
+If the inverses of all roots of $\Theta\big(L\big)$ are inside of the unit circle, then the process is invertible and has convergent infinite AR representation:
+\begin{eqnarray}
+	\frac{\Phi\big(L\big)}{\Theta\big(L\big)}y_{t} &=& \epsilon_{t}
+\end{eqnarray}
+
+\subsection{Properties}
+\begin{itemize}
+	\item As with AR and MA, ARMA processes have a fixed unconditional mean but a time-varying conditional mean.
+	\item In contrast to pure MA or AR processes, however, neither the autocorrelation nor partial autocorrelation functions of ARMA processes cut off at any particular displacement. Instead, each damps gradually, with the precise pattern depending on the process.
+	\item ARMA models approximate the Wold representation by a ratio of two finite-order lag operator polynomials, neither of which is degenerate. Thus, ARMA models use ratio of full-fledged polynomials in the lag operator to approximate the Wold representation
+	\begin{eqnarray}
+		y_{t} &=& \frac{\Theta\big(L\big)}{\Phi\big(L\big)}\epsilon_{t}
+	\end{eqnarray}
+\end{itemize}
+
+
+\section{Partial Autocorrelation Function (PACF)}
+The most important use of the autocorrelation function is in differentiating between AR and ARMA processes. For AR process, the pacf would be zero after p lags. For the ARMA process, the decline in pacf would assume a geometric form.
+
+\section{Unit Root Test}
+If one of the time series hat unit root, the linear regression should not be used as the error term of the regression would NOT be covariance stationary, leading to erroneous results.

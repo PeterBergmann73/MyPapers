@@ -1,0 +1,165 @@
+\chapter{Distribution Descriptive Statistics}
+
+\section{Expectation}
+Expectation is a linear operator:
+\begin{eqnarray}
+	\mathbb{E}(X + Y) &=& \mathbb{E}(X) + \mathbb{E}(Y)\\
+	\mathbb{E}(c\cdot X) &=& c\cdot\mathbb{E}(X)
+\end{eqnarray}
+
+\section{Moment}
+The $n$-th moment of a real-valued continuous function $f(x)$ of a real variable about a value $c$ is:
+\begin{eqnarray}
+	\mu_{n} &=& \int_{-\infty}^{\infty}\Big(x - c\Big)^{n}f(x)dx
+\end{eqnarray}
+If $c = 0$, the moments are called \textbf{\color{blue}raw moments}.\\
+If $c = \mu$, where $\mu$ is mean of the distribution, the moments are called \textbf{\color{blue}central moments}.\\
+The moment
+\begin{eqnarray}
+\mu_{n} &=& \int_{-\infty}^{\infty}\Bigg(\frac{x - c}{\sigma}\Bigg)^{n}f(x)dx
+\end{eqnarray}
+is called \textbf{\color{blue}standardised moment}.\\
+If we have a data set and we want to standardise it, we first compute the sample mean ans the standard deviation. Then, for each data point, we subtract the mean and divide by the standard deviation.\\
+The inverse transformation can also be very useful when it comes to creating simulations. Simulations often begin with standardised variables, which need to be transformed into variables with a specific mean and standard deviation. In this case, we simply take the output from the standardised variable, multiply by the desired standard deviation, and then add the desired mean. The order is important. Adding a constant to a random variable will not change the standard deviation, but multiplying a non-mean-zero variable by a constant will change the mean.
+
+
+\section{Mean}
+Mean is the first raw moment:
+\begin{eqnarray}
+	\mu &=& \mathbb{E}(X)
+\end{eqnarray}
+For a discrete variable it is:
+\begin{eqnarray}
+	\mu &=& \frac{1}{N}\sum_{i = 1}^{N}x_{i}
+\end{eqnarray}
+
+\subsection{Properties}
+Mean is a linear function.
+
+\section{Variance}
+Variance is the second central moment:
+\begin{eqnarray}
+	\sigma^{2} &=& \mathbb{E}(X - \bar{X})^{2}\\
+			   &=& \mathbb{E}\Big(X^{2}\Big) - \Big(\mathbb{E}\big(X\big)\Big)^{2}\\
+			   &=& \mathbb{E}\Big(X^{2}\Big) - \bar{X}^{2}
+\end{eqnarray}
+\textbf{\color{blue}Sample unbiased variance} for a discrete variable is:
+\begin{eqnarray}
+	\hat{\sigma}^{2} &=& \frac{1}{N - 1}\sum_{i = 1}^{N}(x_{i} - \bar{X})^{2}
+\end{eqnarray}
+\textbf{\color{blue}Sample maximum likelihood} variance for a discrete variable is:
+\begin{eqnarray}
+	\hat{\sigma}^{2} &=& \frac{1}{N}\sum_{i = 1}^{N}(x_{i} - \bar{X})^{2}
+\end{eqnarray}
+
+\subsection{Properties}
+\begin{itemize}
+	\item Multiplying a random variable by a constant $c$ will increase the variance by $c^{2}$:
+	\begin{eqnarray}
+	\sigma^{2}(c\cdot X) &=& c^{2}\sigma^{2}(X)
+	\end{eqnarray}
+	\item Adding a constant $c$ to a random variable will not change the standard deviation or variance of the distribution:
+	\begin{eqnarray}
+		\sigma(X + c) &=& \sigma(X)
+	\end{eqnarray} 
+\end{itemize}
+
+\section{Skewness}
+Skewness is the third standardised central moment:
+\begin{eqnarray}
+	\gamma_{1} &=& s = \text{Skewness} = \mathbb{E}\Bigg[\bigg(\frac{X - \mu}{\sigma}\bigg)^{3}\Bigg]
+\end{eqnarray}
+\textbf{\color{blue}Unbiased sample skewness} is defined as:
+\begin{eqnarray}
+	\hat{s} &=& \frac{N}{(N - 1)(N - 2)}\sum_{i = 1}^{N}\Bigg(\frac{x_{i} - \mu}{\sigma}\Bigg)^{3}
+\end{eqnarray}
+
+\subsection{Properties}
+\begin{itemize}
+	\item Multiplying a random variable by a constant will not change the value of the skewness of the distribution:
+	\begin{eqnarray}
+	s(c \cdot X) &=& s(X)
+	\end{eqnarray}
+	\item the formula in terms of $\mathbb{E}\Big(X^{3}\Big)$ and $\mu$ is not as simple as that for the variance:
+	\begin{eqnarray}
+		\mathbb{E}\Bigg[\bigg(X - \mu\bigg)^{3}\Bigg] &=& \mathbb{E}\Big(X^{3}\Big) - 3\mu\sigma^{2} - \mu^{3}
+	\end{eqnarray}
+\end{itemize}
+
+\section{Kurtosis}
+Kurtosis is the fourth standardised central moment.
+\begin{eqnarray}
+K &=& \mathbb{E}\Bigg[\bigg(\frac{X - \mu}{\sigma}\bigg)^{4}\Bigg]
+\end{eqnarray}
+\textbf{\color{blue}Unbiased sample kurtosis} is defined as:
+\begin{eqnarray}
+	\hat{K} &=& \frac{N(N + 1)}{(N - 1)(N - 2)(N - 3)}\sum_{i = 1}^{N}\Big(\frac{x_{i} - \mu}{\sigma}\Big)^{4}
+\end{eqnarray}
+
+\subsection{Kurtosis Excess}	
+Kurtosis excess is the difference between kurtosis of the distribution and the kurtosis of the normal distribution:
+\begin{eqnarray}
+K_{excess} &=& K - K_{Normal} =  \mathbb{E}\Bigg[\bigg(\frac{X - \mu}{\sigma}\bigg)^{4}\Bigg] - 3
+\end{eqnarray}
+\textbf{\color{blue}Sample unbiased kurtosis excess} is defined as:
+\begin{eqnarray}
+	\hat{K}_{excess} &=& \hat{K} - 3\frac{(N - 1)^{2}}{(N - 2)(N - 3)}
+\end{eqnarray}
+
+\subsection{Properties}
+\begin{itemize}
+	\item as with skewness, multiplying a random variable by a constant $c$ will not change the kurtosis
+	\begin{eqnarray}
+		K(c\cdot X) &=& K(X)
+	\end{eqnarray}
+	\item if the distribution of returns of two assets have the same mean, variance and skewness but different kurtosis, then the distribution with the higher kurtosis will tend to have more extreme points and be considered more risky
+\end{itemize}
+
+\section{Zero Scores}
+The z-score is calculated as
+\begin{eqnarray}
+	z &=& \frac{X - \mu}{\sigma}
+\end{eqnarray}
+It therefore gives the location of raw scores above and below the mean in units of the standard deviation of the distribution from the mean.
+
+
+\section{Continuity Correction}
+A continuity correction is an adjustment that is made when a discrete distribution is approximated by a continuous distribution.\\
+If $X$ is the original discrete distribution that is approximated by $Y$ continuous distribution, then:
+\begin{eqnarray}
+	P\big(X \leq Y\big) \approx P\big(Y \leq x + \frac{1}{2}\big)
+\end{eqnarray}
+
+\pagebreak
+
+\import{quantitativeanalysis/distributions/}{uniform.tex}
+\pagebreak
+
+\import{quantitativeanalysis/distributions/}{normal.tex}
+\pagebreak
+
+\chapter{Lognormal Distribution}
+\pagebreak
+
+
+\import{quantitativeanalysis/distributions/}{bernoulli.tex}
+\pagebreak
+
+
+\import{quantitativeanalysis/distributions/}{binomial.tex}
+
+
+\import{quantitativeanalysis/distributions/}{poisson.tex}
+\pagebreak
+
+
+\import{quantitativeanalysis/distributions/}{chisquared.tex}
+\pagebreak
+
+
+\import{quantitativeanalysis/distributions/}{student.tex}
+\pagebreak
+
+
+\import{quantitativeanalysis/distributions/}{f.tex}
+\pagebreak

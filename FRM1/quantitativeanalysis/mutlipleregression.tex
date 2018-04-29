@@ -1,0 +1,206 @@
+\chapter{Multiple Regression}
+
+
+\section{Omitted Variable Bias}
+If
+\begin{itemize}
+	\item an omitted variable is correlated with an included regressor, 
+	\item and the omitted variable is a determinant, in part, of the dependent variable $Y$, 
+\end{itemize}
+then the OLS estimator will have \textbf{\color{blue}omitted variable bias}.\\
+
+\subsection{Omitted Variable Bias and the First Least Squares Assumption}
+Omitted variable bias means that the first least squared assumption  $\mathbf{E\left(u_{i}\vert X_{i}\right) = 0}$ is incorrect.\\
+To see why, recall that \textbf{\color{blue}the error term $u_{i}$ in the linear regression model represents all the factors, other than $X_{i}$, that are determinants of $Y$}. If one of those factors is correlated with $X_{i}$, this means that the error term (that contains this factor) is correlated with $X_{i}$.\\
+In other words, if an omitted variable is a determinant of $Y_{i}$, then it is in the error term, and if it is correlated with $X_{i}$ then the error term is correlated with $X_{i}$. \textbf{\color{blue}Because $u_{i}$ and $X_{i}$ are correlated, the conditional mean of $u_{i}$ given $X_{i}$ is non-zero}.\\
+This correlation therefore violates the first least squares assumption and \textbf{\color{red}the OLS is biased}.\\
+\textbf{\color{blue}This bias does not vanish even in very large samples, and the OLS estimator is \color{red}inconsistent}.
+
+\subsection{A Formula for Omitted Variable Bias}
+
+Let the correlation between $X_{i}$ and $u_{i}$ be $corr\left(X_{i}, u_{i}\right) = \rho_{Xu}$.\\
+Suppose that the second and third least squares assumptions hold, but the first does not because $\rho_{Xu}$ is non-zero. Then the OLS estimator has the limit:
+\begin{eqnarray}
+\hat{\beta_{1}} \overset{\rho}{\longrightarrow} \beta_{1} + \rho_{Xu}\frac{\sigma_{u}}{\sigma_{X}}
+\end{eqnarray}
+That is, as the sample size increases, $\hat{\beta_{1}}$ is close to $\beta_{1} + \rho_{Xu}\frac{\sigma_{u}}{\sigma_{X}}$ with increasingly high probability.
+
+\subsection{Summary}
+\begin{enumerate}
+	\item omitted variable bias is a problem whether the sample size is large or small
+	\item whether this bias is large or small in practice depends on the correlation $\rho_{Xu}$ between the regressor and the error term. The larger is $\vert\rho_{Xu}\vert$, the larger is the bias.
+	\item the direction of the bias in $\hat{\beta_{1}}$ depends on whether $X$ and $u$ are positively or negatively correlated.
+\end{enumerate}
+
+\subsection{Addressing Omitted Variable Bias by Dividing the Data into Groups}
+One way to address the omitted variable bias is to divide the data into groups.
+
+\section{Measures of Fit in Multiple Regression}
+Three commonly used summary statistics in multiple regression are:
+\begin{enumerate}
+	\item the standard error of the regression
+	\item the regression $R^{2}$
+	\item ans the adjusted $R^{2}$ (also known as $\bar{R}^{2}$)
+\end{enumerate}
+
+\subsection{The Standard Error of the Regression (SER)}
+The SER is a measure of the spread of the distribution of $Y$ around the regression line.
+\begin{eqnarray}
+SER &=& s_{\hat{u}}
+\end{eqnarray}
+where
+\begin{eqnarray}
+s_{\hat{u}}^{2} &=& \frac{1}{n - k - 1}\sum_{i = 1}^{n}\hat{u}_{i}^{2} = \frac{SSR}{n - k - 1} 
+\end{eqnarray}
+where $SSR$ is the sum of squared residuals,
+\begin{eqnarray}
+SSR &=& \sum_{i = 1}^{n}\hat{u}_{i}^{2}
+\end{eqnarray}
+Using $n - k - 1$ is called \textit{\color{blue}\textbf{degress-of-freedom-adjustment}}.
+
+\subsection{The \texorpdfstring{$R^{2}$}{R2}}
+The regression $R^{2}$ is the fraction of the sample variance of $Y_{i}$ explained by the regressors. Equivalently, the $R^{2}$ is 1 minus the fraction of the variance of $Y_{i}$ not explained ba the regressors.
+\begin{eqnarray}
+R^{2} &=& \frac{ESS}{TSS} = 1 - \frac{SSR}{TSS}
+\end{eqnarray}
+where the explained sum of squares is
+\begin{eqnarray}
+	ESS &=& \sum_{i = 1}^{n}\left(\hat{Y_{i}} - \bar{Y}\right)^{2}
+\end{eqnarray}
+and the total sum of squares is
+\begin{eqnarray}
+	TSS &=& \sum_{i = 1}^{n}\left(Y_{i} - \bar{Y}\right)^{2}
+\end{eqnarray}
+In multiple regression, the $R^{2}$ increases whenever a regressor is added, unless the estimated coefficient on the added regressor is exactly zero.
+
+\subsection{The "Adjusted \texorpdfstring{$R^{2}$}{R2} or (\texorpdfstring{$\bar{R}^{2}$}{2})"}
+Because the $R^{2}$ increases when a new variable is added, an increase in the $R^{2}$ does not mean that adding a variable actually improves the fit of the model.\\
+The \textbf{adjusted $R^{2}$}, or $\bar{R}^{2}$ is a modified version of the $R^{2}$ that does not necessarily increase when a new regressor is added. The $\bar{R}^{2}$ is:
+\begin{eqnarray}
+	\bar{R}^{2} &=& 1 - \frac{n - 1}{n - k -1}\frac{SSR}{TSS} = 1 - \frac{s_{u}^{2}}{s_{Y}^{2}}
+\end{eqnarray}
+
+\paragraph{$\bar{R}^{2}$ properties}
+\begin{enumerate}
+	\item
+	\begin{eqnarray}
+	 \frac{n - 1}{n - k - 1} > 1 \Rightarrow \bar{R}^{2} < R^{2}
+	\end{eqnarray}
+	\item adding a regressor has two opposite effects on $\bar{R}^{2}$. On the one hand, the $SSR$ falls, which increases the $\bar{R}^{2}$. On the other hand, the factor $\left(n - 1\right) / \left(n - k - 1\right)$ increases. Whether the $\bar{R}^{2}$ increases or decreases depends on which of this two effects is stronger.
+	\item the $\bar{R}^{2}$ can be negative.
+\end{enumerate}
+
+\section{The Least Squared Assumptions in Multiple Regression}
+There are 4 least squares assumptions in the multiple regression model. The first 3 are those for the single regressor model. The fourth assumption is \textbf{no perfect multicollinearity}:
+\begin{enumerate}
+	\item the conditional distribution of $u_{i}$ given $X_{1i}, ..., X_{ki}$ has a mean of zero:
+	\begin{eqnarray}
+	\mathbb{E}\left(u\vert X_{1i}, ..., X_{ki}\right) &=& 0
+	\end{eqnarray}
+	\item $\left(X_{1i}, ..., X_{ki}, Y_{i}\right)$, $i = 1, ..., n$ are $i.i.d$
+	\item large outliers are unlikely
+	\item no perfect multicollinearity
+\end{enumerate}
+The regressors are said to be \textbf{\color{blue}perfectly multi-collinear} (or to exhibit \textbf{\color{blue}perfect multi-collinearity}) if one of the regressors is a perfect linear combination of other regressors.\\
+The mathematical reason for this failure is that perfect multi-collinearity produces division by zero in the OLS formulas.\\
+At an intuitive level, perfect multi-collinearity is a problem because you are asking the regression to answer an illogical question. In multiple regression, the coefficient on one of the regressors is the effect of a change in that regressor, holding the other regressors constant.\\
+In general, \textbf{\color{blue}the solution to perfect multi-collinearity is to modify the regressors to eliminate the problem}.
+
+\section{Perfect Multi-collinearity}
+Perfect multi-collinearity typically arises when a mistake has been made in specifying the regression.
+
+\subsection{Dummy Variable Trap}
+If 
+\begin{itemize}
+	\item there are $G$ binary variables,
+	\item if each observation falls into one and only one category,
+	\item if there is an intercept in the regression,
+	\item and if all $G$ binary variables are included as regressors, 
+\end{itemize}
+then the regression will fail because of perfect mutli-collinearity.\\
+This situation is called the \textbf{\color{blue}dummy variable trap}.\\
+The usual way to avoid the dummy variable trap is to exclude one of the binary variables from the multiple regression, so only $G - 1$ of the $G$ binary variables are included as regressors.
+
+\section{Imperfect Multi-Collinearity}
+Imperfect multi-collinearity arises when one of the regressors is very highly but not perfectly correlated with the other regressors.\\
+Unlike the perfect multi-collinearity, imperfect multi-collinearity
+\begin{itemize}
+	\item does not prevent estimation of the regressions,
+	\item not does it imply a logical problem with the choice of regressors. 
+\end{itemize}
+However, it does mean that \textbf{\color{blue}one or more regression coefficients could be estimated imprecisely}.\\
+The effect of imperfect multi-collinearity on the variance of the OLS estimators can be seen mathematically by inspecting the variance of $\hat{\beta_{1}}$ in a multiple regression with two regressors ($X_{1}$ and $X_{2}$) for the special case of a homoskedastic error:
+\begin{eqnarray}
+\sigma_{\hat{\beta}_{1}}^{2} &=& \frac{1}{n}\left[\frac{1}{1 - \rho_{X_{1}, X_{2}}^{2}}\right]\frac{\sigma_{u}^{2}}{\sigma_{X_{1}}^{2}}
+\end{eqnarray}
+In this case, the variance of $\hat{\beta_{1}}$ is inversely proportional to $1 - \rho_{X_{1}, X_{2}}^{2}$, where $\rho_{X_{1}, X_{2}}^{2}$ is the correlation between $X_{1}$ and $X_{2}$.\\
+The larger is the correlation between the two regressors, the closer is this term to zero and the larger is the variance of $\hat{\beta}_{1}$.\\
+In contrast to the perfect multi-collinearity, imperfect multi-collinearity is not necessarily an error, but rather just a feature of OLS, your data, and the question you are trying to answer.
+
+\section{Joint Hypothesis}
+Joint hypothesis is a hypothesis that imposes two or more restrictions on the regression coefficients.\\
+If \textbf{\color{red}any one or more} of the equalities under the null hypothesis $H_{0}$ is false, than the joint hypothesis itself if false. Thus the alternative hypothesis is that \textbf{\color{red}at least one \color{blue}of the equalities in the null hypothesis $H_{0}$ does not hold}.
+
+\subsection{Why Can't Just Test Individual Coefficients One at a Time}
+This "one at a time" method rejects the null hypothesis too often, because it takes too many chances -  if it fails to reject using the first $t$-statistic, it gets to try again using the second.
+
+\subsection{Bonferroni Method}
+Advantage - it applies very generally.\\
+Disadvantage - it can have low power - it frequently fails to reject the null hypothesis when in fact the alternative hypothesis is true.
+
+\section{F-statistic}
+The $F$-test is only applicable \textbf{\color{ForestGreen}if and only if there is a linear relationship between two variables}. \textbf{\color{blue}It cannot be used in the presence of squares or products between variables}.\\ 
+For a regression model with $k$ independent variables and $n$ observations, the $F$-statistic is defined as:
+\begin{eqnarray}
+	F_{k, n - k - 1} &=& \frac{ESS/k}{SSR/\big(n - k - 1\big)}
+\end{eqnarray}
+In joint hypothesis tests, the aim is always to establish the statistical significance of \textbf{\color{blue}at least one} of the regression coefficients. \textbf{\color{ForestGreen}If the computed $F$-statistic is greater than the 1-tailed $F$-value at a given significance, at least one of the coefficients is statistically significantly different from zero; \color{blue}otherwise none of the coefficients are statistically significant}.\\
+If $F$-test on a multiple regression model establishes that a significant amount of variation in the $Y$ variable is explained by the set of $X$ variables, then we should perform $t$-test on each $X$ variable to establish whether there is any of them, whose effect on $Y$ is not statistically significant.
+
+
+\subsection{Q Restrictions}
+For $q$ restrictions in large samples under the null hypothesis the $F$-statistics is distributed $F_{q,\infty}$.
+
+\subsection{The F-Statistics when \texorpdfstring{$q = 1$}{q1}}
+When $q = 1$, the $F$-statistics tests a single restriction. Then the joint null hypothesis reduces to null hypothesis on a single regression coefficient, and the $F$-statistics is the square of the $t$-statistic.
+
+\subsection{The Homoskedasticity-Only F-Statistics}
+If the error term $u_{i}$ is homoskedastic,  the $F$-statistic can be written in terms of the improvement in the fit of the regression as measured by the sum of squared residuals or by the regression $R^{2}$.\\
+The resulting $F$-statistics is referred to as the homoskedastic-only $F$-statistic.\\
+The homoskedasticity-only $F$-statistic is computed using a simple formula based on the sum of squared residuals from two regressions.\\
+In the first regression, called the \textbf{restricted regression}, the null hypothesis is forced to be true. When the null hypothesis is of the type $H_{0}: \beta = 0$, where all the hypothesized values are zero, the restricted regression is the regression in which those coefficients are set to zero, that is, the relevant regressors are excluded from the regression.\\
+In the second regression, called the \textbf{unrestricted regression}, the alternative hypothesis is allowed to be true.\\
+If the sum of squared residuals is sufficiently smaller in the unrestricted than the restricted regression, then the test rejects the null hypothesis.\\
+The \textbf{homoskedasticity-only F-statistic} is given by the formula:
+\begin{eqnarray}
+\label{Eq:HomoskedasticFStatistic}
+F &=& \frac{\left(SSR_{restricted} - SSR_{unrestricted}\right) / q}{SSR_{unrestricted} / \left(n - k_{unrestricted} - 1\right)}
+\end{eqnarray}
+where:
+\begin{itemize}
+	\item $SSR_{restricted}$ - is the sum of squared residuals from the restricted regression,
+	\item $SSR_{unrestricted}$ - is the sum of squared residuals from the unrestricted regression,
+	\item $q$ - is the number of restrictions under the null hypothesis,
+	\item and $k_{unrestricted}$ - is the number of regressors in the unrestricted regression.
+\end{itemize}
+An alternative equivalent formula for the homoskedasticity-only $F$-statistic is based on the $R^{2}$ of the two regressions:
+\begin{eqnarray}
+\nonumber
+\label{Eq:HomoskedasticFStatistic2}
+F &=& \frac{\left(R_{unrestricted}^{2} - R_{restricted}^{2}\right) / k}{\left(1 - R_{unrestricted}^{2}\right)\left(n - k_{unrestricted} - 1\right)}\\
+\nonumber
+ &=& \frac{\big(TSS - SSR\big) / k}{SSR / \big(n - k - 1\big)}\\ 
+ &=& \frac{ESS / k}{SSR / (n - k - 1)}
+\end{eqnarray}
+
+
+\section{Pitfalls when using the \texorpdfstring{$R^{2}$}{R2} or \texorpdfstring{$\bar{R}^{2}$}{R2}}
+\begin{enumerate}
+	\item An increase in the $R^{2}$ or $\bar{R}^{2}$ does not necessarily mean that an added variable is statistically significant. To be able to confidently determine the significance of an added regressor, a $t$-test must be performed.
+	\item A high $R^{2}$ or $\bar{R}^{2}$ does not mean that the regressors are a true cause of the dependent variable.
+	\item A high $R^{2}$ or $\bar{R}^{2}$ does not mean there is no omitted variable bias. Conversely, a low $R^{2}$ does not imply that there necessarily is omitted variable bias.
+	\item A high $R^{2}$ or $\bar{R}^{2}$ does not necessarily mean you have the most appropriate set of regressors, nor does a low $R^{2}$ or $\bar{R}^{2}$ necessarily mean you have an inappropriate set of regressors.
+\end{enumerate}
+
+
+

@@ -1,0 +1,33 @@
+\chapter{Swaps}
+
+\section{Swaps}
+A swap is an over-the-counter derivatives agreement between two companies to exchange cash flows in the future. The agreement defines the dates when the cash flows are to be paid and the way in which they are to be calculated.
+
+
+\section{Fixed-For-Floating Swap}
+The notional is not exchanged. This is why it is termed the notional principal.\\
+The procedure:
+\begin{itemize}
+	\item calculate the forward rates for each of the LIBOR rates that will determine swap cash flows
+	\item calculate the swap cash flows on the assumption that LIBOR rates will equal to the forward rates
+	\item discount the swap cash flows at the risk free rates
+\end{itemize}
+
+\section{Fixed-For-Fixed Currency Swap}
+
+\subsection{Valuation}
+\begin{eqnarray}
+\nonumber
+\text{Value of Currency Swap} &=& \text{PV of payments}_{USD} - \text{Spot Exchange Rate} * \text{PV of payments}_{GBP}
+\end{eqnarray}
+
+\subsection{Total Gain}
+The total gain as per comparative advantage is equal to the difference of the differences:
+\begin{itemize}
+	\item calculate the difference in one currency
+	\item calculate the difference in another currency
+	\item take the difference of the differences
+\end{itemize}
+
+\subsection{Value For Counterparties}
+For the payer of the low-interest-rate currency, the swap will have negative value during the later part of the swap life.

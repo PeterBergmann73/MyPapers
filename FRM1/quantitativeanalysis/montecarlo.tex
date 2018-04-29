@@ -1,0 +1,117 @@
+\chapter{Monte Carlo Simulations}
+
+\section{Ways of Choosing a Probability Distribution for a Simulation Model}
+The ways are:
+\begin{enumerate}
+	\item bootstrapping technique
+	\item parameter estimating technique
+	\item best fit technique
+	\item the subjective guess technique
+\end{enumerate}
+
+
+\section{Motivations}
+In econometrics, simulation is particularly useful when models are very complex or sample sizes are small.
+
+\section{Steps}
+The steps:
+\begin{enumerate}
+	\item specify the model that will be used to generate the data
+	\item estimate the parameter of the interest in the study
+\end{enumerate}
+
+\section{Variance Reduction Techniques}
+The sampling variation in a Monte-Carlo study is measured by the standard error estimate, denoted $S_{x}$:
+\begin{eqnarray}
+	S_{x} &=& \sqrt{\frac{var(x)}{N}}
+\end{eqnarray}
+where $N$ is the number of samples and $var(x)$ is the variance of the estimates of the quantity of interest.
+
+\subsection{Antithetic Variance}
+The antithetic variate techniques involves taking the complement of a set of random numbers and running a parallel simulation on those. The variance of the estimations will be reduced because of the negative covariance.\\
+It may at first appear that the reduction in Monte Carlo sampling variation from using antithetic variates will be huge, as the covariance appears to be $-1$.\\
+However, it is important to remember that the relative covariance is between the simulated quantity of interest for the standard replications and those using the antithetic variates. But the perfect negative covariance is between the random draws and their antithetic variates.
+
+\subsection{Quasi Monte Carlo}
+The use of low-discrepancy sequences leads the Monte-Carlo standard errors to be reduced in direct proportion to the number of replications rather than in proportion to the square root of the number of replications.
+
+\subsection{Control Variates}
+The application of control variates involves employing a variable similar to that used in simulation, but whose properties are known prior to the simulation.\\
+It is worth noting that control variates succeed in reducing the Monte Carlo sampling error only if the control and simulation problems are very closely related.
+
+\subsection{Random Number Re-Usage across Experiments}
+
+\subsection{Bootstrapping}
+Bootstrapping is used to obtain a description of the properties of empirical estimators by using the sample data points themselves, and it involves sampling repeatedly with replacement from the actual data.\\
+The advantage of bootstrapping over the use of analytical results is that it allows the researcher to make inferences without making strong distributional assumptions, since the distribution employed will be that of the actual data.\\
+Instead of imposing a shape on the sampling distribution of the $\theta$ value, bootstrapping involves empirically estimating the sampling distribution by looking at the variance of the statistic within-sample.\\
+Successive applications of this procedure should generate a collection of data sets with the same distributional properties, on average, as the original data. But any kind of dependence in the original series (e.g. linear on non-linear autocorrelation) will, by definition, have been removed.
+
+\subsubsection{Situations Where Bootstrapping Will Be Ineffective}
+There are at least two situations where the bootstrap will not work well:
+\begin{itemize}
+	\item outliers in the data. If there are outliers in the data, the conclusions of the bootstrap may be affected. In particular, the results for a given replication may depend critically on whether the outliers appear (and how often) in the bootstrapped sample. 
+	\item non-independent data. \textbf{\color{blue}Bootstrapping implicitly assumes that the data are independent of one another}. This would obviously not hold if, for example, there were autocorrelation in the data.
+\end{itemize}
+
+\section{Latin Hypercube}
+A square grid containing sample positions is a Latin square if (and only if) there is only sample in each row and each column. A Latin hypercube is the generalisation of this concept to an arbitrary number of dimensions, whereby each sample is the only one in each axis-aligned hyperplane containing it.\\
+When sampling a function of $N$ variables, the range of each variable is divided into $M$ equally probable intervals. $M$ sample points are then placed to satisfy the Latin hypercube requirements. Note, that this forces the number of divisions $M$ to be equal for each variable.\\
+Also note, that this sampling scheme does not require more samples for more dimensions (variables). This independence is one of the main advantages of this sampling scheme.\\
+Another advantage is that random samples can be taken one at a time, remembering which samples were taken so far.\\
+In two dimensions the difference between random sampling, Latin Hypercube sampling and orthogonal sampling can be explained as follows:
+\begin{itemize}
+	\item \textbf{\color{blue}random or brute-force sampling} - new sample points are generated without taking into account the previously generated sample points. One does not necessarily need to know beforehand how many sampling points are needed.
+	\item in \textbf{\color{blue}Latin Hypercube sampling} one must first decide how many sample points to use and for each point remember in which row and column the sample point was taken.
+	\item in \textbf{\color{blue}Orthogonal sampling}, the sample space is divided into equally probable subspaces. All sample points are hen chosen simultaneously making sure that the total ensemble of sample points is a Latin Hypercube sample and that each subspace is sampled with the same density.
+\end{itemize}
+Thus:
+\begin{itemize}
+	\item \textbf{\color{blue}orthogonal sampling} - ensures that the ensemble of random numbers is a very good representative of the real variability
+	\item \textbf{\color{blue}Latin Hypercube sampling} - ensures that the ensemble of rnadom numbers is representative of the real variability
+	\item \textbf{\color{blue}traditional random sampling} - is just an ensemble of random numbers without any guarantees.
+\end{itemize}
+
+
+\section{Random Number Generation}
+
+\subsection{Pseudo-random numbers}
+Numbers that are a continuous uniform (0, 1) can be generated according to the following recursion:
+\begin{eqnarray}
+	y_{i + 1} &=& \big(a\cdot y_{i} + c\big)\qquad\text{modulo m}, i = 0, ..., T
+\end{eqnarray}
+Then:
+\begin{eqnarray}
+	R_{i + 1} &=& y_{i + 1} / m\qquad\text{for }i = 0, 1, ..., T
+\end{eqnarray}
+for $T$ random draws, where:
+\begin{itemize}
+	\item  $y_{0}$ is the seed (the initial value of $y$),
+	\item $a$ is a multiplier
+	\item and $c$ is an increment
+\end{itemize}
+All three of these are simply constants. The "modulo operator" simply functions as a clock, returning to one after reaching $m$.\\
+Any simulation study involving a recursion, such as that described by the equation above, to generate the random draws, will require the user to specify an initial value $y_{0}$ to get the process started. The choice of this value will, undesirably, affect the properties of the generated series. This effect will be strongest for $y_{1}, y_{2}, ...$ but will gradually die away. Consequently, a good simulation design will allow for this phenomenon by generating more data than required and then dropping the first few observations.
+
+\subsection{Mid-square Technique}
+Steps:
+\begin{itemize}
+	\item a 4-digit starting value is created and squared, producing an $8$-digit number.
+	\item if the result is fewer than 8 digits, leading zeros are added to compensate
+	\item the middle 4 digits of the result would be the next number in the sequence and returned as the result
+	\item the process is repeated to generate more numbers
+\end{itemize}
+
+\section{Disadvantages of the Simulation Approach to Econometric or Financial Problem Solving}
+\begin{itemize}
+	\item it might be computationally expensive
+	\item the results might not be precise, for example, if some unrealistic assumptions have been made of the data generating process.
+	\item the results are often hard to replicate
+	\item simulations results are experiment specific
+\end{itemize}
+
+\section{Monte Carlo Biases}
+
+\begin{itemize}
+	\item \textbf{\color{blue}discretisation bias} - when a variable is incorrectly assumed to take on only discrete values
+\end{itemize}

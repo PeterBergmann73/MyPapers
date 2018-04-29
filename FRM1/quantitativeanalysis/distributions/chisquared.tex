@@ -1,0 +1,30 @@
+\chapter{Chi-squared Distribution}
+\textbf{\color{ForestGreen}Chi-squared distribution ($\chi^{2}$-distribution) with $k$ degrees of freedom} is the distribution of a \textbf{\color{blue}sum of the squares of $k$ independent standard normal} variables.\\
+When it is being distinguished from the more general \textit{\color{blue}non-central chi-squared distribution}, this distribution is sometimes called the \textbf{\color{ForestGreen}central chi-squared distribution}.
+
+\section{Use}
+\begin{itemize}
+	\item common \textbf{\color{blue}chi-squared tests for goodness of fit} of an observed distribution to a theoretical one
+	\item the \textbf{\color{blue}independence} of two criteria of classification of qualitative data
+	\item in \textbf{\color{blue}confidence interval estimation for a population standard deviation of a normal distribution} from a sample standard deviation
+	\item \textbf{\color{blue}Friedman's analysis of variance by ranks}
+\end{itemize}
+
+\section{Properties}
+\begin{itemize}
+	\item Additivity - the sum of independent chi-squared variables is also chi-squared distributed.\\
+	Specifically,\\
+	if $\{X_{i}\}_{i = 1}^{n}$ - are independent chi-squared variables with $\{k_{i}\}_{i = 1}^{n}$ degrees of freedom, respectively,\\
+	then\\
+	$Y = X_{1} + ... + X_{n}$ - is chi-squared distributed with $k_{1} + ... + k_{n}$ degrees of freedom
+	\item because the chi-squared variable is the sum of squared valued, it can take on only non-negative values and is asymmetric
+	\item as $k$ approaches infinity, the chi-squared distribution converges to normal distribution
+\end{itemize}
+
+\section{Moments - Summary}
+\begin{eqnarray}
+	\mu &=& k\\
+	\sigma^{2} &=& 2k\\
+	\gamma_{1} &=& 2\sqrt{\frac{2}{k}}\\
+	\gamma_{2} &=& \frac{12}{k}
+\end{eqnarray}

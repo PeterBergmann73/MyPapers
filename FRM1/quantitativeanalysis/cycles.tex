@@ -1,0 +1,269 @@
+\chapter{Cycles}
+
+\section{(Strictly/Strongly) Stationary Time Series}
+A time series is stationary ("strictly stationary", "strongly stationary") if its unconditional joint probability does not change when shifted in time. Consequently, parameters such as mean and variance, if they are present, also do not change over time.
+
+\section{Weak/Covariance Stationary Time Series}
+The time series is covariance stationary, if
+\begin{enumerate}
+	\item its mean is stable over the time:
+	\begin{eqnarray}
+	\mathbb{E}\Big(y_{t}\Big) &=& \mu
+	\end{eqnarray}
+	\item covariance structure be stable over time, that is autocovariance depends only on the displacement $\tau$ and not on time $t$:
+	\begin{eqnarray}
+	\gamma\Big(t, \tau\Big) &=& \gamma\Big(\tau\Big)
+	\end{eqnarray}
+	\item and variance of the series \Big(or the autocovariance at displacement 0 $\gamma\big(0\big)$\Big) is finite. It could be shown, that no autocovariance can be larger in absolute value than $\gamma\big(0\big)$, so if $\gamma\big(0\big) < \infty$, then so, too, are all the autocovariances
+\end{enumerate}
+Stationary autocovariance function is symmetric, that is:
+\begin{eqnarray}
+\gamma\big(\tau\big) &=& \gamma\big(-\tau\big)
+\end{eqnarray}
+
+\subsection{Dealing With Covariance-Non-Stationarity}
+Ways to deal with covariance-non-stationarity:
+\begin{itemize}
+	\item use models that give special treatment to non-stationary components such as trend and seasonality, so that the cyclical component that is left over is likely to be covariance stationary
+	\item simple transformations often appear to transform non-stationary series to covariance stationary 
+\end{itemize}
+
+\subsection{Is Covariance Stationarity Too Restrictive?}
+Although covariance stationarity requires means and covariances to be stable and finite, it places no restrictions on other aspects of the distribution of the series, such as skewness and kurtosis.\\
+In contrast to the unconditional mean and variance, which must be constant by covariance stationarity, the conditional mean and variance need not be constant, and in general we would expect them not to be constant.
+
+\section{Common Characteristics of Asset Return Distributions}
+\begin{itemize}
+	\item leptokurtic - more data points are in the tails
+	\item have no trend, either stochastic or deterministic
+	\item lowly correlated
+\end{itemize}
+
+\section{Autocovariance Function}
+The autocovariance $\gamma_{t, \tau}$ at displacement/lag $\tau$ is just the covariance between $y_{t}$ and $y_{t - \tau}$:
+\begin{eqnarray}
+	\gamma_{t, \tau} &=& cov(y_{t}, y_{t - \tau}) = \mathbb{E}\Big(\big(y_{t} - \mu\big)(y_{t - \tau} - \mu)\Big)
+\end{eqnarray}
+
+\section{Autocorrelation Function}
+The autocorrelation function is obtained by dividing the autocovariance function by the variance.
+\begin{eqnarray}
+	\rho(\tau) &=& \frac{\gamma(\tau)}{\gamma(0)}
+\end{eqnarray}
+Note that we always have $\rho_{0} = \gamma_{0} / \gamma_{0} = 1$, because any series is perfectly correlated with itself.
+
+\section{Partial Autocorrelation Function}
+The partial autocorrelation function $p(\tau)$ is the coefficient of $y_{t-\tau}$ in a population linear regression of $y_{t}$ on $y_{t - 1}, ..., y_{t - \tau}$.\\
+Such regression is called autoregression.\\
+It is easy to see that the autocorrelations and partial autocorrelations, although related, differ in an important way. The autocorrelations are just the "simple" or "regular" correlations between $y_{t}$ and $y_{t - \tau}$. The partial autocorrelations, on the other hand, measure the association between $y_{t}$ and $y_{t - \tau}$ after the controlling for the effects of $y_{t - 1}, ..., y_{t - \tau + 1}$. That is, they measure the partial correlation between $y_{t}$ and $y_{t - \tau}$.\\
+Also in parallel to the autocorrelation function, the partial autocorrelation at displacement $0$ is always $1$ and is therefore uninformative and uninteresting.
+
+
+\section{White Noise}
+\subsection{Definition}
+Suppose that
+\begin{eqnarray}
+	y_{t} &=& \epsilon_{t}\\
+	\epsilon_{t} &\sim& \big(0, \sigma^{2}\big)
+\end{eqnarray}
+where the "shock" $\epsilon_{t}$ is uncorrelated over time.\\
+We say that $\epsilon_{t}$ and hence $y_{t}$ is serially uncorrelated.\\
+We assume that $\sigma^{2} < \infty$.\\
+Such process, with
+\begin{itemize}
+	\item zero mean,
+	\item constant variance,
+	\item and no serial correlation (or autocorrelation is zero except at lag zero, which is actually the variance)  
+\end{itemize}
+is called \textbf{\color{blue}zero-mean white noise}.\\
+If the mean is constant, but not zero, while the other conditions above hold, then such a process is called \textbf{\color{blue}white noise}.\\
+By analogy with the white light, which is composed of all colours of the spectrum in equal amounts, 
+we can think of white noise as being composed of a wide variety of cycles of different periodicities in equal amounts.
+\begin{eqnarray}
+\epsilon_{t} &\sim& WN\Big(0, \sigma^{2}\Big)
+\end{eqnarray}
+and hence:
+\begin{eqnarray}
+	y_{t} &\sim& WN\Big(0, \sigma^{2}\Big)
+\end{eqnarray}
+
+\subsection{Independent White Noise}
+Note, that although $\epsilon_{t}$ and hence $y_{t}$ are serially uncorrelated, they are not necessarily serially independent, because they are not necessarily normally distributed.\\
+\textbf{\color{ForestGreen}If in addition to being serially uncorrelated}, $y$ \textbf{\color{ForestGreen}is serially independent}, then we say that $y$ is \textbf{\color{blue}independent white noise}. We write:
+\begin{eqnarray}
+	y_{t} &\sim& \big(0, \sigma^{2}\big)
+\end{eqnarray}
+Another name for independent white noise is \textbf{\color{blue}strong white noise}, in contrast to standard serially uncorrelated \textbf{\color{blue}weak white noise}.\\
+We say that "$y$ is independently and identically distributed with zero mean and constant variance".\\
+If $y$ is
+\begin{itemize}
+	\item serially uncorrelated 
+	\item and normally distributed,
+\end{itemize}
+then it follows that $y$ is \textbf{\color{ForestGreen}also independent}, and we say that $y$ is \textbf{\color{blue}normal white noise} or \textbf{\color{blue}Gaussian white noise}. We write:
+\begin{eqnarray}
+	y_{t} &\sim& N\Big(0, \sigma^{2}\Big)
+\end{eqnarray}
+We read "$y$ is independently and identically distributed as normal, with zero mean and constant variance" or simply "$y$ is Gaussian white noise".
+
+
+\subsection{White Noise Properties}
+Recall that the disturbances in a regression model is typically assumed to be white noise of one sort or another.\\
+By construction the unconditional mean of  $y$ is:
+\begin{eqnarray}
+\mathbb{E}\Big(y_{t}\Big) &=& 0
+\end{eqnarray}
+and the unconditional variance of $y$ is
+\begin{eqnarray}
+	var\Big(y_{t}\Big) &=& \sigma^{2}
+\end{eqnarray}
+Note that unconditional mean and variance are constant. In fact, the unconditional mean and variance must be constant for any covariance stationary process.\\
+Because white noise is, by definition, uncorrelated over time, all the autocovariances, and hence all the autocorrelations, are 0 beyond displacement 0.
+
+\section{Wold's Theorem}
+Let $\{y_{t}\}$ be any covariance-stationary process. Then we can write it as:
+\begin{eqnarray}
+	y_{t} &=& B\big(L\big)\epsilon_{t} = \sum_{i = 0}^{\infty}b_{i}\epsilon_{t - i}\\
+	\epsilon_{t} &\sim& WN\Big(0, \sigma^{2}\Big) 
+\end{eqnarray}
+where
+\begin{itemize}
+	\item $b_{0} = 1$
+	\item and $\sum_{i = 0}^{\infty}b_{i} < \infty$
+\end{itemize}
+In short, the correct "model" for any covariance stationary series is some infinite distributed lag of white noise, called the \textbf{\color{blue}Wold representation}.\\
+The $\epsilon_{t}$ are called \textbf{\color{blue}innovations}, because they correspond to the 1-step forecast error that we would make if we were to use a particularly good forecast. That is, the $\epsilon_{t}$ represent that part of the evolution of $y$ that is linearly unpredictable on the basis of the past of $y$.\\
+Note also that the $\epsilon_{t}$ although uncorrelated are not necessarily independent as they are not necessarily Gaussian.
+
+\section{General Linear Process}
+The process
+\begin{eqnarray}
+y_{t} &=& B\big(L\big)\epsilon_{t} = \sum_{i = 0}^{\infty}b_{i}\epsilon_{t - i}\\
+\epsilon_{t} &\sim& WN\Big(0, \sigma^{2}\Big) 
+\end{eqnarray}
+where
+\begin{itemize}
+	\item $b_{0} = 1$
+	\item and $\sum_{i = 0}^{\infty}b_{i} < \infty$
+\end{itemize}
+is called the \textbf{\color{blue}general linear process}. "General" because any covariance stationary series can be written that way, and "linear" because the Wold representation expresses the series as a linear function of its innovations.\\
+Although Wold's theorem guarantees only serially uncorrelated white noise innovations, we shall sometimes make a stronger assumption of independent white noise innovations to focus the discussion. We do so, for example, in the following characterisation of the conditional moment structure of the general linear process.\\
+Taking means and variances, we obtain the unconditional moments
+\begin{eqnarray}
+\mathbb{E}\big(y_{t}\big) &=& \mathbb{E}\left(\sum_{i = 0}^{\infty}b_{i}\epsilon_{t - i}\right) = \sum_{i = 0}^{\infty}b_{i}\mathbb{E}\Big(\epsilon_{t - i}\Big) = \sum_{i = 0}^{\infty}b_{i}\cdot 0 = 0
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\nonumber
+	var\big(y_{t}\big) &=& var\left(\sum_{i = 0}^{\infty}b_{i}\epsilon_{t - i}\right) = \sum_{i = 0}^{\infty}b_{i}^{2}var\Big(\epsilon_{t - i}\Big) = \sum_{i = 0}^{\infty}b_{i}\sigma^{2}\\
+	&=& \sigma^{2}\sum_{i = 0}^{\infty}b_{i}^{2}
+\end{eqnarray}
+Define the information set $\Omega_{t - 1} = \{\epsilon_{t - 1}, \epsilon_{t - 2}, ...\}$.
+The conditional mean is:
+\begin{eqnarray}
+\nonumber
+\mathbb{E}\Big(y_{t}\vert\Omega_{t - 1}\Big) &=& \mathbb{E}\Big(\epsilon_{t}\vert\Omega\Big) + b_{1}\mathbb{E}\Big(\epsilon_{t - 1}\vert\Omega_{t - 1}\Big) + b_{2}\mathbb{E}\Big(\epsilon_{t - 2}\vert\Omega_{t - 1}\Big) + ...\\
+ &=& 0 + b_{1}\epsilon_{t - 1} + b_{2}\epsilon_{t - 2} + ... = \sum_{i = 1}^{\infty}b_{t}\epsilon_{t - i}
+\end{eqnarray}
+and the conditional variance is:
+\begin{eqnarray}
+\nonumber
+var\Big(y_{t}\vert\Omega_{t - 1}\Big) &=& \mathbb{E}\left(\bigg(y_{t} - \mathbb{E}\Big(y_{t}\vert\Omega_{t - 1}\Big)\bigg)^{2}\vert\Omega_{t - 1}\right)\\
+ &=& \mathbb{E}\Big(\epsilon_{t}^{2}\vert\Omega_{t - 1}\Big) = \mathbb{E}\Big(\epsilon_{t}^{2}\Big) = \sigma^{2}
+\end{eqnarray}
+The key insight is that the conditional mean \textit{moves} over time in response to the evolving information set. The model captures the dynamics of the process, and the evolving conditional mean is one crucial way of summarizing them.
+
+\section{Analogy Principle}
+Suppose we know some properties that are satisfied for the "true parameter" in the population. If we can find a parameter value in the sample that causes the sample to mimic the properties of the population, we might use this parameter value to estimate the true parameter.
+
+\section{Sample mean}
+\begin{eqnarray}
+ \bar{y} &=& \frac{1}{n}\sum_{t = 1}^{n}y_{t}
+\end{eqnarray}
+
+\section{Sample Autocorrelation}
+The autocorrelation at displacement $\tau$ for the covariance stationary series $y$ is:
+\begin{eqnarray}
+	\rho\big(\tau\big) &=& \frac{\mathbb{E}\bigg(\Big(y_{t} - \mu\Big) \Big(y_{t - \tau} - \mu\Big)\bigg)}{\mathbb{E}\bigg(\Big(y_{t} - \mu\Big)^{2}\bigg)}
+\end{eqnarray}
+application of the analogy principle yields a natural estimator:
+\begin{eqnarray}
+	\nonumber
+	\rho\big(\tau\big) &=& \frac{\frac{1}{n}\sum_{i = \tau + 1}^{n}\bigg(\Big(y_{t} - \bar{y}\Big) \Big(y_{t - \tau} - \bar{y}\Big)\bigg)}{\frac{1}{n}\sum_{i = 1}^{n}\bigg(y_{t} - \bar{y}\bigg)^{2}}\\
+&=& \frac{\sum_{i = \tau + 1}^{n}\bigg(\Big(y_{t} - \bar{y}\Big) \Big(y_{t - \tau} - \bar{y}\Big)\bigg)}{\sum_{i = 1}^{n}\bigg(y_{t} - \bar{y}\bigg)^{2}}
+\end{eqnarray}
+This estimator, viewed as the function of $\tau$, is called the \textbf{\color{blue}sample autocorrelation function} or \textbf{\color{blue}correlogram}.
+
+\subsection{Sample Autocorrelations for White Noise}
+If a series is white noise, then the distribution of the sample autocorrelations in large sample is:
+\begin{eqnarray}
+    \label{Eq:AutocorrelationDistribution}
+	\rho\big(\tau\big) &\sim& N\left(0, \frac{1}{n}\right)
+\end{eqnarray}
+Their mean is 0, which is to say that the sample autocorrelations are unbiased estimators of the true autocorrelations, which are in fact 0.\\
+The variance of the sample autocorrelations is approximately $\frac{1}{T}$.\\ 
+Thus, if the series is white noise, then approximately 95$\%$ should fall in the interval $\pm2/\sqrt{n}$
+
+\section{Box-Pierce Q-statistic}
+Let
+\begin{itemize}
+	\item $n$ - is the total number of observations
+	\item $m$ - is the maximum lag we are considering 
+\end{itemize}
+We are often interested in whether a series is white noise - that is, whether \textit{all} its autocorrelations are \textit{jointly} 0. Rewrite the expression (\ref{Eq:AutocorrelationDistribution}):
+\begin{eqnarray}
+	\nonumber
+	\hat{\rho}\big(\tau\big) &\sim& N\left(0, \frac{1}{n}\right)
+\end{eqnarray}
+as
+\begin{eqnarray}
+	\sqrt{n}\hat{\rho}\big(\tau\big) &\sim& N\left(0, 1\right)
+\end{eqnarray}
+Squaring both sides yields:
+\begin{eqnarray}
+	n\hat{\rho}\big(\tau\big)^{2} &\sim& \chi_{1}^{2}
+\end{eqnarray}
+It can be shown, that in addition to being approximately normally distributed, the sample autocorrelations at various displacements are approximately independent of one another.\\
+Recalling that \textbf{\color{blue}the sum of independent $\chi^{2}$ variables is also $\chi^{2}$ with degrees of freedom equal to the sum of the degrees of freedom of the variables summed}, we have shown that the \textbf{\color{blue}Box-Pierce Q-statistic}
+\begin{eqnarray}
+	Q_{BP} &=& n\sum_{\tau = 1}^{m}\hat{\rho}\big(\tau\big)^{2}
+\end{eqnarray}
+is approximately distributed as a $\chi_{m}^{2}\big(\tau\big)$ random variable under the null hypothesis that $y$ is white noise.\\
+A slight modification to this, designed to follow more closely the $\chi^{2}$ distribution in small samples, is:
+\begin{eqnarray}
+	Q_{LB} &=& n\big(n + 2\big)\sum_{\tau = 1}^{m}\left(\frac{1}{n - \tau}\right)\hat{\rho}^{2}\big(\tau\big)
+\end{eqnarray}
+under the null hypothesis that $y$ is white noise , $Q_{LB}$ is approximately distributed as a $\chi_{m}^{2}$ random variable.\\
+Note that the \textbf{\color{blue}Ljung-Box Q-statistic} is the same as the Box-Pierce Q-statistic, except that the sum of squared autocorrelations is replaced by a weighted sum of squared autocorrelations, where the weights are $(n + 2)/ (n - \tau)$.\\
+For moderate and large $n$, the weights are approximately 1, so that the Ljung-Box statistic differs little from the Box-Pierce statistic.\\
+Under the $H_{0}$ the statistic $Q$ follows a $\chi_{m}^{2}$. For significance level $\alpha$, the critical region for rejection of the hypothesis of randomness is:
+\begin{eqnarray}
+	Q > \chi_{1 - \alpha, m}^{2}
+\end{eqnarray}
+where $\chi_{1 - \alpha, m}^{2}$ is the $1 - \alpha$-quantile of the chi-squared distribution with $m$ degrees of freedom.\\
+The LB test is commonly used in ARIMA models. Note, that it is applied to the residuals of a fitted ARIMA model, not to the original series, and in such applications the hypothesis actually being tested is that the residuals from the ARIMA model have no autocorrelation. When testing the residuals of an estimated ARIMA model, the degrees of freedom need to be adjusted to reflect the parameter estimation. For example, for an ARIMA(p, 0, q) model, the degrees of freedom should be set to $m - p - q$.
+
+\subsection{Properties of BP and LB Q-Statistics}
+\begin{itemize}
+	\item asymptotically (as the sample size increases), the value of the two test statistics will be equal
+	\item BP could be oversized for small samples
+	\item both tests show a tendency to reject the null hypothesis of zero autocorrelations as $n$ tends to infinity
+	\item if the data are white noise, then the BP and LB statistics will both have the same distribution
+\end{itemize}
+
+\subsection{Selection of $m$.}
+Selection of $m$ is done to balance competing criteria. On the one hand, we don't want $m$ too small, because, after all, we are trying to do a joint test on a large part of the autocorrelation function. On the other hand, as $m$ grows relative to $n$, the quality of the distributional approximation we have invoked deteriorates. In practise, focusing on $m$ in the neighbourhood of $\sqrt{n}$ is often reasonable.
+ 
+\section{Sample Partial Autocorrelations}
+\textbf{\color{blue}Partial auto-correlations are obtained from linear regression}.\\
+If the fitted regression is:
+\begin{eqnarray}
+	\hat{y_{t}} &=& \hat{c} + \hat{\beta}_{1}y_{t - 1} + ... + \hat{\beta}_{\tau}y_{t - \tau} 
+\end{eqnarray}
+then the \textbf{\color{blue}sample partial autocorrelation} at displacement $\tau$ is:
+\begin{eqnarray}
+\hat{\rho}\big(\tau\big) &=& \hat{\beta_{\tau}}
+\end{eqnarray}
+Distribution results identical to those we discussed for the sample autocorrelations hold as well for the sample \textit{partial} autocorrelations. That is, if the series is white noise, approximately 95$\%$ of the sample partial autocorrelations should fall in the interval $\pm2/\sqrt{n}$
+ 
+

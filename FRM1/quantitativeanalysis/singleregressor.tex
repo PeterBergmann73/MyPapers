@@ -1,0 +1,114 @@
+\chapter{Regression with a Single Regressor}
+
+\section{Testing Hypothesis About the Population Mean}
+Recall that the null hypothesis that the mean of $Y$ is a specific value $\mu_{Y, 0}$ can be written as $H_{0}: E\big(Y\big) = \mu_{Y, 0}$ and the two-sided alternative is $H_{1}: E\big(Y\big) \neq \mu_{Y, 0}$.\\
+the test of the null hypothesis $H_{0}$ against the two-sided alternative proceeds as:
+\begin{enumerate}
+	\item compute the standard error $SE\big(\bar{Y}\big)$ of $\bar{Y}$, which is an estimator of the standard deviation of the sampling distribution of $\bar{Y}$
+	\item compute the $t$-statistic, which has the general form
+	\begin{eqnarray}
+		t &=& \frac{\bar{Y} - \mu_{Y, 0}}{SE\big(\bar{Y}\big)}
+	\end{eqnarray}
+	\item compute $p$-value, which is the smallest significance level at which the null hypothesis could be rejected, based on the test statistic actually observed.\\
+	Because the $t$-statistic has a standard normal distribution in large samples under the null hypothesis, the $p$-value for a two-sided hypothesis test is:
+	\begin{eqnarray}
+		p &=& 2\Phi\big(-\bigr\rvert t^{act} \bigr\rvert\big)
+	\end{eqnarray}
+	where
+	\begin{itemize}
+		\item $t^{act}$ is the value of the t-statistic actually computed
+		\item and $\Phi$ is the cumulative standard normal distribution.
+	\end{itemize}
+	Alternatively, the third step can be replaced by simply comparing the $t$-statistic to the critical value appropriate for the test with the desired significance level.
+\end{enumerate}
+
+
+\section{Testing Hypothesis About the Slop \texorpdfstring{$\beta_{1}$}{Beta}}
+At a theoretical level, the critical feature justifying the foregoing testing procedure for the population mean is that, in large samples, the sampling distribution of $\bar{Y}$ is approximately normal. Because $\hat{\beta_{1}}$ also has a normal sampling distribution in large samples, hypothesis about the true value of the slope $\beta_{1}$ can be tested using the same general approach.\\
+Under the null hypothesis the true population slope $\beta_{1}$ takes on some specific value $\beta_{1, 0}$. Under the two-sided alternative $\beta_{1} \neq \beta_{1, 0}$. That is the \textbf{\color{ForestGreen}null hypothesis} and \textbf{\color{ForestGreen}two-sided alternative hypothesis} are:
+\begin{eqnarray}
+	H_{0}: \beta_{1} &=& \beta_{1, 0}\text{ vs}\\
+	H_{1}: \beta_{1} &\neq& \beta_{1, 0}\\
+	\text{two-sided alternative}
+\end{eqnarray}
+To test the null hypothesis, we follow the same three steps as for the population mean:
+\begin{enumerate}
+	\item compute the \textbf{\color{ForestGreen}standard error of $\hat{\beta}_{1}$}
+	\item compute the \textbf{\color{ForestGreen}$t$-statistic}:
+	\begin{eqnarray}
+		t &=& \frac{\hat{\beta}_{1} - \beta_{1, 0}}{SE(\hat{\beta}_{1, 0})}
+	\end{eqnarray}
+	\item compute the $p$-value, the probability of observing a value of $\hat{\beta}_{1}$ at least as different from $\beta_{1, 0}$ as the estimate actually computed $\big(\hat{\beta}_{1}^{act}\big)$, assuming that the null hypothesis is correct.
+\end{enumerate}
+Because $\hat{\beta}_{1}$ is approximately normally distributed in large samples, under the null hypothesis the $t$-statistic is approximately distributed as a standard normal random variable, so in large samples:
+\begin{eqnarray}
+	p &=& Pr\big(\bigr\rvert Z\bigr\rvert > \bigr\rvert t^{act}\bigr\rvert\big) = 2\Phi(-\bigr\rvert t^{act}\bigr\rvert)
+\end{eqnarray}
+A small value of the $p$-value, say less 5\%, provides evidence against the null hypothesis in the sense that the chance of obtaining a value of $\hat{\beta}_{1}$ by pure random variable from one sample to the next is less than 5\% if, in fact, the null hypothesis is correct. If so, the null hypothesis is rejected at the 5\% significance level.\\
+Alternatively, the hypothesis can be tested at the 5\% significance level simply by comparing the value of the $t$-statistic to the critical value for a two-sided test, and rejecting the null hypothesis at the required level if $\bigr\rvert t^{act}\bigr\rvert > \bigr\rvert t^{critical}\bigr\rvert$, say $\bigr\rvert t^{act}\bigr\rvert > 1.96$ 
+
+\subsection{One-Sided Hypotheses Concerning \texorpdfstring{$\beta_{1}$}{Beta}}
+For a one-sided test, the null hypothesis and the one-sided alternative hypothesis are:
+\begin{eqnarray}
+	H_{0}&:& \beta_{1} = \beta_{1, 0}\qquad\text{vs}\\
+	H_{1}&:& \beta_{1} < \beta_{1, 0}\qquad\text{one-sided alternative}
+\end{eqnarray}
+where $\beta_{1, 0}$ is the value of $\beta_{1}$ under the null hypothesis and the alternative is that $\beta_{1} < \beta_{1, 0}$. If the alternative is that $\beta_{1}$ is greater than $\beta_{1, 0}$, the inequality in the equation above is reversed.\\
+Because the null hypothesis is the same for a one- and a two-sided hypothesis test, the construction of the $t$-statistic is the same. The only difference between a one- and two-sided hypothesis test is how you interpret the $t$-statistic. For the one-sided alternative in the equation above, the null hypothesis is rejected against the one.sided alternative for large negative, but not large positive, values of the $t$-statistic: Instead of rejecting if $\bigr\rvert t^{act}\bigr\rvert > 1.96$, the hypothesis is rejected at the 5\% significance level if $t^{act} < -1.645$.\\
+The $p$-value for a one-sided test is obtained from the cumulative standard normal distribution as:
+\begin{eqnarray}
+	p &=& Pr\big(Z < t^{act}\big) = \Phi\big(t^{act}\big)\quad\text{$p$-value, one-sided left-tail test}
+\end{eqnarray}
+If the alternative hypothesis is that $\beta_{1}$ is greater than $\beta_{1, 0}$, the inequalities in the equation above are reversed, so the $p$-value is right-tail probability, $Pr\big(Z > t^{act}\big)$.
+
+\subsection{When Should a One-Sided Test Be Used?}
+In practise, one-sided alternative hypotheses should be used only when there is a clear reason for doing so. This evidence could come from economic theory, prior empirical evidence, or both. However, even if it initially seems that the relevant alternative is one sided, upon reflection this might not necessarily be so.
+
+\section{Testing Hypothesis About the Intercept \texorpdfstring{$\beta_{0}$}{Beta0}}
+Occasionally, however, the hypothesis concerns the intercept $\beta_{0}$. the general approach to testing the null hypothesis consists of the same steps above, applied to $\beta_{0}$.
+
+\section{Confidence Interval for a Regression Coefficient}
+
+\subsection{Confidence Interval for \texorpdfstring{$\beta_{1}$}{Beta1}}
+Recall that a 95\% \textbf{\color{ForestGreen} confidence interval for $\beta_{1}$} has two equivalent definitions:
+\begin{enumerate}
+	\item It is the set of values that cannot be rejected using a two-sided hypothesis test with a 5\% significance level.
+	\item It is an interval that has a 95\% probability of containing the true value of $\beta_{1}$. That is, in 95\% of possible samples that might be drawn, the confidence interval will contain the true value of $\beta_{1}$. Because this interval contains the true value in 95\% of all samples, it is said to have a \textbf{\color{ForestGreen} confidence level} of 95\%.
+\end{enumerate}
+To construct the confidence interval, note that the $t$-statistic will reject the hypothesized value $\beta_{1, 0}$ whenever $\beta_{1, 0}$ is outside the range $\hat{\beta}_{1} \pm 1.96\cdot SE\big(\hat{\beta}_{1}\big)$:
+\begin{eqnarray}
+	CI &=& \hat{\beta}_{1} \pm 1.96\cdot SE\big(\hat{\beta}_{1}\big)
+\end{eqnarray}
+For small samples the confidence interval is calculated as:
+\begin{eqnarray}
+	CI &=& \hat{\beta}_{i} \pm\big(t_{cl, n - 2}\cdot SE\big(\beta_{i}\big)\big)
+\end{eqnarray}
+where $t_{cl, n - 2}$ - is the $t$-distribution for a given confidence level $cl$ for a given number of observations $n$.
+
+
+\section{Heteroskedasticity and Homoskedasticity}
+
+\subsection{Definition}
+The error term $u_{i}$ is \textbf{\color{blue}homoskedastic} if the variance of the conditional distribution of $u_{i}$ given $X_{i}$ is constant for $i = 1, ..., n$ and in particular does not depend on $X_{i}$. Otherwise, the error term is \textbf{\color{blue}heteroskedastic}.\\
+The definition of homoskedasticity states that the variance of $u_{i}$ does not depend on the regressor.
+
+\subsection{Mathematical Implications of Homoskedasticity}
+\subsubsection{The OLS Estimators Remain Unbiased and Asymptotically Normal}
+Because the least squared assumptions place no restrictions on the conditional variance, they apply to both the general case of heteroskedasticity and the special case of homoskedasticity.\\
+Therefore,
+\begin{itemize}
+	\item the OLS estimators remain unbiased ans consistent even if the error are homoskedastic.
+	\item In addition, the OLS estimators have sampling distributions that are normal in large samples even if the errors are homoskedastic.
+\end{itemize}
+Whether the errors are homoskedastic or heteroskedastic, the OLS estimator is
+\begin{itemize}
+	\item unbiased,
+	\item consistent,
+	\item and asymptotically normal.
+\end{itemize}
+However, the standard errors and statistical inferences must be calculated with heteroskedasticity robust methods.
+
+\subsubsection{Practical Implications}
+The simplest thing is always to use the heteroskedasticity-robust standard errors.\\
+Heteroskedastic data still provides an unbiased estimate, but standard errors - and potentially, statistical inferences - are suspect.
+

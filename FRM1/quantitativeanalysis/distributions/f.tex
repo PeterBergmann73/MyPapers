@@ -1,0 +1,40 @@
+\chapter{F Distribution}
+If $U_{1}$ and $U_{2}$ are two independent chi-squared distributions with $k_{1}$ and $k_{2}$ degrees of freedom, respectively, then $X$:
+\begin{eqnarray}
+	X &=& \frac{U_{1} / k_{1}}{U_{2} / k_{2}} \sim F(k_{1}, k_{2})
+\end{eqnarray}
+follows an $F$-distribution with parameters $k1$ and $k2$.
+
+\section{Properties}
+\begin{itemize}
+	\item because the chi-squared PDF is zero for negative values, the $F$-distribution density function is also zero for negative values
+	\item as $k_{1}$ and $k_{2}$ increase, the mean and mode converge to one
+	\item as $k_{1}$ and $k_{2}$ approach infinity, the $F$-distribution converged to a normal distribution
+	\item the square of a variable with a $t$-distribution has an $F$-distribution. More specifically, if $X$ is a random variable with a $t$-distribution with $k$ degreed of freedom, then $X^{2}$ has an $F$-distribution with $1$ and $k$ degrees of freedom:
+	\begin{eqnarray}
+		X^{2} \sim F(1, k)
+	\end{eqnarray}
+\end{itemize}
+
+\section{Construction of F-statistics}
+
+\subsection{Comparison of variances of 2 distributions}
+Hypothesis:
+\begin{eqnarray}
+	\nonumber
+	H_{0} &=& \sigma_{1}^{2} = \sigma_{2}^{2}\\
+	\nonumber
+	H_{1}: &= \sigma_{1}^{2} < \sigma_{2}^{2}\text{, for a lower one-tailed test}\\
+	\nonumber
+	H_{1}: &=& \sigma_{1}^{2} > \sigma_{2}^{2}\text{, for an upper one-tailed test}\\
+	\nonumber
+	H_{1}: &=& \sigma_{1}^{2} \neq \sigma_{2}^{2}\text{, for a two-tailed test}\\
+\end{eqnarray}
+Test:
+\begin{eqnarray}
+	F &=& \frac{s_{1}^{2}}{s_{2}^{2}}
+\end{eqnarray}
+where $s_{1}^{2}$ and $s_{2}^{2}$ are the sample variances.
+
+\subsection{Joint hypothesis}
+

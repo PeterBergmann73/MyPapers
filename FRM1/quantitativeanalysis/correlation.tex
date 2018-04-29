@@ -1,0 +1,51 @@
+\chapter{Correlation}
+
+\section{Covariance and Correlation}
+The coefficient of correlation $\rho$, between two variables $V_{1}$ and $V_{2}$ is defined as
+\begin{eqnarray}
+	\rho &=& \frac{\mathbb{E}\big(V_{1}V_{2}\big) - \mathbb{E}\big(V_{1}\big)\mathbb{E}\big(V_{2}\big)}{SD\big(V_{1}\big)SD\big(V_{2}\big)}
+\end{eqnarray}
+
+\section{Correlation vs Dependence}
+Two variables are defined as statistically independent if knowledge about one of them does not affect the probability distribution for the other.\\
+Formally, $V_{1}$ and $V_{2}$ are independent if
+\begin{eqnarray}
+	f(V_{2}\bigr\rvert V_{1} &=& x) = f(V_{2})
+\end{eqnarray}
+where $f(.)$ denotes the probability density function.\\
+The correlation coefficient \textbf{\color{blue}measures only linear dependence}.\\
+Another aspect of the way in which $V_{2}$ depends on $V_{1}$ is found by examining the standard deviation of $V_{2}$ conditional on $V_{1}$. As we will see later, this is constant when $V_{1}$ and $V_{2}$ have a bivariate normal distribution. But, in other situations, the standard deviation of $V_{2}$ is expected to depend on the value of $V_{1}$.
+
+\section{Monitoring Correlation}
+It is common to assume, that the expected daily returns are zero when the variance/covariances rates per day are calculated.\\
+This means that the covariance rate per day between $X$ and $Y$ on day $n$ is assumed to be:
+\begin{eqnarray}
+	Cov_{n} &=& \mathbb{E}\big(x_{n}y_{n}\big)
+\end{eqnarray}
+The correlation estimate on day $n$ is:
+\begin{eqnarray}
+	\rho &=& \frac{Cov_{n}}{\sqrt{Var_{x, n} Var_{y, n}}}
+\end{eqnarray}
+
+\section{EWMA}
+The formula for updating a covariance estimate in the EWMA model is:
+\begin{eqnarray}
+	Cov_{n} &=& \lambda Cov_{n - 1} + \big(1 - \lambda\big) x_{n - 1}y_{n - 1}
+\end{eqnarray}
+The lower the value of $\lambda$, the greater the weight that is given to recent observations.
+
+\section{GARCH}
+GARCH(1, 1) model for updating a covariance rate between $X$ and $Y$ is:
+\begin{eqnarray}
+	Cov_{n} &=& \omega + \alpha_{x_{n - 1}y_{n - 1}} + \beta Cov_{n - 1}
+\end{eqnarray}
+The long-term average covariance rate is:
+\begin{eqnarray}
+	Cov_{L} &=& \frac{\omega}{1 - \alpha - \beta}
+\end{eqnarray}
+
+\section{Consistency Condition For Covariances}
+To ensure that a positive-semi-definite matrix is produced, variances and covariances should be calculated consistently.\\
+For example, if variance rates are calculated by giving equal weight to the last $m$ data items, the same should be done for covariance rates. If variance rates are updated using EWMA model with a given $\lambda$, the same should be done for covariance rates.\\
+Using a GARCH model to update a variance-covariance matrix in a consistent way requires a multivariate GARCH model.
+

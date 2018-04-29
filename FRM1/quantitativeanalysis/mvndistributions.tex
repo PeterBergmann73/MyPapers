@@ -1,0 +1,62 @@
+\chapter{Multivariate Normal Distributions}
+
+\section{Properties}
+Multivariate normal distributions are well understood and easy to deal with.\\
+As we see later, they can be useful tools for specifying the correlation structure between variables, even when the distributions are not normal.\\
+Let us consider a bivariate normal distribution of $V_{1}$ and $V_{2}$. Suppose, that we know the value $V_{1}$. Conditional on this, the value of $V_{2}$ is normal with mean:
+\begin{eqnarray}
+	\mu &=& \mu_{2} + \rho\sigma_{2}\frac{V_{1} - \mu_{1}}{\sigma_{1}}
+\end{eqnarray}
+and standard deviation
+\begin{eqnarray}
+	\sigma &=& \sigma_{2}\sqrt{1 - \rho^{2}}
+\end{eqnarray}
+Note that
+\begin{itemize}
+	\item the expected value of $V_{2}$ conditional on $V_{1}$ is linearly dependent on the value of $V_{1}$
+	\item the standard deviation of $V_{2}$ conditional on the value of $V_{1}$ is the same for all values of $V_{1}$
+\end{itemize}
+
+\section{Generating Random Samples from Normal Distributions}
+When samples $\epsilon_{1}$ and $\epsilon_{2}$ are required, the usual procedure involves:
+\begin{enumerate}
+	\item obtaining independent samples $Z_{1}$ and $Z_{2}$ from a univariate standard normal distribution
+	\item the required samples $\epsilon_{1}$ and $\epsilon_{2}$ are then calculated as follows:
+	\begin{eqnarray}
+		\epsilon_{1} &=& Z_{1}\\
+		\epsilon_{2} &=& \rho Z_{1} + Z_{2}\sqrt{1 - \rho^{2}}
+	\end{eqnarray}
+\end{enumerate}
+If we require samples from a multivariate normal distribution (where all variables have mean zero and standard deviation of one) and the correlation coefficient is $\rho_{i, j}$, we
+\begin{itemize}
+	\item first sample $n$ independent variables $Z_{i}$ where $1 \leq i \leq n$ from a univariate standard normal distributions
+	\item construct samples as:
+	\begin{eqnarray}
+		\epsilon_{i} &=& \sum_{k = 1}^{i}\alpha_{j, k}Z_{k}
+	\end{eqnarray}
+\end{itemize}
+We must have:
+\begin{eqnarray}
+	\sum_{k = 1}^{i}\alpha_{j, k}^{2} &=& 1,\qquad\text{for } 1 \leq j \leq i
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\sum_{k = 1}^{i}\alpha_{i, k}\alpha_{j, k} &=& \rho_{i, j},\qquad\forall j < i
+\end{eqnarray}
+
+\section{Factor Models}
+Sometimes the correlations between normally distributed variables are defined using a factor model.\\
+Suppose that $U_{1}, U_{2}, ..., U_{N}$ have standard normal distributions.\\
+In a one-factor model, each $U_{1}$ has a component dependent on a common factor, $F$, and a component that is uncorrelated with the other variables. Formally:
+\begin{eqnarray}
+	U_{i} &=& a_{i} F + \sqrt{1 - a_{i}^{2}}Z_{i}
+\end{eqnarray}
+where:
+\begin{itemize}
+	\item $F\sim N(0, 1)$ and $Z_{i}\sim N(0, 1)$
+	\item and $a_{i}$ is a constant between $-1$ and $+1$
+\end{itemize}
+The $Z_{i}$ are uncorrelated with each other and uncorrelated with $F$.\\
+The coefficient of $Z_{i}$ is chosen so that $U_{i}$ has a mean of zero and a variance of one.\\
+In this model the correlation between $U_{i}$ and $U_{j}$ arises from their dependence on the common factor $F$. The correlation coefficient between $U_{i}$ and $U_{j}$ is $a_{i}a_{j}$.\\
+A one-factor model imposes some structure on the correlations and has the advantage that the resulting covariance matrix is always positive-semi-definite. Without assuming a factor model, the number of correlations that have to be estimated for the $N$ variables is $N(N - 1) / 2$. With the one-factor model we need to estimate only $N$ parameters $a_{1}, ..., a_{n}$.

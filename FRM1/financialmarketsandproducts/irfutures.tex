@@ -1,0 +1,197 @@
+\chapter{IR Futures}
+
+\section{Day Count Conventions}
+
+\subsection{Day Count Convention in the US}
+\begin{tabular}{|c|c|}
+	\hline 
+	\textbf{Convention}& \textbf{Fixed Income Instruments}  \\ 
+	\hline 
+	actual/actual & Treasury Bonds \\ 
+	\hline 
+	30/360 & Corporate and Municipal Bonds \\ 
+	\hline 
+	actual/360 & Money Market Instruments \\ 
+	\hline 
+\end{tabular}
+
+\subsection{Day Count Convention in other countries}
+
+\begin{tabular}{|c|c|}
+	\hline 
+	\textbf{Convention}& \textbf{Fixed Income Instruments}  \\ 
+	\hline 
+	actual/actual & brr \\ 
+	\hline 
+	30/360 & brr \\ 
+	\hline 
+	actual/360 & LIBOR for all currencies except sterling \\ 
+	\hline 
+	actual/365 & Money Market Instruments in Australia, Canada and New Zealand\\
+	& LIBOR for sterling  \\
+	& Euro and sterling-denominated bonds\\
+	\hline 
+\end{tabular}
+
+\section{Price Quotations For US Treasury Bills}
+The prices of money market instruments are quoted using \textbf{\textit{discount rate}}.\\
+This is the interest earned as a percentage of the final face value rather than as a percentage of the initial price paid for the instrument.
+\begin{eqnarray}
+	Discount &=& \frac{\text{No. of Days to Maturity}}{360}\cdot \text{Quote Price}
+\end{eqnarray}
+And the clean price is:
+\begin{eqnarray}
+	\text{Cash Price} &=& \text{Face Value} - \text{Discount} 
+\end{eqnarray}
+
+\section{Price Quotations for US Treasury Bonds}
+Treasury bond prices in the United States are quoted in dollars and thirty-seconds of a dollar.
+
+\section{Clean and Dirty Prices}
+\begin{eqnarray}
+	\text{Quoted Price} &=& \text{Clean Price}\\
+	\text{Cash Price Paid by The Traders} &=& \text{Dirty Price}\\
+	\nonumber
+	&=& \text{Quoted (Clean) Price} + \text{Accrued Interest}
+\end{eqnarray}
+
+\section{Treasury Bond Futures}
+Treasury Bond Future Contract is traded by CME.\\
+In this contract, any government bond that has maturity between 15 and 25 years to maturity on the first date of the delivery month can be delivered.\\
+The ultra T-bond contract, where any bond with maturity over 25 years can be delivered.\\
+There are also 10-year, 5-year and 2-year Treasury note futures contracts.
+
+\subsection{Quotes}
+Treasury bond and Treasury note futures contracts are quoted in dollars and thirty-seconds of a dollar per \$100 value.\\
+This is similar to the way the bonds are quoted in the spot market.\\
+The settlement price of the 10-year Treasury note futures contract is quoted to the nearest half of thirty-second.\\
+The 5-year and 2-year Treasury note contracts are quoted even more precisely, to the nearest quarter of a thirty-second.
+
+\subsection{Conversion Factor}
+Conversion Factor is the factor that is used to estimate the price received by the short party for the deliverable bond.\\
+The applicable quoted price for the bond delivered is the product of the conversion factor and the most recent settlement price for the futures contract.\\
+Taking accrued interest into account, \textbf{\color{ForestGreen}the cash received by the party with the short position for each \$100 face value of the bond delivered is}:
+\begin{eqnarray}
+	\nonumber
+	\text{Cash Price} &=& \Big(\text{Most Recent Settlement Price} \times \text{Conversion Factor}\Big) + \text{Accrued Interest}
+\end{eqnarray}
+
+\paragraph{\text{\color{blue}Steps to Calculate the Conversion Factor}}
+Let us assume that the interest rates (for discounting purposes) are equal to 6\% for all the maturities with semi-annual compounding
+\begin{itemize}
+	\item round the times to the coupon payment dates and to the bond maturity to the nearest 3 months
+	\begin{itemize}
+		\item if, after rounding, the bond does not last for an exact number of 6-month periods, the first coupon is assumed to be paid in 6 months
+		\item if, after rounding, the bond does last for an exact number of 6-months periods (i.e., there are an extra 3 months), the first coupon is assumed to be paid after 3 months and accrued interest is subtracted.
+	\end{itemize}
+	\item divide by the face value
+\end{itemize}
+\begin{eqnarray}
+	\text{Conversion Factor} &=& \frac{\text{Discount Price} - \text{Accrued Interest}}{Face Value}
+\end{eqnarray}
+
+\paragraph{Cost of Delivery}
+\begin{eqnarray}
+	\nonumber
+	\text{Cost of Delivery} &=&	\text{Quoted Bond Price} - \Big(\text{Future Last Settlement Price} * \text{Conversion Factor}\Big)
+\end{eqnarray}
+
+\paragraph{Which Bonds Are Cheapest to Deliver}
+\begin{itemize}
+	\item bond yields \textbf{above} 6\% - \textbf{\color{blue}low-coupon}, \textbf{\color{ForestGreen}long maturity} bonds
+	\item bond yields \textbf{below} 6\% - \textbf{\color{blue}high-coupon}, \textbf{\color{ForestGreen}short-maturity} bonds
+	\item yield curve is \textbf{upward-sloping} - bonds with \textbf{\color{blue}long-time} to maturity
+	\item yield curve is \textbf{downward-sloping} - bonds with \textbf{\color{blue}short-time} to maturity
+\end{itemize}
+
+\paragraph{Example 1}
+A 10\% coupon bond with 20 years and 2 months to maturity:\\
+\begin{itemize}
+	\item new maturity - 20 years
+	\item the conversion factor:
+	\begin{eqnarray}
+	\text{Conversion Factor} &=& \sum_{i = 1}^{40}\frac{5}{1.03^{i}} + \frac{100}{1.03^{40}} = 146.23
+	\end{eqnarray}
+	\item dividing by the face value, we get - 1.4623
+\end{itemize}
+
+\paragraph{Example 2}
+A 8\% coupon bond with 18 years and 4 months to maturity:\\
+\begin{itemize}
+	\item maturity used for the conversion factor calculations - 18 years and 3 months
+	\item discounting all the payments back to a point in time 3 months from today at 6\% per annum (compounded semi-annually) gives a value of:
+	\begin{eqnarray}
+		4 + \sum_{i = 1}^{36}\frac{4}{1.03^{i}} + \frac{100}{1.03^{36}} &=& \$125.8323
+	\end{eqnarray}
+	where 4 - is the interest accrued from the last coupon date to the date 3-months forward
+	\item the interest rate for a 3-months period is
+	\begin{eqnarray}
+		\sqrt{1.03} -1 = 1.4889\%
+	\end{eqnarray}
+	\item hence, discounting back to the present gives the bond's value as
+	\begin{eqnarray}
+		125.8323 / 1.014889 &=& \$123.99
+	\end{eqnarray}
+	\item subtracting the accrued interest of 2.0, this becomes 121.99
+	\item the conversion factor is therefore 1.2199
+\end{itemize}
+
+\paragraph{Example 3 - Calculating the Conversion Factor Using the Calculator}
+Question $N$ 693 from the question bank.\\
+Steps:
+\begin{enumerate}
+	\item number of payments after rounding the maturity - $N$
+	\item discount rate for half a year (as a percentage - say, 9.5\% will be entered as 9.5) - $I/Y$
+	\item face value - $FV$
+	\item semi-annual coupon - that is the annual coupon divided by 2 (as a percentage - say, 8\% annual coupon is entered as 4) - $PMT$
+	\item CPT
+	\item PV
+	\item divide by the face value
+\end{enumerate}
+
+
+\section{Euro-Dollar Futures}
+A Euro-Dollar is a dollar deposited in a U.S. or foreign bank outside the US. The Euro-Dollar interest rate is the rate earned on Euro-Dollars deposited by one bank with another bank.\\
+A three-month Euro-Dollar futures contract is a futures contract on the interest that will be paid (by someone who borrows at the LIBOR interest rate) on \$1 million for a future three-month period.\\
+The last trading day is two days before the third Wednesday of the delivery month.\\
+At 11 a.m. on the last trading day, there is a final settlement equal to $100 - R$, where $R$ is the three-month LIBOR fixing on that day, expressed with quarterly compounding and an actual/360 day count convention.\\
+\textbf{\color{blue}The contract price is defined as}:
+\begin{eqnarray}
+	10,000 X \Big[100 - 0.25 X \big(100 - Q\big)\Big]
+\end{eqnarray}
+where $Q$ is the quote price.\\
+A trader who is long gains when the interest rates fall and who is short gains when interest rate rise.\\
+The contract is designed so that a one-basis-point (= 0.01) move in the futures quote corresponds to a gain or loss of \$25 per contract.\\
+A one-basis-point change in the futures quote correspond to a 0.01\% change in the underlying interest rate.
+
+
+\subsection{Difference with FRA}
+a Euro-Dollar futures contract is similar to a FRA.
+\begin{itemize}
+	\item \textbf{\color{blue}settlement frequency} - the Euro-Dollar contract is settled daily whereas the FRA is not settled daily.
+	\item \textbf{\color{blue}settlement timing} - in a Euro-Dollar future contract, the final settlement occurs at time $T1$. In FRA, the final settlement occurs at time $T2$ and equals to the difference between the forward and the realised interest rate.
+\end{itemize}
+
+\subsection{Why Expected Forward Rate is Below The Future Rate}
+For short maturities (up to a year or so), the Euro-Dollar future interest rate can be assumed to be the same as the corresponding forward interest rate.\\
+For longer-dated contracts, difference between the contracts become important.\\
+Both components of the difference between the Euro-Dollars and FRA decrease the forward rate relative to the future rate, but for long-dated contracts the reduction caused by the second difference is much smaller than that caused by the first.
+
+\paragraph{Daily Settlement}
+Suppose you have a contract where the payoff is $R_{M} - R_{F}$ at time $T_{1}$,\\
+where:
+\begin{itemize}
+	\item $R_{F}$ - is a predetermined rate for the period between $T_{1}$ and $T_{2}$
+	\item and $R_{M}$ - is the realised rate for this period
+\end{itemize}
+and you have an option to switch to daily settlement. In this case daily settlements lead to cash inflows when rates and high and cash outflows when rates are low. You would therefore find switching to daily settlement to be attractive. As a result the market would therefore set $R_{F}$ higher for the daily settlement alternative (reducing you cumulative expected payoff). To put this the other way around, switching from daily settlement to settlement at time $T_{1}$ reduces $R_{F}$.
+
+\paragraph{Settlement Timing}
+To understand the reason why the second difference reduces the forward rate, suppose that the payoff of $R_{M} - R_{F}$ is at time $T_{2}$ instead of $T_{1}$ (as it is for a regular FRA).\\
+If $R_{M}$ is high, the payoff is positive. Because rates are high, the cost to you of having the payoff that you receive at time $T_{2}$ rather than time $T_{1}$ is relatively high. If $R_{M}$ is low, 
+the payoff is negative. Because the rates are low, the benefit to you of having the payoff you make at time $T_{2}$ rather than time $T_{1}$ is relatively low. Overall you would rather have the payoff at time $T_{1}$. If it is at time $T_{2}$ rather than $T_{1}$, you must be compensated by a reduction in $R_{F}$.
+
+\subsection{Convexity Adjustment}
+\begin{eqnarray}
+	\text{Forward Rate} &=& \text{Futures Rate} - \frac{1}{2}\sigma T_{1} T_{2}
+\end{eqnarray}

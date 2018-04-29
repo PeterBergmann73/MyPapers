@@ -1,0 +1,26 @@
+\chapter{Probability}
+\section{Conditional Probability}
+\begin{eqnarray}
+	P\big(A\bigr\rvert B\big) &=& \frac{P\big(A\cap B\big)}{P\big(B\big)}
+\end{eqnarray}
+
+\section{Bayes Theorem}
+Writing
+\begin{eqnarray}
+	P\big(A\cap B\big) &=& P\big(A\bigr\rvert B\big) P\big(B\big) = P\big(B\bigr\rvert A\big) P\big(A\big)
+\end{eqnarray}
+we get:
+\begin{eqnarray}
+	P\big(A\bigr\rvert B\big) &=& \frac{P\big(B\bigr\rvert A\big) P\big(A\big)}{P\big(B\big)\label{key}}
+\end{eqnarray}
+
+\section{Law of Total Probability}
+If $\{B_{n}:n = 1, 2, 3, ...\}$ is a set of \textbf{\color{blue}pairwise disjoint event whose union is the entire sample space} and each event is measurable, then for any event $A$ of the same probability space:
+\begin{eqnarray}
+	P\big(A\big) &=& \sum_{n}Pr\big(A\bigr\rvert B_{n}\big)P\big(B\big)
+\end{eqnarray}
+
+\section{Bayesian vs Frequentists}
+Frequentist approach counts positive/negative outcomes and based on this derives probability.\\
+Bayesian approach starts with a prior belief about the probability. In most cases the prior is either subjective or based on frequentist analysis.\\
+Situations in which there is very little data, or in which the signal-to-noise ratio is very low, often require Bayesian analysis. When we have lots of data,the conclusions of frequentist analysis and Bayesian analysis are often very similar, and the frequentist results are often easier to calculate.

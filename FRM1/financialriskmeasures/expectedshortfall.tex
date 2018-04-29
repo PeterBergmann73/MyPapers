@@ -1,0 +1,20 @@
+\chapter{Expected Shortfall}
+
+\section{Other Closely Related Risk Measures}
+Other closely related risk measures are:
+\begin{itemize}
+	\item expected tail loss
+	\item tail conditional expectation (TCE)
+	\item tail VAR
+	\item conditional VAR
+	\item tail conditional VAR
+	\item worst conditional expectation
+	\item and expected shortfall
+\end{itemize}
+
+\section{Expected Shortfall}
+For more on ES and its precursors, see Artzner et. al. (1999, p. 223-224), Acerbi (2004).
+The ES is the average of the worst $100\left(1 - \alpha\right)\%$ of losses:
+\begin{eqnarray}
+	ES &=& \frac{1}{1 - \alpha}\int_{\alpha}^{1}q_{p}dp
+\end{eqnarray}

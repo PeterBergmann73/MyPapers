@@ -1,0 +1,146 @@
+\chapter{Volatility}
+A variable's \textbf{\color{blue}volatility} $\sigma$ is \textbf{\color{blue}the standard deviation of the return} provided by the variable per unit of time when the return is expressed using continuous compounding.\\
+If we assume that the returns are independent with the same variance, the variance of the return over T days is T times the variance of the return over one day.\\
+This means that the standard deviation of the return over T days is $\sqrt{T}$ times the standard deviation of the return over one day. This is consistent with the adage "uncertainty increases with square root of time".
+
+\section{Variance Rate}
+The variance rate is defined as the square of the volatility.
+
+\section{Returns}
+\textbf{\color{blue}When returns are continuously compounded, the return over many days is the sum of the returns over each of the days}:
+\begin{eqnarray}
+	r_{1, ..., n} &=& \sum_{i = 1}^{n}r_{i}
+\end{eqnarray}
+In calculating volatility the following simplifications are often made:
+\begin{itemize}
+	\item \textbf{\color{ForestGreen}continuous return is replaced with simple return}:
+	\begin{eqnarray}
+		u_{i} = \frac{S_{i} - S_{i - 1}}{S_{i - 1}}
+	\end{eqnarray}
+	\item \textbf{\color{ForestGreen}$\bar{u}$ is assumed to be zero}.\\
+	The justification for this is that the expected change in a variable in one day is very small when compared with the standard deviation of changes. This is likely to be the case even if he variable happened to increase or decrease quite fast during the $m$ days of our data. 
+	\item \textbf{\color{ForestGreen}$m - 1$ in the denominator is replaced with $m$}.\\
+	This moves us form an unbiased estimate of the volatility to a maximum likelihood estimate.
+\end{itemize}
+Under those changes the variance rate is calculated as:
+\begin{eqnarray}
+	\sigma_{n}^{2} &=& \frac{1}{m}\sum_{i = 1}^{m}u_{n - 1}^{2}
+\end{eqnarray}
+
+\section{The Power Law}
+The power law provides an alternative to assuming normal distributions. The law asserts that for a variable $v$
+\begin{eqnarray}
+	Prob\big(v > x\big) &=& Kx^{-\alpha}
+\end{eqnarray}
+where:
+\begin{itemize}
+	\item K and $\alpha$ are constants
+	\item $x$ is large
+\end{itemize}
+
+\section{Weighting Schemes}
+\textbf{\color{blue}Please, note - all the volatility models are applied to variances}.\\
+This allows us to apply them later without changes to covariances.\\
+Our objective is to estimate $\sigma_{n}$, the volatility on day $n$. It therefore makes sense to give more weight to recent data. A model that does this is:
+\begin{eqnarray}
+	\sigma_{n}^{2} &=& \sum_{i = 1}^{m}\alpha_{i}u_{n - i}^{2}
+\end{eqnarray}
+The weights must sum to unity, so that:
+\begin{eqnarray}
+	\sum_{i}^{m}\alpha_{i} &=& 1
+\end{eqnarray}
+An extension of the idea above is to assume that there is a long-run average variance rate and that this should be given some weight. This leads to the model that takes the form:
+\begin{eqnarray}
+	\sigma_{n}^{2} &=& \gamma V_{L} + \sum_{i = 1}^{m}\alpha_{i}u_{n - i}^{2}
+\end{eqnarray}
+where $V_{L}$ is the long run variance rate and $\gamma$ is the weight assigned to it. Because the weights must sum to unity, we have:
+\begin{eqnarray}
+	\gamma + \sum_{i = 1}^{m}\alpha_{i} &=& 1
+\end{eqnarray}
+This is known as an ARCH(m) model.\\
+Defining
+\begin{eqnarray}
+	\omega &=& \gamma V_{L}
+\end{eqnarray}
+the variance rate can be written
+\begin{eqnarray}
+	\sigma_{n}^{2} &=& \omega + \sum_{i = 1}^{m}\alpha_{i}u_{n - i}^{2}
+\end{eqnarray}
+where $m$ is the maximum lag.
+
+\section{Exponentially Weighted Moving Average Model}
+Let us assume:
+\begin{eqnarray}
+	\alpha_{i + 1} &=& \lambda\alpha_{i} 
+\end{eqnarray}
+where:
+\begin{eqnarray}
+	0 < \lambda < 1
+\end{eqnarray}
+This weighting scheme leads to a particularly simple formula for updating \textbf{\color{blue}variance} estimates. The formula is:
+\begin{eqnarray}
+	\sigma_{n}^{2} &=& \lambda\sigma_{n - 1}^{2} + (1 - \lambda)u_{n - 1}^{2}
+\end{eqnarray}
+The lower the value of $\lambda$,
+\begin{itemize}
+	\item the faster the rate at which old values are ‘forgotten’
+	\item and the more weight is given to the most recent observations.
+\end{itemize}
+
+
+\section{The GARCH(1, 1) Model}
+The \textbf{\color{blue}variance} is evaluated in the form:
+\begin{eqnarray}
+ \sigma_{n}^{2} &=& \gamma V_{L} + \alpha u_{n - 1}^{2} + \beta\sigma_{n - 1}^{2}
+\end{eqnarray}
+where
+\begin{itemize}
+	\item $\gamma$ - is the $V_{L}$ weight
+	\item $\alpha$ - is the $u_{n - 1}^{2}$ weight
+	\item $\beta$ - is the $\sigma_{n - 1}^{2}$ weight
+\end{itemize}
+Because the weights must sum to one:
+\begin{eqnarray}
+	\gamma + \alpha + \beta &=& 1
+\end{eqnarray}
+The EWMA model is a particular case of GARCH(1, 1) where $\gamma = 0$, $\alpha = 1 - \lambda$ and $\beta = \lambda$.\\
+The "(1, 1)" in GARCH(1, 1) indicates that $\sigma_{n}^{2}$ is based on the most recent observation of $u^{2}$ and the most recent estimate of the variance rate. The more general GARCH(p, q) model calculates $\sigma_{n}^{2}$ from the most recent $p$ observations on $u^{2}$ and the most recent $q$ estimates of the variance rate.\\
+Setting
+\begin{eqnarray}
+	\omega &=& \gamma V_{L}
+\end{eqnarray}
+the GARCH(1, 1) model can also be written
+\begin{eqnarray}
+	\sigma_{n}^{2} &=& \omega + \alpha u_{n - 1}^{2} + \beta\sigma_{n - 1}^{2}
+\end{eqnarray}
+We also require
+\begin{eqnarray}
+	\alpha + \beta < 1
+\end{eqnarray}
+The GARCH(1, 1) model is the same as the EWMA model except that, in addition to assigning weights that decline exponentially to past $u_{i}^{2}$, it also assigns some weight to the long-run average variance rate.\\
+The GARCH(1, 1) model incorporates mean- reversion, whereas EWMA does not.
+
+\subsection{Persistence}
+Persistence is defined as:
+\begin{eqnarray}
+	P &=& \alpha + \beta
+\end{eqnarray}
+\textbf{\color{blue}The model with the highest persistence takes the longest to revert to its mean}.
+
+\subsection{Long-run mean variance}
+If we are given an equation:
+\begin{eqnarray}
+	\sigma_{n}^{2} &=& \omega + \sum_{i = 1}^{p}\alpha_{i}u_{n - i}^{2} + \sum_{j = 1}^{q}\beta_{n - j}\sigma_{n - j}^{2}
+\end{eqnarray}
+As
+\begin{eqnarray}
+	\gamma &=& 1 - \sum_{i = 1}^{\max(p, q)}\big(\alpha_{i} + \beta_{i}\big)
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\omega &=& \gamma V_{L}
+\end{eqnarray}
+then the GARCH \textbf{\color{blue}long-run average variance} is:
+\begin{eqnarray}
+	V_{L} &=& \frac{\omega}{1 - \sum_{i = 1}^{max(p, q)}\big(\alpha_{i} + \beta_{i}\big)}
+\end{eqnarray}

@@ -1,0 +1,123 @@
+\chapter{Uniform Distribution}
+Continuous uniform or rectangular distribution is a family of symmetric probability distributions, such that for each member of the family, all intervals of the same length on the distribution support are equally probable.\\
+The support is defined by two parameters, $a$ and $b$, which are its minimum and maximum values.
+
+\section{Probability Density Function}
+\begin{eqnarray}
+	f(x) &=& \begin{cases}
+	\frac{1}{b - a} & \text{for } a \leq x \leq b\\
+	0, & \text{for } x < a \text{ or } x > b
+	\end{cases}
+\end{eqnarray}
+In terms of mean $\mu$ and variance $\sigma$ the p.d.f. may be written as:
+\begin{eqnarray}
+	f(x) &=& \begin{cases}
+		\frac{1}{2\sigma\sqrt{3}} & \text{for } -\sigma\sqrt{3} \leq x - \mu\leq \sigma\sqrt{3}\\
+		0 & \text{otherwise}
+	\end{cases}
+\end{eqnarray}
+These can be written in terms of the Heaviside step function $H(x)$ as:
+\begin{eqnarray}
+	f(x) &=& \frac{H(x - a) - H(x - b)}{b - a}
+\end{eqnarray}
+
+\section{Cumulative Distribution Function}
+\begin{eqnarray}
+	F(x) &=& \begin{cases}
+		0 & \text{for } x < a\\
+		\frac{x - a}{x - b} & \text{for } a \leq x \leq b\\
+		1 & \text{for } x > b
+	\end{cases}
+\end{eqnarray}
+Its inverse is:
+\begin{eqnarray}
+	F^{-1}(p) &=& a + p(b - a) \text{ for } 0 < p < 1
+\end{eqnarray}
+In mean and variance notation, the cumulative distribution function is:
+\begin{eqnarray}
+F(x) &=& \begin{cases}
+0 & \text{for } x < \mu -\sigma\sqrt{3}\\
+\frac{1}{2}\Big(\frac{x - \mu}{\sigma\sqrt{3}} + 1\Big) & \text{for } \mu -\sigma\sqrt{3} \leq x \leq \mu +\sigma\sqrt{3}\\
+1 & \text{for } x > \mu +\sigma\sqrt{3}
+\end{cases}
+\end{eqnarray}
+And its inverse is:
+\begin{eqnarray}
+	F-1(p) &=& \sigma\sqrt{3}(2p - a) + \mu \text{ for } 0 \leq p \leq 1
+\end{eqnarray}
+In the terms of the Heaviside step function $H(x)$:
+\begin{eqnarray}
+	F(x) &=& \frac{(x - a)H(x - a) - (x - b)H(x - b)}{b - a}
+\end{eqnarray}
+
+
+\section{Generating Functions}
+
+\paragraph{Moment Generating Function}
+The moment generating function is:
+\begin{eqnarray}
+	\nonumber
+	M_{x} &=& \mathbb{E}\Big(e^{tx}\Big) = \int_{a}^{b}\frac{e^{tx}}{b - a}dx = \frac{e^{tx}}{t(b - a)}\biggr\rvert_{a}^{b}\\
+	&=& \begin{cases}
+	\frac{e^{tb} - e^{ta}}{t(b - a)} & \text{for } t \neq 0\\
+	1 & \text{for } t = 0
+	\end{cases} 
+\end{eqnarray}
+
+
+\section{Moments}
+The moment-generating function is not differentiable at zero, but the moments
+can be calculated by differentiating and then taking $\lim_{t \rightarrow 0}$.
+However, it is easier to calculate the moments from the definition directly.
+
+\paragraph{Row Moments}
+\begin{eqnarray}
+	\nonumber
+	\mu_{n} &=& \int_{-\infty}^{\infty}\frac{H(x - a) - H(x - b)}{b - a}x^{n}dx\\
+	\nonumber
+	&=& \int_{a}^{b}\frac{x^{n}}{b - a}dx\\
+	&=& \frac{b^{n + 1} - a^{n +  1}}{(n + 1)(b - a)}
+\end{eqnarray}
+The first few are:
+\begin{eqnarray}
+	\mu_{1} &=& \frac{1}{2}(a + b)\\
+	\mu_{2} &=& \frac{1}{3}(a^{2} + ab + b^{2})\\
+	\mu_{3} &=& \frac{1}{4}(a + b)(a^{2} + b{2})\\
+	\mu_{4} &=& \frac{1}{5}(a^{4} + a^{3}b + a^{2}b^{2} + ab^{3} + b^{4})
+\end{eqnarray}
+
+\paragraph{Central Moments}
+The central moments are given analytically by:
+\begin{eqnarray}
+	\nonumber
+	\mu_{n} &=& \int_{-\infty}^{\infty}\frac{H(x - a) - H(x - b)}{b - a}\left[x - \frac{1}{2}(a + b)\right]^{n}dx\\
+	\nonumber
+	&=& \int_{a}^{b}\frac{\Big[x - \frac{1}{2}(a + b)\Big]^{n}}{b - a}ds\\
+	&=& \frac{\Big(a - b\Big)^{n} + \Big(b - a\Big)^{n}}{2^{n + 1}\Big(n + 1\Big)}
+\end{eqnarray}
+The first few are:
+\begin{eqnarray}
+	\mu_{1} &=& 0\\
+	\mu_{2} &=& \frac{1}{12}(b - a)^{2}\\
+	\mu_{3} &=& 0\\
+	\mu_{4} &=& \frac{1}{80}(b - a)^{4}
+\end{eqnarray}
+
+
+\section{Mean, Variance, Skew, Kurtosis Excess}
+Mean (the first raw moment) is:
+\begin{eqnarray}
+	\mu &=& \frac{1}{2}(a + b)
+\end{eqnarray}
+Variance (the second central moment) is:
+\begin{eqnarray}
+	\sigma^{2} &=& \frac{1}{12}(b - a)^{2}
+\end{eqnarray}
+Skew (third central moment normalised by standard deviation $\sigma$) is:
+\begin{eqnarray}
+	\gamma_{1} &=& 0
+\end{eqnarray}
+Kurtosis excess (the fourth central moment normalised by standard ) is:
+\begin{eqnarray}
+	\gamma_{2} &=& -\frac{6}{5}
+\end{eqnarray}
