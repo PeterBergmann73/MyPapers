@@ -1,0 +1,66 @@
+\documentclass{report}
+
+\usepackage{import}
+\usepackage{rotating}
+
+\import{../}{settings.tex}
+
+
+\begin{document}
+	
+\tableofcontents
+
+\chapter{Market Risk Measure}
+
+\section{Measurement}
+MR is measured by annualised volatility corresponding to the value-at-risk (VaR) at a confidence level of 97.5\% over the recommended holding period. The VaR is the percentage of the amount invested, that is returned to the retail investor.
+
+\section{PRIIPS categories}
+
+\subsection{Category 3}
+\begin{itemize}
+	\item PRIIPS whose values reflect the prices of underlying investments, but not a constant multiple of the prices of those underlying investments
+	\item either prices of the underlying assets available at least for
+	\begin{itemize}
+		\item 2 years of daily 
+		\item 4 years of weekly
+		\item 5 years of monthly
+	\end{itemize}
+	\item or where existing appropriate benchmarks or proxies are available, provided that such benchmarks or proxies fulfil the same criteria for the length and frequency of the price history 
+\end{itemize}
+
+\section{MRM class determination for Categories}
+
+\subsection{For Category 3 PRIIPS}
+
+\begin{center}
+	\begin{tabular}{ | p{3cm} | p{6cm} | p{6cm} |}
+		\hline
+		\textbf{Parameter} & \textbf{Value} & \textbf{Comments} \\ 
+		\hline
+		VaR time horizon & At the end of the holding period & If the product is
+		called or cancelled before the end of the recommended holding period according to the simulation - then, the period in years until the call or cancellation is used in calculations \\  
+		\hline
+		Discounting & Risk-free discount factor from the present date to the end of the recommended period & \\
+		\hline
+		VEV & $\frac{\sqrt{1.96^{2} - 2 * \ln{\Big(VaR_{\text{PRICE SPACE}}\Big)}} - 1.96}{\sqrt{T}}$ where $T$ - is the recommended holding period & \\
+		\hline
+		MRM Class &  &In the case of a PRIIP having only monthly price data, the MRM class shall be increased by one additional class\\
+		\hline
+		Minimum Number of Simulations & 10, 000 &\\
+		\hline
+		Simulation Method & bootstrapping the expected distribution of prices or price levels for the PRIIPS underlying contracts from the observed distribution of returns for these contracts with replacement &\\
+		\hline
+		Spot simulation & \begin{itemize}
+			\item calculate logreturns for each observation period
+			\item randomly select one observed period which corresponds to the return for all underlying contracts for each simulated period in the recommended holding period (the same observed period may be used more than once in the same simulation)
+			\item calculate the return for each contract by summing the returns from the selected periods and correcting this return to ensure that the expected return measured from the simulated distribution of returns is the risk-neutral expectation of the return over the recommended holding period
+		\end{itemize} & \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+The VaR in price space shall be calculated from a distribution of PRIIP values at the end of the recommended holding period. 
+	
+\end{document}
