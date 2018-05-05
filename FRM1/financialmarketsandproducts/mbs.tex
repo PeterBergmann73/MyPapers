@@ -12,3 +12,44 @@ the relevant loan types include:
 	\item Alt-A - which deviate from conforming loans in one requirement
 	\item subprime - which deviate from conforming loans in several dimensions. About 80\% of subprime loans are \textbf{adjustable-rate mortgages (ARMs)}
 \end{itemize}
+
+\section{Monthly Mortgage Payments}
+The present value of the monthly mortgage payments, discounted at the monthly compounded mortgage rate, equals the original amount borrowed.\\
+In general, for a monthly payment $X$ for a $T$-year mortgage rate $y$ and an original principal amount or loan balance of $B(0)$:
+\begin{eqnarray}
+	X\sum_{n = 1}^{12T}\frac{1}{\Big(1 + \frac{y}{12}\Big)^{n}} &=& B(0)
+\end{eqnarray}
+Defining
+\begin{eqnarray}
+	y_{0} &=& \frac{y}{12}
+\end{eqnarray}
+We are getting a geometric series with
+\begin{eqnarray}
+	r &=& \frac{1}{1 + y_{0}}\\
+	a_{0} &=& \frac{X}{1 + y_{0}}\\
+		  &=& X\cdot r
+\end{eqnarray}
+The sum is equal:
+\begin{eqnarray}
+	S &=& a_{0}\frac{1 - r^{m}}{1 - r} 
+\end{eqnarray}
+Noting that
+\begin{eqnarray}
+	1 - r &=& 1 - \frac{1}{1 + y_{0}}\\
+		  &=& \frac{1 + y_{0} - 1}{1 + y_{0}}\\
+		  &=& \frac{y_{0}}{1+y_{0}}\\
+		  &=& r\cdot y_{0}
+\end{eqnarray}
+we get:
+\begin{eqnarray}
+	a_{0}\frac{1 - r^{m}}{1 - r} &=& X\cdot r\frac{1 - r^{m}}{r\cdot y_{0}}\\
+	&=& \frac{X}{y_{0}}\Big(1 - r^{m}\Big)
+\end{eqnarray}
+That is:
+\begin{eqnarray}
+\frac{X}{y_{0}}\Big(1 - r^{m}\Big) &=& B(0)
+\end{eqnarray}
+or
+\begin{eqnarray}
+	X &=& B(0)\frac{y_{0}}{1 - r^{m}}
+\end{eqnarray}
