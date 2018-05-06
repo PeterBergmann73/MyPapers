@@ -1,40 +1,52 @@
 \chapter{Brownian Motion}
 
 \section{Definition}
-\textit{The process $W = (W_{t}: t > 0)$ is a $\mathbb{P}$-Brownian motion if and only if:
-\begin{itemize}
-	\item $W_{t}$ is continuous and $W_{0} = 0$
-	\item the value of $W_{t}$  is distributed, under $\mathbb{P}$, as a normal random variable $N(0, t)$:
+\textit{The process $W = (W_{t}: t > 0)$ is a \textbf{\color{blue}$\mathbb{P}$-Brownian motion} if and only if:
+\begin{enumerate}
+	\item $W_{t}$ is \textbf{\color{blue}continuous} and $W_{0} = 0$
+	\item the value of $W_{t}$  is distributed, under $\mathbb{P}$, as a \textbf{\color{blue}normal random variable} $N(0, t)$:
 	\begin{eqnarray}
 	W_{t} \sim N(0, t)
 	\end{eqnarray}
-	\item the increments $W_{s + t} - W_{s}$ are normally distributed with variance $t - s$ as a $N(0, t)$ under $\mathbb{P}$:
+	\item the \textbf{\color{blue}increments} $W_{s + t} - W_{s}$ \textbf{\color{blue}are normally distributed with variance $t - s$} as a $N(0, t)$ under $\mathbb{P}$:
 	\begin{eqnarray}
 	W_{t} - W_{s} \sim N(0, t - s)
 	\end{eqnarray}
-	\item the increments $W_{s + t} - W_{s}$ are independent of the behaviour of $W_{r}$ for $r \leq s$:
+	\item \textbf{\color{blue}the increments} $W_{s + t} - W_{s}$ are \textbf{\color{blue}independent} of the behaviour of $W_{r}$ for $r \leq s$:
 	\begin{eqnarray}
 	W_{s + t} - W_{s} \neq f(W_{r}), \forall r \leq s
 	\end{eqnarray}
-\end{itemize}
+\end{enumerate}
 }
+
+
+\section{Quadratic Variation}
+
+\section{BM properties}
 
 
 \section{BM Martingales}
 
 \subsection{Martingale}
-A stochastic process ${X(t), t \geq 0}$ is a martingale if for any $t$ it is integrable, $\mathbf{E}(X(t)) < \infty$, and for any $s > 0$
-\begin{eqnarray}
-\mathbb{E}(X(t + s)\vert \mathscr{F}_{t}) &=& X(t)
-\end{eqnarray}
+A stochastic process ${X(t), \forall t \geq 0}$ is a martingale if
+\begin{enumerate}
+	\item for any $t$ it is integrable (it has a finite expectation):
+	\begin{eqnarray}
+		\mathbf{E}(X(t)) < \infty
+	\end{eqnarray}
+	\item and for any $s > 0$
+	\begin{eqnarray}
+	\mathbb{E}(X(t + s)\vert \mathscr{F}_{t}) &=& X(t)
+	\end{eqnarray}
+\end{enumerate}
 
 \subsection{BM Martingales}
 The list is taken from\\
 \textit{"Fima Klebaner. Introduction to Stochastic Calculus with Applications. p.64"}
 \begin{itemize}
-	\item $W_{t}$ - is a martingale
-	\item $W_{t}^{2} - t$ - is a martingale
-	\item for any $u$, $e^{uW_{t} - \frac{u^{2}}{2}t}$ - is a martingale
+	\item \textbf{\color{blue}$W_{t}$} - is a martingale
+	\item \textbf{\color{blue}$W_{t}^{2} - t$} - is a martingale
+	\item for any $u$, \textbf{\color{blue}$e^{uW_{t} - \frac{u^{2}}{2}t}$} - is a martingale
 \end{itemize}
 \textbf{Proof:} The key idea in establishing the martingale property is that for any function $g$, the conditional expectation of $g(W_{t + s} - W_{t})$ given $\mathscr{F}_{s}$ equals to the unconditional one.
 
@@ -73,9 +85,14 @@ The list is taken from\\
 	is a martingale.
 \end{itemize}
 
+\section{TODO}
+\begin{itemize}
+	\item BM construction
+	\item Joshi1.page155 - creation of martingales 
+\end{itemize}
 
-TODO - check how to construct BM.\\
-Problems to solve:
+
+\section{Problems}
 \begin{itemize}
 	\item is $Z = \sqrt{t}N(0,1)$ a BM?
 	\item is $X_{t} = \rho W_{1} + \sqrt{1 - \rho^{2}}\tilde{W_{t}}$ a BM?

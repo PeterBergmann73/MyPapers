@@ -8,11 +8,28 @@
 d(XY) = XdY + YdX +dX dY
 \end{eqnarray}
 
-\subsection{Ratio rule}
+\subsection{Inversion Rule}
+If
 \begin{eqnarray}
-d\bigg(\frac{X}{Y}\bigg) &=& 
+	f &=& \frac{1}{Y} = Y^{-1}
+\end{eqnarray}
+then
+\begin{eqnarray}
+	\frac{\partial f}{\partial Y} &=& -Y^{-2} = -\frac{1}{Y^{2}}\\
+	\frac{\partial ^{2}f}{\partial Y^{2}} &=& 2Y^{-3} = \frac{2}{Y^{3}}
+\end{eqnarray}
+and
+\begin{eqnarray}
+	\nonumber
+	df &=& \frac{\partial f}{\partial Y}dY + \frac{1}{2}\frac{\partial^{2}f}{\partial Y^{2}}dY^{2}\\
+	&=& -\frac{dY}{Y^{2}} + \frac{dY^{2}}{Y^{3}}
 \end{eqnarray}
 
-\subsection{Ito isometry}
+\subsection{Quotient Rule}
+\begin{eqnarray}
+d\bigg(\frac{X}{Y}\bigg) &=& \frac{X}{Y}\left[\frac{dX}{X} - \frac{dY}{Y} - \frac{dX}{X}\frac{dY}{Y} + \Bigg(\frac{dY}{Y}\Bigg)^{2}\right]
+\end{eqnarray}
+
+\subsection{Ito Isometry}
 
 \subsection{CEV Process}
