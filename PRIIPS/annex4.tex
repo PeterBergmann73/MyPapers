@@ -1,0 +1,64 @@
+\chapter{Performance Scenarios}
+
+\section{Summary}
+The performance scenarios shall be the following:
+\begin{enumerate}
+	\label{Sec:PerformanceScenarios}
+	\item a favourable scenario
+	\item a moderate scenario
+	\item an unfavourable scenario
+	\item a stress scenario
+\end{enumerate}
+The stress scenario shall show intermediate periods where those periods would be shown for the performance scenarios (1-3) above (\ref{Sec:PerformanceScenarios})
+
+\section{Scenario Calculations}
+The scenario shall be calculated in a similar manner as the market risk measure.\\
+The scenario values shall be calculated \textbf{\color{blue}for the recommended holding period}.
+
+\section{Scenario Percentiles}
+The following percentiles should be used for scenarios:
+\begin{center}
+	\begin{longtable}{| c | c |}
+		\hline
+		\textbf{Scenario} & \textbf{Percentile}\\
+		\hline
+		unfavourable & 10-th\\
+		\hline
+		moderate & 50-th\\
+		\hline
+		favourable & 90-th\\
+		\hline
+	\end{longtable}
+\end{center}
+
+\section{Stress Scenario}
+
+\subsection{Summary}
+The stress scenario shall be the value of the PRIIP that results from the methodology outlined in points ...\\
+
+\subsection{Stress Volatility}
+The following steps are required to calculate the stress volatility:
+\begin{enumerate}
+	\item identify a sub interval of length $\omega$ which corresponds to the following intervals:
+	\begin{center}
+		\begin{longtable}{| c | c | c|}
+			\hline
+			\textbf{Observation Frequency} & $<=$\textbf{ 1 year} & $> $ \textbf{ 1 year}\\
+			\hline
+			Daily prices & 21 & 63\\
+			\hline
+			Weekly prices & 5 & 16\\
+			\hline
+			Monthly prices & 6 & 12\\
+			\hline
+		\end{longtable}
+	\end{center}
+	\item identify for each sub interval of length $\omega$ the historical lognormal returns $r_{t}$,\\
+	where:\\
+	$t = t_{0}$, $t_{1}$, $t_{2}$, ..., $t_{N}$ 
+	\item measure the volatility based on the formula below starting from $t_{i} = t_{0}$ rolling until $t_{i} = t_{N - \omega}$
+\end{enumerate}
+
+\subsection{For Category 3 PRIIPs} 
+
+

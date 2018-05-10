@@ -66,6 +66,14 @@ The PRIIP manufacturer should \textbf{\color{blue}document the use of such bench
 
 \section{MRM class determination for PRIIPs Categories}
 
+\subsection{$VaR_{\text{RETURN SPACE}}$}
+The VaR measure in the return space is given by the Cornish-Fisher expansion, as follows:
+\begin{eqnarray}
+	\label{Eq:VaR}
+	\nonumber
+	VaR_{\text{RETURN SPACE}} &=& \sigma\sqrt{N} * \Bigg(-1.96 + 0.474 *  \frac{\mu_{1}}{\sqrt{N}} - 0.0687 * \frac{\mu_{2}}{N} + 0.146 * \frac{\mu_{1}^{2}}{N}\Bigg) - \frac{1}{2}\sigma^{2}N
+\end{eqnarray}
+
 \subsection{Category 2}
 
 \subsection{Category 3}
@@ -73,12 +81,16 @@ The PRIIP manufacturer should \textbf{\color{blue}document the use of such bench
 \begin{itemize}
 	\item \textbf{VaR time horizon}
 	\begin{itemize}
-		\item at the end of the holding period
-		\item if the product is
-		called or cancelled before the end of the recommended holding period according to the simulation - then, the period in years until the call or cancellation is used in calculations
+		\item \textbf{\color{blue}at the end of the holding period}
+		\item or \textbf{\color{blue}the period in years until the call or cancellation} if the product is
+		called or cancelled before the end of the recommended holding period according to the simulation
 	\end{itemize}
-	\item \textbf{Discounting} - Risk-free discount factor from the present date to the end of the recommended period
-	\item \textbf{VEV} - $\frac{\sqrt{1.96^{2} - 2 * \ln{\Big(VaR_{\text{PRICE SPACE}}\Big)}} - 1.96}{\sqrt{T}}$ where $T$ - is the recommended holding period
+	\item \textbf{Discounting} - risk-free discount factor from the present date to the end of the recommended period
+	\item \textbf{VEV} is given by:
+	\begin{eqnarray}
+		VEV &=& \frac{\sqrt{1.96^{2} - 2 * \ln{\Big(VaR_{\text{PRICE SPACE}}\Big)}} - 1.96}{\sqrt{T}}
+	\end{eqnarray}
+	where $T$ - is the recommended holding period\footnote{The RTS refers to "$VaR_{\text{PRICE SPACE}}$", but in the text there is no such definition, but there is a definition of "$VaR_{\text{RETURN SPACE}}$"}
 	\item \textbf{MRM Class}
 	\begin{itemize}
 		\item in the case of a PRIIP having only monthly price data, the MRM class shall be increased by one additional class 
@@ -103,7 +115,7 @@ The PRIIP manufacturer should \textbf{\color{blue}document the use of such bench
 		\end{itemize}
 		\item calculate the price of each underlying contract by taking the exponential of the return
 	\end{itemize}
-	\item for PRIIPS that are characterised by an unconditional protection of capital, the PRIIP manufacturer may assume that the VaR at a confidence level of 97.5\% is equal to the level of the unconditional capital protectionat teh end of the recommended holding period
+	\item for PRIIPS that are characterised by an \textbf{\color{blue}unconditional protection of capital}, the PRIIP manufacturer may assume that the VaR at a confidence level of 97.5\% is equal to the level of the unconditional capital protectionat at the end of the recommended holding period, discounted to the present date using the expected risk-free discount factor
 \end{itemize}
 
 \chapter{Credit Risk Measure (CRM)}
@@ -111,13 +123,3 @@ The PRIIP manufacturer should \textbf{\color{blue}document the use of such bench
 \chapter{Aggregation of Market and Credit Risk into Summary Risk Indicator (SRI)}
 
 \chapter{Liquidity Risk}
-
-\chapter{Performance Scenarios}
-The performance scenarios under this Regulation which shall show a range of possible returns, shall be the following:
-\begin{itemize}
-	\item a favourable scenario
-	\item a moderate scenario
-	\item an unfavourable scenario
-	\item a stress scenario
-\end{itemize}
-
