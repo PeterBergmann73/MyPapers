@@ -14,101 +14,18 @@
 \import{./}{acronyms.tex}
 \pagebreak
 
-\part{Annex 1}
+\part{Annex 1 - 
+\textbf{\color{blue}Template For The Key Information Document}
+}
 
 \import{./}{annex1.tex}
 \pagebreak
 
-\part{Annex 2}
+\part{Annex 2 - 
+\textbf{\color{blue}Methodology For The Presentation Of Risk}
+}
 
 \import{./}{annex2.tex}
 \pagebreak
-
-\chapter{Market Risk Measure (MRM)}
-
-\section{Measurement}
-MR is measured by annualised volatility corresponding to the value-at-risk (VaR) at a confidence level of 97.5\% over the recommended holding period. The VaR is the percentage of the amount invested, that is returned to the retail investor.
-
-\section{Assigning a MRM class to PRIIPS}
-
-\begin{center}
-	\begin{longtable}{| p{8cm} | p{9cm}}
-		\hline
-		\textbf{MRM class} & {VaR-Equivalent Volatility (VEV)}\\
-		\hline
-	\end{longtable}
-\end{center}
-
-\chapter{PRIIPS}
-
-\section{PRIIPS categories}
-
-\subsection{Category 3}
-\begin{itemize}
-	\item PRIIPS whose values reflect the prices of underlying investments, but not a constant multiple of the prices of those underlying investments
-	\item either prices of the underlying assets available at least for
-	\begin{itemize}
-		\item 2 years of daily 
-		\item 4 years of weekly
-		\item 5 years of monthly
-	\end{itemize}
-	\item or where existing appropriate benchmarks or proxies are available, provided that such benchmarks or proxies fulfil the same criteria for the length and frequency of the price history 
-\end{itemize}
-
-\section{MRM class determination for Categories}
-
-\subsection{For Category 3 PRIIPS}
-
-\begin{itemize}
-	\item \textbf{VaR time horizon}
-	\begin{itemize}
-		\item at the end of the holding period
-		\item if the product is
-		called or cancelled before the end of the recommended holding period according to the simulation - then, the period in years until the call or cancellation is used in calculations
-	\end{itemize}
-	\item \textbf{Discounting} - Risk-free discount factor from the present date to the end of the recommended period
-	\item \textbf{VEV} - $\frac{\sqrt{1.96^{2} - 2 * \ln{\Big(VaR_{\text{PRICE SPACE}}\Big)}} - 1.96}{\sqrt{T}}$ where $T$ - is the recommended holding period
-	\item \textbf{MRM Class}
-	\begin{itemize}
-		\item in the case of a PRIIP having only monthly price data, the MRM class shall be increased by one additional class 
-	\end{itemize}
-	\item \textbf{Minimum Number of Simulations} - 10, 000
-	\item \textbf{Simulation Method} - bootstrapping the expected distribution of prices or price levels for the PRIIPS underlying contracts from the observed distribution of returns for these contracts with replacement
-	\item \textbf{Spot simulation}
-	\begin{itemize}
-			\item calculate logreturns for each observation period
-			\item randomly select one observed period which corresponds to the return for all underlying contracts for each simulated period in the recommended holding period (the same observed period may be used more than once in the same simulation)
-			\item calculate the return for each contract by summing the returns from the selected periods and correcting this return to ensure that the expected return measured from the simulated distribution of returns is the risk-neutral expectation of the return over the recommended holding period
-			\item the final value of the return is given by:
-			\begin{eqnarray}
-				\nonumber
-				Return &=& \mathbb{E}\Big[Return_{\text{risk-neutral}}\Big] - \mathbb{E}\Big[Return_{\text{Measured}}\Big] - 0.5\sigma^{2}N - \rho\sigma\sigma_{ccy}N
-			\end{eqnarray}
-	where:
-	\begin{itemize}
-		\item the second term corrects for the impact of the mean of the observed returns
-		\item the third term corrects for the impact of the variance of the observed returns
-		\item the last term corrects for the quanto impact if the strike currency is different from the asset currency
-	\end{itemize}
-		\item calculate the price of each underlying contract by taking the exponential of the return
-	\end{itemize}
-	\item for PRIIPS that are characterised by an unconditional protection of capital, the PRIIP manufacturer may assume that the VaR at a confidence level of 97.5\% is equal to the level of the unconditional capital protectionat teh end of the recommended holding period
-\end{itemize}
-
-\chapter{Credit Risk Measure (CRM)}
-
-\chapter{Aggregation of Market and Credit Risk into Summary Risk Indicator (SRI)}
-
-\chapter{Liquidity Risk}
-
-\chapter{Performance Scenarios}
-The performance scenarios under this Regulation which shall show a range of possible returns, shall be the following:
-\begin{itemize}
-	\item a favourable scenario
-	\item a moderate scenario
-	\item an unfavourable scenario
-	\item a stress scenario
-\end{itemize}
-
 
 \end{document}

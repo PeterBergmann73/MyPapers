@@ -1,1 +1,123 @@
-\chapter{Methodology For The Presentation Of Risk}
+\chapter{Market Risk Measure (MRM)}
+
+\section{Measurement}
+MR is measured by
+\begin{itemize}
+	\item \textbf{\color{blue}annualised volatility}
+	\item corresponding to the value-at-risk (VaR) \textbf{\color{blue}at a confidence level of 97.5\%}
+	\item \textbf{\color{blue}over the recommended holding period}.
+\end{itemize}
+The VaR is the percentage of the amount invested, that is returned to the retail investor.
+
+\section{Assigning a MRM class to PRIIPS}
+
+\begin{center}
+	\begin{longtable}{| c | c |}
+		\hline
+		\textbf{MRM class} & \textbf{VaR-Equivalent Volatility (VEV)}\\
+		\hline
+		1 & $< 0.5\%$\\
+		\hline
+		2 & $0.5\% - 5.0\%$\\
+		\hline
+		3 & $5.0\% - 12\%$\\
+		\hline
+		4 & $12\% - 20\%$\\
+		\hline
+		5 & $20\% - 30\%$\\
+		\hline
+		6 & $30\% - 80\%$\\
+		\hline
+		7 & $> 80\%$\\
+		\hline
+	\end{longtable}
+\end{center}
+
+\section{Price History for Liquid Underlying Investments}
+\label{Sec:LiquidUnderlyings}
+Liquid products are priced on \textbf{\color{blue}at least monthly basis} and where the price history for the product (its benchmark/proxy) exists at least
+\begin{itemize}
+	\item \textbf{\color{blue}daily} - for \textbf{\color{Mahogany}2 years}
+	\item or \textbf{\color{blue}weekly} - for \textbf{\color{Mahogany}4 years}
+	\item or \textbf{\color{blue}monthly} - for \textbf{\color{Mahogany}5 years}
+\end{itemize}
+Whenever possible, \textbf{\color{Brown}observations of higher frequency should be used}.
+
+\section{PRIIPS categories}
+For the purpose of determining market risk, PRIIPs are divided into four categories.
+
+
+\subsection{Category 1}
+\begin{itemize}
+	\item \textbf{\color{blue}risk of high losses} - PRIIPs where investors could lose more than the amount they invested
+	\item or \textbf{\color{blue}specifically named securities} - PRIIPs that fall within one of the categories referred to in items 4 to 10 of Section C of Annex 1 to Directive 2014/65/EU of the European Parliament and of the Council\footnote{Directive 2014/65/EU of the European Parliament and of the Council of 15 May 2014 on markets in financial instruments and amending Directive 2002/92/EC and Directive 2011/EU (OJ L 173, 12.6.2014, p.349)}
+	\item or \textbf{\color{blue}irregularly priced securities} - PRIIPs or underlying investments of PRIIPs which \textbf{\color{Mahogany}are priced on a less regular basis than monthly}, or which do not have an appropriate benchmark or proxy, or whose appropriate benchmark or proxy is priced on a less regular basis than monthly
+\end{itemize}
+
+\subsection{Category 3}
+\begin{itemize}
+	\item \textbf{\color{blue}non-linear derivatives} - PRIIPS whose values reflect the prices of underlying investments, but not a constant multiple of the prices of those underlying investments
+	\item and \textbf{\color{blue}liquid underlyings} (\ref{Sec:LiquidUnderlyings})
+\end{itemize}
+
+\section{Benchmarks or Proxies}
+Benchmarks or proxies should be \textbf{\color{blue}representative of the assets or exposures} that determine the performance of the PRIIP.\\
+The PRIIP manufacturer should \textbf{\color{blue}document the use of such benchmarks or proxies}. 
+
+\section{MRM class determination for PRIIPs Categories}
+
+\subsection{Category 2}
+
+\subsection{Category 3}
+
+\begin{itemize}
+	\item \textbf{VaR time horizon}
+	\begin{itemize}
+		\item at the end of the holding period
+		\item if the product is
+		called or cancelled before the end of the recommended holding period according to the simulation - then, the period in years until the call or cancellation is used in calculations
+	\end{itemize}
+	\item \textbf{Discounting} - Risk-free discount factor from the present date to the end of the recommended period
+	\item \textbf{VEV} - $\frac{\sqrt{1.96^{2} - 2 * \ln{\Big(VaR_{\text{PRICE SPACE}}\Big)}} - 1.96}{\sqrt{T}}$ where $T$ - is the recommended holding period
+	\item \textbf{MRM Class}
+	\begin{itemize}
+		\item in the case of a PRIIP having only monthly price data, the MRM class shall be increased by one additional class 
+	\end{itemize}
+	\item \textbf{Minimum Number of Simulations} - 10, 000
+	\item \textbf{Simulation Method} - bootstrapping the expected distribution of prices or price levels for the PRIIPS underlying contracts from the observed distribution of returns for these contracts with replacement
+	\item \textbf{Spot simulation}
+	\begin{itemize}
+		\item calculate logreturns for each observation period
+		\item randomly select one observed period which corresponds to the return for all underlying contracts for each simulated period in the recommended holding period (the same observed period may be used more than once in the same simulation)
+		\item calculate the return for each contract by summing the returns from the selected periods and correcting this return to ensure that the expected return measured from the simulated distribution of returns is the risk-neutral expectation of the return over the recommended holding period
+		\item the final value of the return is given by:
+		\begin{eqnarray}
+		\nonumber
+		Return &=& \mathbb{E}\Big[Return_{\text{risk-neutral}}\Big] - \mathbb{E}\Big[Return_{\text{Measured}}\Big] - 0.5\sigma^{2}N - \rho\sigma\sigma_{ccy}N
+		\end{eqnarray}
+		where:
+		\begin{itemize}
+			\item the second term corrects for the impact of the mean of the observed returns
+			\item the third term corrects for the impact of the variance of the observed returns
+			\item the last term corrects for the quanto impact if the strike currency is different from the asset currency
+		\end{itemize}
+		\item calculate the price of each underlying contract by taking the exponential of the return
+	\end{itemize}
+	\item for PRIIPS that are characterised by an unconditional protection of capital, the PRIIP manufacturer may assume that the VaR at a confidence level of 97.5\% is equal to the level of the unconditional capital protectionat teh end of the recommended holding period
+\end{itemize}
+
+\chapter{Credit Risk Measure (CRM)}
+
+\chapter{Aggregation of Market and Credit Risk into Summary Risk Indicator (SRI)}
+
+\chapter{Liquidity Risk}
+
+\chapter{Performance Scenarios}
+The performance scenarios under this Regulation which shall show a range of possible returns, shall be the following:
+\begin{itemize}
+	\item a favourable scenario
+	\item a moderate scenario
+	\item an unfavourable scenario
+	\item a stress scenario
+\end{itemize}
+
