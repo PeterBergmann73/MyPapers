@@ -32,6 +32,7 @@ The following percentiles should be used for scenarios:
 \end{center}
 
 \section{Stress Scenario}
+\label{Sec:StressScenario}
 
 \subsection{Summary}
 The stress scenario shall be the value of the PRIIP that results from the methodology outlined in points ...\\
@@ -59,6 +60,40 @@ The following steps are required to calculate the stress volatility:
 	\item measure the volatility based on the formula below starting from $t_{i} = t_{0}$ rolling until $t_{i} = t_{N - \omega}$
 \end{enumerate}
 
-\subsection{For Category 3 PRIIPs} 
+\subsection{For Category 3 PRIIPs}
+\label{Sec:StressScenarioForCategory3}
+
+\section{Calculation of Expected Values for Intermediate Holding Periods}
+
+\subsection{Intermediate Periods}
+\begin{center}
+	\begin{tabular}{| c | p{10cm} |}
+		\hline
+		\textbf{RHP} & \textbf{Periods to show performance}\\
+		\hline
+		$<=$ 1 year & no intermediate holding periods\\
+		\hline
+		\multirow{2}{*}{between 1 and 3 years} & - at the end of the first year\\
+		& - and at the end of the RHP\\
+		\hline
+		\multirow{3}{*}{$>= $ 3 year} & - at the end of the first year\\
+		& - after half the RHP rounded up to the end of the nearest year\\
+		& - and at the end of RHP\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Category 2}
+
+\subsection{Category 3}
+To produce the favourable, moderate, unfavourable and stress scenarios at an intermediate period before the end of the recommended holding period, the manufacturer shall pick three underlying simulations as referred to in (\ref{Sec:MrmCalculationForCategory3}) for the calculation of MRM and one underlying simulation as referred in (\ref{Sec:StressScenarioForCategory3}), on the basis of underlying levels only and in such a manner that the simulated value of the PRIIPs for that intermediate period is likely to be consistent with the relevant scenario.\\
+The manufacturer shall choose underlying values consistent with the 90-th, the 50-th, and the 10-th percentile levels and the percentile level that correspond to 1\% for 1 year an to 5\% for the other holding periods of the PRIIP and use these values as the seed values for a simulation to determine the value of the PRIIP.
+
+\subsection{Common Features}
+For \textbf{\color{blue}favourable, moderate and unfavourable scenarios at intermediate periods}, the estimate of the distribution used to read the value of the PRIIP at different percentiles shall be consistent with the observed return and volatility observed over the past 5 years of all market instruments that determine the PRIIP's value.\\
+For \textbf{\color{blue}the stress scenario at intermediate periods}, the estimate of the distribution used to read the value of the PRIIP at different percentiles shall be consistent with the simulated distribution of all market instruments that determine the PRIIP's value as set out in (\ref{Sec:StressScenario}).
+
+
+ 
 
 
