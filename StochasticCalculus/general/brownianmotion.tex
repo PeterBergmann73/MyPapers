@@ -1,7 +1,7 @@
-\chapter{Brownian Motion}
+\chapter{Brownian Motion (Wiener Process)}
 
 \section{Definition}
-\textit{The process $W = (W_{t}: t > 0)$ is a \textbf{\color{blue}$\mathbb{P}$-Brownian motion} if and only if:
+\textit{The process $W = (W_{t}: t > 0)$ is a \textbf{\color{blue}$\mathbb{P}$-adapted Brownian motion (or $\mathbb{P}$-adapted Wiener process)} if and only if:
 \begin{enumerate}
 	\item $W_{t}$ is \textbf{\color{blue}continuous} and $W_{0} = 0$
 	\item the value of $W_{t}$  is distributed, under $\mathbb{P}$, as a \textbf{\color{blue}normal random variable} $N(0, t)$:
@@ -17,10 +17,24 @@
 	W_{s + t} - W_{s} \neq f(W_{r}), \forall r \leq s
 	\end{eqnarray}
 \end{enumerate}
-}
+}\footnote{Through the paper we use $W_{t}$ and $B_{t}$ interchangeably}
 
 
 \section{Quadratic Variation}
+Let $f:[0, T] \rightarrow \mathbb{R}$ be a function the interval $[0, T]$.\\
+Let us take partition $\Delta$ of the interval, that:
+\begin{eqnarray}
+	0 &=& t_{0} < t_{1} < ... < t_{n} = T
+\end{eqnarray}
+and define its $length$ as:
+\begin{eqnarray}
+	l(\Delta) &=& \max(t_{i + 1} - t_{i})
+\end{eqnarray}
+The quadratic variation for the partition $\Delta$ is then
+\begin{eqnarray}
+	Q(\Delta) &=& \sum_{i = 0}^{n - 1}\Bigg(f\Big(t_{i + 1}\Big) - f\Big(t_{i}\Big)\Bigg)^{2}\geq 0
+\end{eqnarray}
+The quadratic variation of the function is then the limit of this as the length of the partition goes to zero.
 
 \section{BM properties}
 

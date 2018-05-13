@@ -30,6 +30,84 @@ and
 d\bigg(\frac{X}{Y}\bigg) &=& \frac{X}{Y}\left[\frac{dX}{X} - \frac{dY}{Y} - \frac{dX}{X}\frac{dY}{Y} + \Bigg(\frac{dY}{Y}\Bigg)^{2}\right]
 \end{eqnarray}
 
+\section{Fubini's Theorem}
+If $X$ and $Y$ \textbf{\color{blue}$\sigma$-finite measure} spaces and if $f$ is a measurable function such that \textbf{\color{blue}any one of the three integrals}:
+\begin{eqnarray}
+	\int_{X}\Bigg(\int_{Y}\vert f(x, y)\vert dy\Bigg)dx\\
+	\int_{Y}\Bigg(\int_{X}\vert f(x, y)\vert dx\Bigg)dy\\
+	\int_{X\times Y}\vert f(x, y)\vert d(x,y)
+\end{eqnarray}
+\textbf{\color{blue}is finite}, then
+\begin{eqnarray}
+	\int_{X\times Y}f(x, y)d(x, y) &=&
+	\int_{X}\Bigg(\int_{Y}f(x, y) dy\Bigg)dx\\
+	&=& \int_{Y}\Bigg(\int_{X}f(x, y) dx\Bigg)dy
+\end{eqnarray}
+that is, a \textbf{\color{blue}double integral} could be replaced with \textbf{\color{blue}iterated integrals}.
+
+\section{Integrals involving Brownian Motion}
+
+There are 2 kinds of integrals involving Brownian motion - \textbf{\color{blue}time integrals} and \textbf{\color{blue}Ito integrals}.
+
+\section{Time Integrals}
+The time integral is the ordinary Riemann integral of a continuous but random function of $t$ with respect to $t$:
+\begin{eqnarray}
+	Y_{t} &=& \int_{0}^{T}{f(B_{t})}dt
+\end{eqnarray}
+
+\section{Ito Integral}
+
+Suppose that $W_{t}$ is a Wiener process adapted to the filtration $\mathbb{F}$\\
+Suppose that $X_{t}$ is another stochastic process that is adapted to the same filtration $\mathbb{F}$.\\
+The Ito integral is defined as:
+\begin{eqnarray}
+	\label{Eq:ItoIntegral}
+	Y_{t} &=& \int_{0}^{t}X_{s}dW_{s}
+\end{eqnarray}
+The Ito integral is one of the ways to construct a new stochastic process $Y_{t}$ from old ones $X_{t}$ and $W_{t}$.\\
+It is not possible to define (\ref{Eq:ItoIntegral}) unless $X_{t}$ is adapted.
+
+\section{Properties of Ito Integral of Simple Processes}
+A simple function is a function that takes on finitely many values in its range.\\
+That is, $X_{t}$ is such a process for which there exist times $0 = t_{0} < t_{1} < ... < t_{n} = T$ and constants $c_{0}, c_{1}, ..., c_{n - 1}$, such that:
+\begin{equation}
+	X(t) = \begin{cases}
+	c_{0} & \text{if $t = 0$}\\
+	c_{i} & \text{if $t_{i} < t \leq t_{i + 1}$, $i = 0, ..., n - 1$}
+	\end{cases}
+\end{equation}
+The Ito integral is defined as a sum
+\begin{eqnarray}
+	\label{Eq:ItoIntegral2}
+	\int_{0}^{T}X(t)dB(t) &=& \sum_{i = 0}^{n - 1}c_{i}\Big(B\big(t_{i + 1}\big) - B\big(t_{i}\big)\Big)
+\end{eqnarray}
+It is easy to see by using the independence property of Brownian increments that the integral, which is the sum in (\ref{Eq:ItoIntegral2}) is a Gaussian random variable with mean zero and variance
+\begin{eqnarray}
+	Var\Bigg(brr\Bigg)
+\end{eqnarray} 
+
+
+\subsection{Linearity.}If $X_{t}$ and $Y_{t}$ are simple processes and $\alpha$ and $\beta$ are some constants, then:
+\begin{eqnarray}
+	\int_{0}
+\end{eqnarray}
+
+
+\section{Some Important Brownian Motion Integrals}
+
+\subsection{$\int_{0}^{t}W_{s}ds$}
+Noting, that:
+\begin{eqnarray}
+	d\Big(tW_{t}\Big) &=& W_{t}dt + tdW_{t}
+\end{eqnarray}
+Therefore:
+\begin{eqnarray}
+	\int_{0}^{t}W_{s}ds &=& \int_{0}^{t}d\Big(sW_{s}\Big) - \int_{0}^{t}sdW_{s}\\
+	&=& tW_{t} - \int_{0}^{t}sdW_{s}\\
+	&=& \int_{0}^{t}\Big(t - s\Big)dW_{t}
+\end{eqnarray}
+
+
 \subsection{Ito Isometry}
 
 \subsection{CEV Process}
