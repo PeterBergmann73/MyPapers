@@ -83,7 +83,9 @@ The Ito integral is defined as a sum
 \end{eqnarray}
 It is easy to see by using the independence property of Brownian increments that the integral, which is the sum in (\ref{Eq:ItoIntegral2}) is a Gaussian random variable with mean zero and variance
 \begin{eqnarray}
-	Var\Bigg(brr\Bigg)
+	Var\Bigg(XdB\Bigg) &=& \mathbb{E}\Bigg(\sum_{i = 0}^{n - 1}c_{i}\bigg(B\Big(t_{i + 1}\Big) - B\Big(t_{i}\Big)\bigg)\Bigg)^{2}\\
+	\nonumber
+	&=& \mathbb{E}\Bigg(\sum_{i = 0}^{n - 1}c_{i}\bigg(B\Big(t_{i + 1}\Big) - B\Big(t_{i}\Big)\bigg) \cdot \sum_{i = 0}^{n - 1}c_{i}\bigg(B\Big(t_{i + 1}\Big) - B\Big(t_{i}\Big)\bigg)\Bigg)
 \end{eqnarray} 
 
 
