@@ -69,6 +69,7 @@ It is not possible to define (\ref{Eq:ItoIntegral}) unless $X_{t}$ is adapted.
 
 \section{Properties of Ito Integral of Simple Processes}
 A simple function is a function that takes on finitely many values in its range.\\
+Let us consider a \textit{deterministic} simple process $X_{t}$ which is a function of $t$ and does not depend on $B(t)$.\\
 That is, $X_{t}$ is such a process for which there exist times $0 = t_{0} < t_{1} < ... < t_{n} = T$ and constants $c_{0}, c_{1}, ..., c_{n - 1}$, such that:
 \begin{equation}
 	X(t) = \begin{cases}
@@ -79,20 +80,28 @@ That is, $X_{t}$ is such a process for which there exist times $0 = t_{0} < t_{1
 The Ito integral is defined as a sum
 \begin{eqnarray}
 	\label{Eq:ItoIntegral2}
-	\int_{0}^{T}X(t)dB(t) &=& \sum_{i = 0}^{n - 1}c_{i}\Big(B\big(t_{i + 1}\big) - B\big(t_{i}\big)\Big)
+	\int_{0}^{T}X(t)dB_{t} &=& \sum_{i = 0}^{n - 1}c_{i}\Big(B_{t_{i + 1}} - B_{t_{i}}\Big)
 \end{eqnarray}
 It is easy to see by using the independence property of Brownian increments that the integral, which is the sum in (\ref{Eq:ItoIntegral2}) is a Gaussian random variable with mean zero and variance
 \begin{eqnarray}
-	Var\Bigg(XdB\Bigg) &=& \mathbb{E}\Bigg(\sum_{i = 0}^{n - 1}c_{i}\bigg(B\Big(t_{i + 1}\Big) - B\Big(t_{i}\Big)\bigg)\Bigg)^{2}\\
 	\nonumber
-	&=& \mathbb{E}\Bigg(\sum_{i = 0}^{n - 1}c_{i}\bigg(B\Big(t_{i + 1}\Big) - B\Big(t_{i}\Big)\bigg) \cdot \sum_{i = 0}^{n - 1}c_{i}\bigg(B\Big(t_{i + 1}\Big) - B\Big(t_{i}\Big)\bigg)\Bigg)
-\end{eqnarray} 
-
+	Var\Bigg(XdB\Bigg) &=& \mathbb{E}\Bigg[\sum_{i = 0}^{n - 1}c_{i}\bigg(B_{t_{i + 1}} - B_{t_{i}}\bigg)\Bigg]^{2}\\
+	\nonumber
+	&=& \mathbb{E}\Bigg[\sum_{i = 0}^{n - 1}c_{i}\bigg(B_{t_{i + 1}} - B_{t_{i}}\bigg) \cdot \sum_{i = 0}^{n - 1}c_{i}\bigg(B_{t_{i + 1}} - B_{t_{i}}\bigg)\Bigg]\\
+	\nonumber
+	&=& \sum_{i = 0}^{n - 1}\sum_{j = 0}^{n - 1}\mathbb{E}\Bigg[c_{i}c_{j}\bigg(B_{t_{i + 1}} - B_{t_{i}}\bigg) \cdot \bigg(B_{t_{j + 1}} - B_{t_{j}}\bigg)\Bigg]\\
+	\nonumber
+	&=& \sum_{i = 0}c_{i}^{2}\big(t_{i + 1} - t_{i}\big)
+\end{eqnarray}
+We can expand our calculations to the case where constants $c_{i}$ are replaced by random variables $\xi_{i}$ that depend on the values of $B(t)$ for $t \leq t_{i}$, that is they allowed to be $\mathcal{F}_{t}$-measurable. 
 
 \subsection{Linearity.}If $X_{t}$ and $Y_{t}$ are simple processes and $\alpha$ and $\beta$ are some constants, then:
 \begin{eqnarray}
-	\int_{0}
+	\label{Eq:ItoIntegralLinearity}
+	\int_{0}^{T}\Big(\alpha X(t) + \beta Y(t)\Big)dB_{t} &=& \alpha\int_{0}^{T}X(t)dB(t) + \beta \int_{0}^{T}Y(t)dB(t)
 \end{eqnarray}
+
+\subsection{}
 
 
 \section{Some Important Brownian Motion Integrals}
